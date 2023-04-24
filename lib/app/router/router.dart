@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:roomeasy/app/screen/account/account.dart';
 import 'package:roomeasy/app/screen/common/not_found.dart';
@@ -6,7 +5,7 @@ import 'package:roomeasy/app/screen/conversation/conversation.dart';
 import 'package:roomeasy/app/screen/favourite/favourite.dart';
 import 'package:roomeasy/app/screen/home/home.dart';
 
-class AppBottomNavBarRouter {
+class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     WidgetBuilder builder;
     switch (settings.name) {

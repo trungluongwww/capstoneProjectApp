@@ -9,4 +9,5 @@ class AppColor {
   static const Color appTextBlurColor = Colors.grey;
   static const Color appWarningColor = Colors.red;
   static const Color appSuccessColor = Colors.green;
+  static const Color appIconDefaultColor = Color.fromRGBO(56, 64, 89, 1);
 }
