@@ -15,6 +15,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        primarySwatch: Colors.blue,
         fontFamily: 'Inter',
         textTheme: const TextTheme(
             titleSmall: TextStyle(

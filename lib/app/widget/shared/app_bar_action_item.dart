@@ -20,40 +20,37 @@ class AppBarActionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(5),
-          child: badges.Badge(
-            position: badges.BadgePosition.topEnd(top: -3, end: -3),
-            showBadge: showNumber > 0,
-            badgeContent: Text(
-              showNumber.toString(),
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall!
-                  .copyWith(color: Colors.white),
-            ),
-            badgeStyle: const badges.BadgeStyle(
-              shape: badges.BadgeShape.circle,
-              badgeColor: AppColor.appWarningColor,
-            ),
-            child: SizedBox(
-              width: 40,
-              height: 40,
-              child: IconButton(
-                onPressed: onPress,
-                icon: Icon(
-                  icon,
-                  size: AppSize.iconDefault,
-                  color: AppColor.appIconDefaultColor,
-                ),
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.only(right: 5),
+        child: badges.Badge(
+          position: badges.BadgePosition.topEnd(top: -3, end: -3),
+          showBadge: showNumber > 0,
+          badgeContent: Text(
+            showNumber.toString(),
+            style: Theme.of(context)
+                .textTheme
+                .titleSmall!
+                .copyWith(color: Colors.white),
+          ),
+          badgeStyle: const badges.BadgeStyle(
+            shape: badges.BadgeShape.circle,
+            badgeColor: AppColor.appWarningColor,
+          ),
+          child: SizedBox(
+            width: 40,
+            height: 40,
+            child: IconButton(
+              onPressed: onPress,
+              icon: Icon(
+                icon,
+                size: AppSize.iconDefault,
+                color: AppColor.appIconDefaultColor,
               ),
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }
