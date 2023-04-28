@@ -18,30 +18,31 @@ class _AppState extends State<App> {
         primarySwatch: Colors.blue,
         fontFamily: 'Inter',
         textTheme: const TextTheme(
-            titleSmall: TextStyle(
-                color: AppColor.appTextDefaultColor,
-                fontWeight: FontWeight.w700,
-                fontSize: 10),
-            titleMedium: TextStyle(
-                color: AppColor.appTextDefaultColor,
-                fontWeight: FontWeight.w700,
-                fontSize: 14),
-            titleLarge: TextStyle(
-                color: AppColor.appTextDefaultColor,
-                fontWeight: FontWeight.w700,
-                fontSize: 24),
-            bodySmall: TextStyle(
-                color: AppColor.appTextDefaultColor,
-                fontWeight: FontWeight.w400,
-                fontSize: 10),
-            bodyMedium: TextStyle(
-                color: AppColor.appTextDefaultColor,
-                fontWeight: FontWeight.w400,
-                fontSize: 12),
-            bodyLarge: TextStyle(
-                color: AppColor.appTextDefaultColor,
-                fontWeight: FontWeight.w400,
-                fontSize: 18)),
+          titleSmall: TextStyle(
+              color: AppColor.appTextDefaultColor,
+              fontWeight: FontWeight.w400,
+              fontSize: 10),
+          titleMedium: TextStyle(
+              color: AppColor.appTextDefaultColor,
+              fontWeight: FontWeight.w500,
+              fontSize: 14),
+          titleLarge: TextStyle(
+              color: AppColor.appTextDefaultColor,
+              fontWeight: FontWeight.w700,
+              fontSize: 24),
+          bodySmall: TextStyle(
+              color: AppColor.appTextDefaultColor,
+              fontWeight: FontWeight.w100,
+              fontSize: 10),
+          bodyMedium: TextStyle(
+              color: AppColor.appTextDefaultColor,
+              fontWeight: FontWeight.w200,
+              fontSize: 12),
+          bodyLarge: TextStyle(
+              color: AppColor.appTextDefaultColor,
+              fontWeight: FontWeight.w300,
+              fontSize: 18),
+        ),
       ),
       initialRoute: Home.routeName,
       onGenerateRoute: AppRouter.generateRoute,

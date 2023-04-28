@@ -6,25 +6,18 @@ import 'package:roomeasy/api/constant/constant.dart';
 
 class AuthAPI {
   Future<String?> login(String username, String password) async {
-    final uri = Uri.http(Apiconstants.host,
+    final uri = Uri.http(Apiconstants.baseUrl,
         '${Apiconstants.api}${Apiconstants.userEndpoint}/login');
-    print(uri);
+    var body = json.encode({'username': username, 'password': password});
     try {
-      final res = await http.Client().post(uri, body: {
-        "username": username,
-        "password": password,
-      });
-
-      print("res");
-      print(res);
-
+      final res = await http.post(uri,
+          headers: {'Content-Type': 'application/json'}, body: body);
       if (res.statusCode.toString().startsWith('2')) {
         return (jsonDecode(utf8.decode(res.bodyBytes)) as Map)['data']['token'];
       }
 
       return null;
     } catch (e) {
-      print(e);
       return null;
     }
   }

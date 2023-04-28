@@ -1,7 +1,7 @@
 class Apiconstants {
   // domain
-  static String host = "127.0.0.1:5000";
-  // static String baseUrl = "34.124.228.220/api";
+  // static String baseUrl = "127.0.0.1";
+  static String baseUrl = "34.124.228.220";
 
   // version
   static String api = "/api";
