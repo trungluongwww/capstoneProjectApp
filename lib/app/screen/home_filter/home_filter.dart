@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/home/location.dart';
+import 'package:roomeasy/app/screen/home_filter/home_filter_category.dart';
 import 'package:roomeasy/app/screen/home_filter/home_filter_location.dart';
 import 'package:roomeasy/model/location/district.dart';
 import 'package:roomeasy/model/location/province.dart';
@@ -32,8 +33,6 @@ class _HomeFilterState extends ConsumerState<HomeFilter> {
 
   @override
   Widget build(BuildContext context) {
-    AsyncValue<ResponseModel<ProvinceResponseModel>> provinces =
-        ref.watch(provinceProvider);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -66,7 +65,10 @@ class _HomeFilterState extends ConsumerState<HomeFilter> {
               children: [
                 Expanded(
                   child: SingleChildScrollView(
-                    child: Column(children: const [HomeFilterLocation()]),
+                    child: Column(children: const [
+                      HomeFilterLocation(),
+                      HomeFilterCategory()
+                    ]),
                   ),
                 ),
                 SizedBox(
