@@ -18,9 +18,9 @@ class MAuthProfile {
   DateTime updatedAt;
   String address;
   bool root;
-  MProvince province;
-  MDistrict district;
-  MWard ward;
+  ProvinceModel province;
+  DistrictModel district;
+  WardModel ward;
   MAuthProfile({
     required this.id,
     required this.username,
@@ -39,23 +39,23 @@ class MAuthProfile {
     required this.ward,
   });
 
-  factory MAuthProfile.fromJson(Map<String, dynamic> json) {
+  factory MAuthProfile.fromMap(Map<String, dynamic> map) {
     return MAuthProfile(
-      id: json['id'] as String,
-      username: json['username'] as String,
-      phone: json['phone'] as String,
-      email: json['email'] as String,
-      zalo: json['zalo'] as String,
-      facebook: json['facebook'] as String,
-      name: json['name'] as String,
-      avatar: json['avatar'] as String,
-      createdAt: json['createdAt'],
-      updatedAt: json['updatedAt'],
-      address: json['address'] as String,
-      root: json['root'] as bool,
-      province: MProvince.fromJson(json['province']),
-      district: MDistrict.fromJson(json['district']),
-      ward: MWard.fromJson(json['ward']),
+      id: map['id'] as String,
+      username: map['username'] as String,
+      phone: map['phone'] as String,
+      email: map['email'] as String,
+      zalo: map['zalo'] as String,
+      facebook: map['facebook'] as String,
+      name: map['name'] as String,
+      avatar: map['avatar'] as String,
+      createdAt: map['createdAt'],
+      updatedAt: map['updatedAt'],
+      address: map['address'] as String,
+      root: map['root'] as bool,
+      province: ProvinceModel.fromJson(map['province']),
+      district: DistrictModel.fromJson(map['district']),
+      ward: WardModel.fromJson(map['ward']),
     );
   }
 }

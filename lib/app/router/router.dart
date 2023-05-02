@@ -4,7 +4,7 @@ import 'package:roomeasy/app/screen/common/not_found.dart';
 import 'package:roomeasy/app/screen/conversation/conversation.dart';
 import 'package:roomeasy/app/screen/favourite/favourite.dart';
 import 'package:roomeasy/app/screen/home/home.dart';
-import 'package:roomeasy/app/screen/home/home_filter_screen.dart';
+import 'package:roomeasy/app/screen/home_filter/home_filter.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -30,6 +30,9 @@ class AppRouter {
         break;
     }
 
-    return MaterialPageRoute(builder: builder, settings: settings);
+    return MaterialPageRoute(
+      builder: builder,
+      settings: settings,
+    );
   }
 }
