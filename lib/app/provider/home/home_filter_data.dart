@@ -30,12 +30,15 @@ class HomeFilterNotifier extends StateNotifier<HomeFilterProviderModel> {
 
   void setSelectedProvinceId(String id) {
     if (id != state.selectedProvinceId) {
+      state.selectedDistrictId = null;
+      state.selectTedWardId = null;
       state = state.copyWith(selectedProvinceId: id);
     }
   }
 
   void setSelectedDistrictId(String id) {
     if (id != state.selectedDistrictId) {
+      state.selectTedWardId = null;
       state = state.copyWith(selectedDistrictId: id);
     }
   }
@@ -44,6 +47,10 @@ class HomeFilterNotifier extends StateNotifier<HomeFilterProviderModel> {
     if (id != state.selectTedWardId) {
       state = state.copyWith(selectTedWardId: id);
     }
+  }
+
+  void reset() {
+    state = HomeFilterProviderModel();
   }
 }
 

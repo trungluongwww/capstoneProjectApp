@@ -26,3 +26,5 @@ final wardProvider =
       ? await LocationService().getWards(id: districtId)
       : null;
 });
+
+// util

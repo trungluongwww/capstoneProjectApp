@@ -11,11 +11,17 @@ import 'package:roomeasy/model/location/province.dart';
 import 'package:roomeasy/model/location/ward.dart';
 import 'package:roomeasy/model/response/response.dart';
 
-class HomeFilterLocation extends ConsumerWidget {
+class HomeFilterLocation extends ConsumerStatefulWidget {
   const HomeFilterLocation({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _HomeFilterLocationState createState() => _HomeFilterLocationState();
+}
+
+class _HomeFilterLocationState extends ConsumerState<HomeFilterLocation> {
+  @override
+  Widget build(BuildContext context) {
+    // listener provider
     AsyncValue<ResponseModel<ProvinceResponseModel>> provinces =
         ref.watch(provinceProvider);
 
@@ -193,7 +199,7 @@ class HomeFilterLocation extends ConsumerWidget {
                                       onTap: () {
                                         ref
                                             .read(homeFilterProvider.notifier)
-                                            .setSelectedDistrictId(
+                                            .setSelectTedWardId(
                                                 res.data!.wards![index].id);
                                         Navigator.pop(context);
                                       },
@@ -223,7 +229,6 @@ class HomeFilterLocation extends ConsumerWidget {
 
     return Container(
       width: double.infinity,
-      height: 500,
       color: AppColor.appDarkWhiteColor,
       constraints: const BoxConstraints(
         minHeight: 0,
@@ -243,19 +248,44 @@ class HomeFilterLocation extends ConsumerWidget {
                     .copyWith(color: AppColor.appTextBlurColor)),
           ),
           ListTitleSelectOption(
-            title: "Tỉnh/ Thành phố",
+            title: provinces.value != null &&
+                    homeFilters.selectedProvinceId != null
+                ? provinces.value!.data!.provinces!
+                    .firstWhere((element) =>
+                        element.id == homeFilters.selectedProvinceId)
+                    .name
+                : "Tỉnh/ Thành phố",
             onTab: showModalSelectProvince,
             trailing: const Icon(Icons.keyboard_arrow_right),
           ),
           ListTitleSelectOption(
-            title: "Quận/ Huyện",
-            onTab: showModalSelectDistrict,
-            trailing: const Icon(Icons.keyboard_arrow_right),
+            title: districts.value != null &&
+                    homeFilters.selectedDistrictId != null
+                ? districts.value!.data!.districts!
+                    .firstWhere((element) =>
+                        element.id == homeFilters.selectedDistrictId)
+                    .name
+                : "Quận/ Huyện",
+            onTab: homeFilters.selectedProvinceId != null
+                ? showModalSelectDistrict
+                : null,
+            trailing: homeFilters.selectedProvinceId != null
+                ? const Icon(Icons.keyboard_arrow_right)
+                : null,
           ),
           ListTitleSelectOption(
-            title: "Phường/ Xã",
-            onTab: showModalSelectWard,
-            trailing: const Icon(Icons.keyboard_arrow_right),
+            title: wards.value != null && homeFilters.selectTedWardId != null
+                ? wards.value!.data!.wards!
+                    .firstWhere(
+                        (element) => element.id == homeFilters.selectTedWardId)
+                    .name
+                : "Phường/ Xã",
+            onTab: homeFilters.selectedDistrictId != null
+                ? showModalSelectWard
+                : null,
+            trailing: homeFilters.selectedDistrictId != null
+                ? const Icon(Icons.keyboard_arrow_right)
+                : null,
           )
         ],
       ),
