@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 
@@ -18,14 +17,8 @@ class ListTitleSelectOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 56,
-      decoration: const BoxDecoration(
-          border: Border(
-              top: BorderSide(
-        width: 0.5,
-        color: AppColor.appTextBlurColor,
-      ))),
       child: Material(
         color: Colors.white,
         child: InkWell(

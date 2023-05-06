@@ -28,7 +28,7 @@ class _AppState extends State<App> {
               fontSize: 14),
           titleLarge: TextStyle(
               color: AppColor.appTextDefaultColor,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w600,
               fontSize: 24),
           bodySmall: TextStyle(
               color: AppColor.appTextDefaultColor,

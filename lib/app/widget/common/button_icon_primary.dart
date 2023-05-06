@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 import 'package:roomeasy/app/constant/app_color.dart';
 
-class PrimaryIconButton extends StatelessWidget {
+class ButtonIconPrimary extends StatelessWidget {
   final double size;
   final VoidCallback onClick;
   final Icon? icon;
   final double? iconSize;
 
-  const PrimaryIconButton({
+  const ButtonIconPrimary({
     Key? key,
     required this.size,
     required this.onClick,
