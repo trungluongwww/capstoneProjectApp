@@ -6,21 +6,22 @@ import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/model/filter/room_filter.dart';
 import 'package:roomeasy/model/response/response.dart';
 
-class HomeFilterCategory extends ConsumerStatefulWidget {
-  const HomeFilterCategory({Key? key}) : super(key: key);
+class HomeFilterSort extends ConsumerStatefulWidget {
+  const HomeFilterSort({Key? key}) : super(key: key);
 
   @override
-  _HomeFilterCategoryState createState() => _HomeFilterCategoryState();
+  _HomeFilterSortState createState() => _HomeFilterSortState();
 }
 
-class _HomeFilterCategoryState extends ConsumerState<HomeFilterCategory> {
+class _HomeFilterSortState extends ConsumerState<HomeFilterSort> {
   @override
   Widget build(BuildContext context) {
     // provider
     AsyncValue<ResponseModel<RoomFilterModel>> filterProvider =
         ref.watch(commonFilterProvider);
 
-    String? selectedRoomType = ref.watch(homeFilterProvider).roomType;
+    String? selectedSortField = ref.watch(homeFilterProvider).sortField;
+    String? selectedSortValue = ref.watch(homeFilterProvider).sortValue;
 
     return Container(
       width: double.infinity,
@@ -36,7 +37,7 @@ class _HomeFilterCategoryState extends ConsumerState<HomeFilterCategory> {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
-            child: Text("Loại nhà thuê",
+            child: Text("sắp xếp theo tiêu chí",
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium!
@@ -54,12 +55,12 @@ class _HomeFilterCategoryState extends ConsumerState<HomeFilterCategory> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: res.data!.types!.map<Widget>((e) {
+                      children: res.data!.sort!.map<Widget>((e) {
                         return InkWell(
                           onTap: () {
                             ref
                                 .read(homeFilterProvider.notifier)
-                                .setRoomType(e.key);
+                                .setOrderBy(e.key, e.option);
                           },
                           child: Container(
                             margin: const EdgeInsets.only(left: 8, right: 8),
@@ -69,10 +70,12 @@ class _HomeFilterCategoryState extends ConsumerState<HomeFilterCategory> {
                               border: Border.all(
                                   width: 1, color: AppColor.appTextBlurColor),
                               borderRadius: BorderRadius.circular(10),
-                              color: selectedRoomType == e.key
+                              color: selectedSortField == e.key &&
+                                      selectedSortValue == e.option
                                   ? AppColor.appBlurPrimaryColor
                                   : Colors.white70,
-                              boxShadow: selectedRoomType == e.key
+                              boxShadow: selectedSortField == e.key &&
+                                      selectedSortValue == e.option
                                   ? const [
                                       BoxShadow(
                                         color: Colors.blueGrey,

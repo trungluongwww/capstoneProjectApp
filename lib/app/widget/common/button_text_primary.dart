@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 import 'package:roomeasy/app/constant/app_color.dart';
 
-class PrimaryTextButton extends StatelessWidget {
+class ButtonTextPrimary extends StatelessWidget {
   final double maxWidth;
   final double height;
   final VoidCallback onClick;
   final String title;
   final TextStyle? style;
 
-  const PrimaryTextButton({
+  const ButtonTextPrimary({
     Key? key,
     required this.maxWidth,
     required this.height,

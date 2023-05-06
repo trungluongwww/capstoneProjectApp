@@ -2,13 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 
-class SearchBar extends StatelessWidget {
+class TextFieldSearchWithIcon extends StatelessWidget {
   final VoidCallback onSubmited;
   final TextEditingController searchController;
   final String hintText;
   final int maxLength;
 
-  const SearchBar({
+  const TextFieldSearchWithIcon({
     Key? key,
     required this.onSubmited,
     required this.searchController,

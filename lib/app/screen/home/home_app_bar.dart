@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_image.dart';
-import 'package:roomeasy/app/widget/shared/app_bar_action_item.dart';
+import 'package:roomeasy/app/widget/common/app_bar_action_item.dart';
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   final int countUnread;

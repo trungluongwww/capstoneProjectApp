@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/provider/home/location.dart';
-import 'package:roomeasy/app/widget/list_title/list_title_select_option.dart';
+import 'package:roomeasy/app/widget/common/list_title_select_option.dart';
 import 'package:roomeasy/model/location/district.dart';
 import 'package:roomeasy/model/location/province.dart';
 import 'package:roomeasy/model/location/ward.dart';
@@ -68,7 +68,9 @@ class _HomeFilterLocationState extends ConsumerState<HomeFilterLocation> {
                                         ref
                                             .read(homeFilterProvider.notifier)
                                             .setSelectedProvinceId(
-                                                res.data!.provinces![index].id);
+                                                res.data!.provinces![index].id,
+                                                res.data!.provinces![index]
+                                                    .name);
                                         Navigator.pop(context);
                                       },
                                       child: ListTile(
@@ -82,10 +84,14 @@ class _HomeFilterLocationState extends ConsumerState<HomeFilterLocation> {
                             }
                           },
                           error: (error, stackTrace) => const Center(
-                                child: CircularProgressIndicator(),
+                                child: CircularProgressIndicator(
+                                  color: Colors.red,
+                                ),
                               ),
                           loading: () => const Center(
-                                child: CircularProgressIndicator(),
+                                child: CircularProgressIndicator(
+                                  color: Colors.red,
+                                ),
                               )))
                 ],
               ),
@@ -133,7 +139,9 @@ class _HomeFilterLocationState extends ConsumerState<HomeFilterLocation> {
                                         ref
                                             .read(homeFilterProvider.notifier)
                                             .setSelectedDistrictId(
-                                                res.data!.districts![index].id);
+                                                res.data!.districts![index].id,
+                                                res.data!.districts![index]
+                                                    .name);
                                         Navigator.pop(context);
                                       },
                                       child: ListTile(
@@ -200,7 +208,8 @@ class _HomeFilterLocationState extends ConsumerState<HomeFilterLocation> {
                                         ref
                                             .read(homeFilterProvider.notifier)
                                             .setSelectTedWardId(
-                                                res.data!.wards![index].id);
+                                                res.data!.wards![index].id,
+                                                res.data!.wards![index].name);
                                         Navigator.pop(context);
                                       },
                                       child: ListTile(

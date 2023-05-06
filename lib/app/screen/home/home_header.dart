@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:roomeasy/api/services/room/room.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roomeasy/app/constant/app_color.dart';
+import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/screen/home_filter/home_filter.dart';
-import 'package:roomeasy/app/widget/button/primary_icon_button.dart';
-import 'package:roomeasy/app/widget/input/searchbar.dart';
+import 'package:roomeasy/app/widget/common/button_icon_primary.dart';
+import 'package:roomeasy/app/widget/common/text_field_search_with_icon.dart';
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({Key? key}) : super(key: key);
@@ -29,8 +31,6 @@ class _HomeHeaderState extends State<HomeHeader> {
         await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return const HomeFilter();
     }));
-
-    var filters = await RoomServices().getFilters();
   }
 
   @override
@@ -39,28 +39,55 @@ class _HomeHeaderState extends State<HomeHeader> {
     const paddingVal = 10.0;
     return Padding(
         padding: const EdgeInsets.only(
-          top: paddingVal,
-          bottom: paddingVal,
-        ),
+            top: paddingVal, bottom: paddingVal, left: 15, right: 15),
         child: LayoutBuilder(
           builder: (BuildContext ctx, BoxConstraints constraints) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  width: (constraints.maxWidth - paddingVal - 50),
-                  height: heightWidget,
-                  child: SearchBar(
-                      onSubmited: _searchBarSubmitted,
-                      searchController: _searchController,
-                      hintText: searchTitle),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: (constraints.maxWidth - paddingVal - 50),
+                      height: heightWidget,
+                      child: TextFieldSearchWithIcon(
+                          onSubmited: _searchBarSubmitted,
+                          searchController: _searchController,
+                          hintText: searchTitle),
+                    ),
+                    ButtonIconPrimary(
+                        size: heightWidget,
+                        onClick: () => _onPressFilterButton(context))
+                  ],
                 ),
-                PrimaryIconButton(
-                    size: heightWidget,
-                    onClick: () => _onPressFilterButton(context))
+                Consumer(
+                  builder: (context, ref, child) {
+                    final homeFilter = ref.watch(homeFilterProvider);
+                    String locationName = [
+                      homeFilter.provinceName,
+                      homeFilter.districtName,
+                      homeFilter.wardName
+                    ].where((e) => e != null).join(", ");
+
+                    return Text(
+                      "Địa điểm: ${locationName != '' ? locationName : 'chưa chọn'}",
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: AppColor.appTextBlurColor,
+                          overflow: TextOverflow.ellipsis),
+                    );
+                  },
+                )
               ],
             );
           },
         ));
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _searchController.dispose();
   }
 }
