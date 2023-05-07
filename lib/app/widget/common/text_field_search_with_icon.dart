@@ -1,9 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:roomeasy/app/constant/app_color.dart';
 
 class TextFieldSearchWithIcon extends StatelessWidget {
   final VoidCallback onSubmited;
+  final void Function(String) onChanged;
   final TextEditingController searchController;
   final String hintText;
   final int maxLength;
@@ -11,6 +13,7 @@ class TextFieldSearchWithIcon extends StatelessWidget {
   const TextFieldSearchWithIcon({
     Key? key,
     required this.onSubmited,
+    required this.onChanged,
     required this.searchController,
     required this.hintText,
     this.maxLength = 50,
@@ -37,6 +40,7 @@ class TextFieldSearchWithIcon extends StatelessWidget {
               maxLength: maxLength,
               controller: searchController,
               onSubmitted: (val) => onSubmited(),
+              onChanged: onChanged,
               decoration: InputDecoration(
                 counterText: "",
                 hintText: hintText,

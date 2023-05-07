@@ -17,6 +17,10 @@ class _AppState extends State<App> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         fontFamily: 'Inter',
+        pageTransitionsTheme: const PageTransitionsTheme(builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        }),
         textTheme: const TextTheme(
           titleSmall: TextStyle(
               color: AppColor.appTextDefaultColor,

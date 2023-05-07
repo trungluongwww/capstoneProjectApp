@@ -17,6 +17,7 @@ class HomeFilterProviderModel {
   String? roomType;
   String? sortField;
   String? sortValue;
+  String? keyword;
 
   HomeFilterProviderModel({
     this.selectedProvinceId,
@@ -28,6 +29,7 @@ class HomeFilterProviderModel {
     this.roomType,
     this.sortField,
     this.sortValue,
+    this.keyword,
   });
 
   HomeFilterProviderModel copyWith({
@@ -40,6 +42,7 @@ class HomeFilterProviderModel {
     String? roomType,
     String? sortField,
     String? sortValue,
+    String? keyword,
   }) {
     return HomeFilterProviderModel(
       selectedProvinceId: selectedProvinceId ?? this.selectedProvinceId,
@@ -51,6 +54,7 @@ class HomeFilterProviderModel {
       roomType: roomType ?? this.roomType,
       sortField: sortField ?? this.sortField,
       sortValue: sortValue ?? this.sortValue,
+      keyword: keyword ?? this.keyword,
     );
   }
 }
@@ -95,6 +99,12 @@ class HomeFilterNotifier extends StateNotifier<HomeFilterProviderModel> {
       state = state.copyWith(sortField: field, sortValue: value);
     } else {
       state = state.copyWith(sortField: null, sortValue: null);
+    }
+  }
+
+  void setKeyword(String value) {
+    if (value != state.keyword) {
+      state = state.copyWith(keyword: value);
     }
   }
 

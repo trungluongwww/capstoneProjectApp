@@ -5,17 +5,16 @@ import 'package:roomeasy/api/services/room/room.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/provider/room/room.dart';
-import 'package:roomeasy/app/screen/home/home_body_room_item.dart';
-import 'package:roomeasy/app/widget/common/list_title_small_without_spacing.dart';
+import 'package:roomeasy/app/widget/room/room_container_item.dart';
 
 class HomeBody extends ConsumerStatefulWidget {
   const HomeBody({Key? key}) : super(key: key);
 
   @override
-  _HomeBodyState createState() => _HomeBodyState();
+  HomeBodyState createState() => HomeBodyState();
 }
 
-class _HomeBodyState extends ConsumerState<HomeBody> {
+class HomeBodyState extends ConsumerState<HomeBody> {
   // state
   String pageToken = "";
   bool isLoading = false;
@@ -26,16 +25,17 @@ class _HomeBodyState extends ConsumerState<HomeBody> {
     setState(() {
       isLoading = true;
     });
+
     final filter = ref.read(homeFilterProvider);
 
     final response = await RoomServices().getRooms(
-      districtId: filter.selectedDistrictId,
-      provinceId: filter.selectedProvinceId,
-      wardId: filter.selectTedWardId,
-      orderField: filter.sortField,
-      orderValue: filter.sortValue,
-      type: filter.roomType,
-    );
+        districtId: filter.selectedDistrictId,
+        provinceId: filter.selectedProvinceId,
+        wardId: filter.selectTedWardId,
+        orderField: filter.sortField,
+        orderValue: filter.sortValue,
+        type: filter.roomType,
+        keyword: filter.keyword);
 
     if (response.code.toString().startsWith('2') && response.data != null) {
       ref.read(roomProvider.notifier).reset(response.data!.rooms!);
@@ -54,14 +54,14 @@ class _HomeBodyState extends ConsumerState<HomeBody> {
     final filter = ref.read(homeFilterProvider);
 
     final response = await RoomServices().getRooms(
-      districtId: filter.selectedDistrictId,
-      provinceId: filter.selectedProvinceId,
-      wardId: filter.selectTedWardId,
-      orderField: filter.sortField,
-      orderValue: filter.sortValue,
-      pageToken: pageToken,
-      type: filter.roomType,
-    );
+        districtId: filter.selectedDistrictId,
+        provinceId: filter.selectedProvinceId,
+        wardId: filter.selectTedWardId,
+        orderField: filter.sortField,
+        orderValue: filter.sortValue,
+        pageToken: pageToken,
+        type: filter.roomType,
+        keyword: filter.keyword);
 
     if (response.code.toString().startsWith('2') && response.data != null) {
       ref.read(roomProvider.notifier).addToList(response.data!.rooms!);
@@ -87,8 +87,6 @@ class _HomeBodyState extends ConsumerState<HomeBody> {
     if (_scrollController.offset >=
             _scrollController.position.maxScrollExtent &&
         !_scrollController.position.outOfRange) {
-      debugPrint(DateTime.now().toString());
-      debugPrint('scroll downest');
       loadMore();
     }
   }
@@ -96,6 +94,7 @@ class _HomeBodyState extends ConsumerState<HomeBody> {
   @override
   Widget build(BuildContext context) {
     final rooms = ref.watch(roomProvider);
+
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraint) {
       return RefreshIndicator(
@@ -118,21 +117,22 @@ class _HomeBodyState extends ConsumerState<HomeBody> {
                         return index == rooms.length - 1
                             ? Column(
                                 children: [
-                                  HomeBodyRoomItem(room: rooms[index]),
-                                  Container(
-                                    width: double.infinity,
-                                    height: 50,
-                                    color: AppColor.appDarkWhiteColor,
-                                    child: const Center(
-                                      child: SizedBox(
-                                          width: 18,
-                                          height: 18,
-                                          child: CircularProgressIndicator()),
-                                    ),
-                                  )
+                                  RoomContainerItem(room: rooms[index]),
+                                  if (isLoading)
+                                    Container(
+                                      width: double.infinity,
+                                      height: 32,
+                                      color: AppColor.appDarkWhiteColor,
+                                      child: const Center(
+                                        child: SizedBox(
+                                            width: 16,
+                                            height: 16,
+                                            child: CircularProgressIndicator()),
+                                      ),
+                                    )
                                 ],
                               )
-                            : HomeBodyRoomItem(room: rooms[index]);
+                            : RoomContainerItem(room: rooms[index]);
                       }),
                 ),
               ],
