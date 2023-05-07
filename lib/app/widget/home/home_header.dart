@@ -1,21 +1,27 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/screen/home_filter/home_filter.dart';
 import 'package:roomeasy/app/widget/common/button_icon_primary.dart';
 import 'package:roomeasy/app/widget/common/text_field_search_with_icon.dart';
+import 'package:roomeasy/app/widget/home/home_body.dart';
 
-class HomeHeader extends StatefulWidget {
-  const HomeHeader({Key? key}) : super(key: key);
+class HomeHeader extends ConsumerStatefulWidget {
+  final GlobalKey<HomeBodyState> bodyKey;
+  const HomeHeader({required this.bodyKey, Key? key}) : super(key: key);
 
   @override
   _HomeHeaderState createState() => _HomeHeaderState();
 }
 
-class _HomeHeaderState extends State<HomeHeader> {
+class _HomeHeaderState extends ConsumerState<HomeHeader> {
   late TextEditingController _searchController;
   final String searchTitle = "Tìm kiếm";
+  final heightWidget = 40.0;
+  final paddingVal = 10.0;
   @override
   void initState() {
     super.initState();
@@ -24,21 +30,25 @@ class _HomeHeaderState extends State<HomeHeader> {
   }
 
   // search submited
-  void _searchBarSubmitted() {}
-
-  Future<void> _onPressFilterButton(BuildContext context) async {
-    bool? ischanged =
-        await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return const HomeFilter();
-    }));
+  void _searchBarSubmitted() {
+    widget.bodyKey.currentState?.reloadRoom();
   }
 
   @override
   Widget build(BuildContext context) {
-    const heightWidget = 40.0;
-    const paddingVal = 10.0;
+    void onPressFilterButton() async {
+      bool isChanged = await Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) {
+        return const HomeFilterScreen();
+      }));
+
+      if (isChanged) {
+        widget.bodyKey.currentState?.reloadRoom();
+      }
+    }
+
     return Padding(
-        padding: const EdgeInsets.only(
+        padding: EdgeInsets.only(
             top: paddingVal, bottom: paddingVal, left: 15, right: 15),
         child: LayoutBuilder(
           builder: (BuildContext ctx, BoxConstraints constraints) {
@@ -54,11 +64,20 @@ class _HomeHeaderState extends State<HomeHeader> {
                       child: TextFieldSearchWithIcon(
                           onSubmited: _searchBarSubmitted,
                           searchController: _searchController,
+                          onChanged: (value) {
+                            ref
+                                .read(homeFilterProvider.notifier)
+                                .setKeyword(value);
+                            debugPrint(DateTime.now().toIso8601String());
+                          },
                           hintText: searchTitle),
                     ),
-                    ButtonIconPrimary(
-                        size: heightWidget,
-                        onClick: () => _onPressFilterButton(context))
+                    Consumer(
+                      builder: (context, ref, child) {
+                        return ButtonIconPrimary(
+                            size: heightWidget, onClick: onPressFilterButton);
+                      },
+                    )
                   ],
                 ),
                 Consumer(

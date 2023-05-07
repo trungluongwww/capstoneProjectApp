@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:roomeasy/app/constant/app_color.dart';
-import 'package:roomeasy/app/screen/home/home_app_bar.dart';
-import 'package:roomeasy/app/screen/home/home_body.dart';
-import 'package:roomeasy/app/screen/home/home_header.dart';
+import 'package:roomeasy/app/widget/home/home_app_bar.dart';
+import 'package:roomeasy/app/widget/home/home_body.dart';
+import 'package:roomeasy/app/widget/home/home_header.dart';
 
 class Home extends StatefulWidget {
   static const String routeName = '/';
@@ -20,6 +20,9 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
+  // global key
+  final GlobalKey<HomeBodyState> bodyKey = GlobalKey<HomeBodyState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,13 +30,16 @@ class _HomeState extends State<Home> {
       backgroundColor: AppColor.appBackgroundColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
-          HomeHeader(),
-          SizedBox(
+        children: [
+          HomeHeader(bodyKey: bodyKey),
+          const SizedBox(
             width: double.infinity,
             height: 8,
           ),
-          Expanded(child: HomeBody()),
+          Expanded(
+              child: HomeBody(
+            key: bodyKey,
+          )),
         ],
       ),
     );

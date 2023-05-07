@@ -2,32 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/home/home_filter_data.dart';
-import 'package:roomeasy/app/provider/home/location.dart';
-import 'package:roomeasy/app/screen/home_filter/home_filter_category.dart';
-import 'package:roomeasy/app/screen/home_filter/home_filter_location.dart';
-import 'package:roomeasy/app/screen/home_filter/home_filter_sort.dart';
-import 'package:roomeasy/model/location/district.dart';
-import 'package:roomeasy/model/location/province.dart';
-import 'package:roomeasy/model/location/ward.dart';
-import 'package:roomeasy/model/response/response.dart';
+import 'package:roomeasy/app/widget/home_filter/home_filter_location.dart';
+import 'package:roomeasy/app/widget/home_filter/home_filter_category.dart';
+import 'package:roomeasy/app/widget/home_filter/home_filter_sort.dart';
 
-class HomeFilter extends ConsumerStatefulWidget {
+class HomeFilterScreen extends ConsumerStatefulWidget {
   static const routerName = '/home/filter';
-  const HomeFilter({Key? key}) : super(key: key);
+  const HomeFilterScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeFilterState createState() => _HomeFilterState();
+  _HomeFilterScreenState createState() => _HomeFilterScreenState();
 }
 
-class _HomeFilterState extends ConsumerState<HomeFilter> {
-  int? selectTedProvinceIndex;
-  int? selectTedDistrictIndex;
-  int? selectTedWardIndex;
-
-  late List<ProvinceModel>? provinces;
-  late List<DistrictModel>? districts;
-  late List<WardModel>? wards;
-
+class _HomeFilterScreenState extends ConsumerState<HomeFilterScreen> {
   @override
   void initState() {
     super.initState();

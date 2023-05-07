@@ -5,6 +5,7 @@ import 'package:roomeasy/app/screen/conversation/conversation.dart';
 import 'package:roomeasy/app/screen/favourite/favourite.dart';
 import 'package:roomeasy/app/screen/home/home.dart';
 import 'package:roomeasy/app/screen/home_filter/home_filter.dart';
+import 'package:roomeasy/app/screen/room_detail/room_detail.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -22,8 +23,14 @@ class AppRouter {
       case Account.routeName:
         builder = (context) => const Account();
         break;
-      case HomeFilter.routerName:
-        builder = (context) => const HomeFilter();
+      case HomeFilterScreen.routerName:
+        builder = (context) => const HomeFilterScreen();
+        break;
+      case RoomDetailScreen.routeName:
+        final id = settings.arguments as String;
+        builder = (context) => RoomDetailScreen(
+              id: id,
+            );
         break;
       default:
         builder = (context) => const NotFoundScreen();

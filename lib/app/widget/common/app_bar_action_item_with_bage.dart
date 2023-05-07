@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:flutter/material.dart';
+
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_size.dart';
 
@@ -9,6 +10,7 @@ class AppBarActionItem extends StatelessWidget {
   final VoidCallback onPress;
   final bool showNotification;
   final int showNumber;
+  final Color? iconColor;
 
   const AppBarActionItem({
     Key? key,
@@ -16,6 +18,7 @@ class AppBarActionItem extends StatelessWidget {
     required this.onPress,
     required this.showNotification,
     required this.showNumber,
+    this.iconColor,
   }) : super(key: key);
 
   @override
@@ -45,7 +48,7 @@ class AppBarActionItem extends StatelessWidget {
               icon: Icon(
                 icon,
                 size: AppSize.iconDefault,
-                color: AppColor.appIconDefaultColor,
+                color: iconColor ?? AppColor.appIconDefaultColor,
               ),
             ),
           ),
