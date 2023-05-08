@@ -67,22 +67,17 @@ class _HomeFilterSortState extends ConsumerState<HomeFilterSort> {
                             padding: const EdgeInsets.only(
                                 top: 8, bottom: 8, left: 8, right: 8),
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 1, color: AppColor.appTextBlurColor),
+                              border: selectedSortField == e.key &&
+                                      selectedSortValue == e.option
+                                  ? null
+                                  : Border.all(
+                                      width: 1,
+                                      color: AppColor.appTextBlurColor),
                               borderRadius: BorderRadius.circular(10),
                               color: selectedSortField == e.key &&
                                       selectedSortValue == e.option
                                   ? AppColor.appBlurPrimaryColor
                                   : Colors.white70,
-                              boxShadow: selectedSortField == e.key &&
-                                      selectedSortValue == e.option
-                                  ? const [
-                                      BoxShadow(
-                                        color: Colors.blueGrey,
-                                        blurRadius: 3.0,
-                                      ),
-                                    ]
-                                  : null,
                             ),
                             child: Text(
                               e.value!,
@@ -91,7 +86,10 @@ class _HomeFilterSortState extends ConsumerState<HomeFilterSort> {
                                   .titleLarge!
                                   .copyWith(
                                       fontSize: 14,
-                                      color: AppColor.appTextDefaultColor),
+                                      color: selectedSortField == e.key &&
+                                              selectedSortValue == e.option
+                                          ? Colors.white
+                                          : AppColor.appTextDefaultColor),
                             ),
                           ),
                         );
