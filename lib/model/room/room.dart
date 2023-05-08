@@ -65,6 +65,31 @@ class RoomModel {
     };
   }
 
+  String? getAvatar() {
+    if (files != null && files!.isNotEmpty) {
+      return files![0].info!.url;
+    }
+    return null;
+  }
+
+  String? getFullNameLocation() {
+    List<String> names = [];
+    if (province!.name.isNotEmpty) names.add(province!.name);
+    if (district!.name.isNotEmpty) names.add(district!.name);
+    if (ward!.name.isNotEmpty) names.add(ward!.name);
+    if (address != null) names.add(address!);
+
+    return names.join(', ');
+  }
+
+  String? getShortLocation() {
+    List<String> names = [];
+    if (province!.name.isNotEmpty) names.add('TP. ${province!.name}');
+    if (district!.name.isNotEmpty) names.add('Q. ${district!.name}');
+
+    return names.join(', ');
+  }
+
   factory RoomModel.fromMap(Map<String, dynamic> map) {
     return RoomModel(
       id: map['id'] != null ? map['id'] as String : null,

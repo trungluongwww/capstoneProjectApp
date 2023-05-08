@@ -99,7 +99,7 @@ class RoomContainerItem extends StatelessWidget {
                             leadIcon: Icons.house_outlined),
                         ListTitleSmallWithoutSpacing(
                           title: room.province != null
-                              ? 'TP. ${room.province!.name}, Q. ${room.district!.name ?? "chưa có"}'
+                              ? room.getShortLocation()
                               : null,
                           defaultTitle: "Liên hệ người đăng",
                           leadIcon: Icons.location_on_sharp,

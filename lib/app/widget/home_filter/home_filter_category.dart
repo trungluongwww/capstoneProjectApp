@@ -66,20 +66,15 @@ class _HomeFilterCategoryState extends ConsumerState<HomeFilterCategory> {
                             padding: const EdgeInsets.only(
                                 top: 8, bottom: 8, left: 8, right: 8),
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 1, color: AppColor.appTextBlurColor),
+                              border: selectedRoomType == e.key
+                                  ? null
+                                  : Border.all(
+                                      width: 1,
+                                      color: AppColor.appTextBlurColor),
                               borderRadius: BorderRadius.circular(10),
                               color: selectedRoomType == e.key
                                   ? AppColor.appBlurPrimaryColor
                                   : Colors.white70,
-                              boxShadow: selectedRoomType == e.key
-                                  ? const [
-                                      BoxShadow(
-                                        color: Colors.blueGrey,
-                                        blurRadius: 3.0,
-                                      ),
-                                    ]
-                                  : null,
                             ),
                             child: Text(
                               e.value!,
@@ -88,7 +83,9 @@ class _HomeFilterCategoryState extends ConsumerState<HomeFilterCategory> {
                                   .titleLarge!
                                   .copyWith(
                                       fontSize: 14,
-                                      color: AppColor.appTextDefaultColor),
+                                      color: selectedRoomType == e.key
+                                          ? Colors.white
+                                          : AppColor.appTextDefaultColor),
                             ),
                           ),
                         );
