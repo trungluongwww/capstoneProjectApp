@@ -1,8 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_image.dart';
+import 'package:roomeasy/app/provider/common/auth.dart';
+import 'package:roomeasy/app/screen/login/login.dart';
 import 'package:roomeasy/app/widget/common/app_bar_action_item_with_bage.dart';
+import 'package:roomeasy/model/auth/profile.dart';
+import 'package:roomeasy/model/response/response.dart';
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   final int countUnread;
@@ -18,6 +23,11 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final appBarHeight = (screenHeight * 8 / 100).roundToDouble();
+    Widget loginButton = TextButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed(LoginScreen.routerName);
+        },
+        child: const Text('Đăng nhập'));
     return PreferredSize(
       preferredSize: Size.fromHeight(appBarHeight),
       child: AppBar(
@@ -32,16 +42,41 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
         elevation: 0,
         toolbarHeight: appBarHeight,
         actions: [
-          AppBarActionItem(
-              icon: Icons.message,
-              onPress: () {},
-              showNotification: false,
-              showNumber: countUnread),
-          AppBarActionItem(
-              icon: Icons.person,
-              onPress: () {},
-              showNotification: false,
-              showNumber: countNotificationAccount),
+          // AppBarActionItem(
+          //     icon: Icons.message,
+          //     onPress: () {},
+          //     showNotification: false,
+          //     showNumber: countUnread),
+
+          // AppBarActionItem(
+          //     icon: Icons.person,
+          //     onPress: () {},
+          //     showNotification: false,
+          //     showNumber: countNotificationAccount),
+          Consumer(
+            builder: (context, ref, child) {
+              AsyncValue<ResponseModel<AuthProfileModel>> auth =
+                  ref.watch(authProvider);
+              return auth.when(
+                data: (res) {
+                  if (res.data != null) {
+                    return AppBarActionItem(
+                        icon: Icons.person,
+                        onPress: () {},
+                        showNotification: false,
+                        showNumber: countNotificationAccount);
+                  }
+                  return loginButton;
+                },
+                error: (error, stackTrace) {
+                  return loginButton;
+                },
+                loading: () {
+                  return loginButton;
+                },
+              );
+            },
+          ),
         ],
         backgroundColor: AppColor.appBackgroundColor,
       ),

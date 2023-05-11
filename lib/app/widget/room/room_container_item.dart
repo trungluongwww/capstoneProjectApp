@@ -21,8 +21,8 @@ class RoomContainerItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           if (room.id != null) {
-            Navigator.of(context)
-                .pushNamed(RoomDetailScreen.routeName, arguments: room.id);
+            Navigator.of(context).pushNamed(RoomDetailScreen.routeName,
+                arguments: {'id': room.id});
           }
         },
         child: Container(

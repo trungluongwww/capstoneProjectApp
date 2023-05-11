@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const HomeAppBar(countUnread: 3, countNotificationAccount: 2),
+      appBar: const HomeAppBar(),
       backgroundColor: AppColor.appBackgroundColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

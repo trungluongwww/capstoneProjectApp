@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/screen/home_filter/home_filter.dart';
-import 'package:roomeasy/app/widget/common/button_icon_primary.dart';
+import 'package:roomeasy/app/widget/common/button_icon_linear_primary.dart';
 import 'package:roomeasy/app/widget/common/text_field_search_with_icon.dart';
 import 'package:roomeasy/app/widget/home/home_body.dart';
 
@@ -74,7 +74,7 @@ class _HomeHeaderState extends ConsumerState<HomeHeader> {
                     ),
                     Consumer(
                       builder: (context, ref, child) {
-                        return ButtonIconPrimary(
+                        return ButtonIconLinearPrimary(
                             size: heightWidget, onClick: onPressFilterButton);
                       },
                     )

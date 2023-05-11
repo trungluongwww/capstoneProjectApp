@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 import 'package:roomeasy/app/constant/app_color.dart';
 
-class ButtonIconFlatPrimary extends StatelessWidget {
+class ButtonIconLinearPrimary extends StatelessWidget {
   final double size;
   final VoidCallback onClick;
   final IconData? icon;
   final double? iconSize;
 
-  const ButtonIconFlatPrimary({
+  const ButtonIconLinearPrimary({
     Key? key,
     required this.size,
     required this.onClick,
@@ -23,8 +23,12 @@ class ButtonIconFlatPrimary extends StatelessWidget {
       width: size,
       height: size,
       decoration: ShapeDecoration(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-          color: Colors.lightBlue),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          gradient: const LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: [AppColor.appPrimaryColor, AppColor.appLightPrimaryColor],
+          )),
       child: IconButton(
         padding: EdgeInsets.zero,
         alignment: Alignment.center,
