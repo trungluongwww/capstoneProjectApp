@@ -16,19 +16,17 @@ class RoomServices extends BaseService {
 
       var response = await get(uri: url);
 
-      if (response.data != null) {
-        var result = ResponseModel<RoomFilterModel>(
-            code: response.code,
-            message: response.message,
-            data: RoomFilterModel.fromMap(response.data!['room']));
-
-        return result;
+      if (!response.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${url.toString()} code:${response.code} message:${response.message}");
       }
 
       return ResponseModel<RoomFilterModel>(
         code: response.code,
         message: response.message,
-        data: null,
+        data: response.data != null
+            ? RoomFilterModel.fromMap(response.data!['room'])
+            : null,
       );
     } catch (e) {
       debugPrint("Error in api.service.room.getFilter: ${e.toString()}");

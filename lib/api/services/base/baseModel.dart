@@ -9,9 +9,10 @@ import 'package:http/http.dart' as http;
 
 class BaseService {
   Future<Map<String, String>> _getHeader() async {
+    var token = await _getToken();
     return {
       'Content-Type': 'application/json',
-      'Authorization': await _getToken() ?? "",
+      'Authorization': 'Bearer ${token ?? ""}',
     };
   }
 
@@ -29,7 +30,6 @@ class BaseService {
   Future<ResponseModel<Map<String, dynamic>>> get({required Uri uri}) async {
     try {
       var res = await http.get(uri, headers: await _getHeader());
-
       return ResponseModel.fromJson(res.body, res.statusCode);
     } catch (e) {
       return ResponseModel.fromMap({

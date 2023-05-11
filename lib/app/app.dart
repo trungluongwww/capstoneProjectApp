@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roomeasy/api/services/auth/auth.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
+import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/router/router.dart';
 import 'package:roomeasy/app/screen/home/home.dart';
 
-class App extends StatefulWidget {
+class App extends ConsumerStatefulWidget {
   const App({Key? key}) : super(key: key);
 
   @override
   _AppState createState() => _AppState();
 }
 
-class _AppState extends State<App> {
+class _AppState extends ConsumerState<App> {
   @override
   Widget build(BuildContext context) {
+    final auth = ref.watch(authProvider);
+
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,

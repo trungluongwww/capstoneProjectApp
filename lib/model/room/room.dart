@@ -74,10 +74,13 @@ class RoomModel {
 
   String? getFullNameLocation() {
     List<String> names = [];
-    if (province!.name.isNotEmpty) names.add(province!.name);
-    if (district!.name.isNotEmpty) names.add(district!.name);
-    if (ward!.name.isNotEmpty) names.add(ward!.name);
+
     if (address != null) names.add(address!);
+    if (ward!.name.isNotEmpty) names.add(ward!.name);
+
+    if (district!.name.isNotEmpty) names.add(district!.name);
+
+    if (province!.name.isNotEmpty) names.add(province!.name);
 
     return names.join(', ');
   }

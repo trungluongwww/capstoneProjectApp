@@ -5,6 +5,7 @@ import 'package:roomeasy/app/screen/conversation/conversation.dart';
 import 'package:roomeasy/app/screen/favourite/favourite.dart';
 import 'package:roomeasy/app/screen/home/home.dart';
 import 'package:roomeasy/app/screen/home_filter/home_filter.dart';
+import 'package:roomeasy/app/screen/login/login.dart';
 import 'package:roomeasy/app/screen/room_detail/room_detail.dart';
 
 class AppRouter {
@@ -27,13 +28,14 @@ class AppRouter {
         builder = (context) => const HomeFilterScreen();
         break;
       case RoomDetailScreen.routeName:
-        final id = settings.arguments as String;
+        final id = (settings.arguments as Map<String, dynamic>)['id'];
         builder = (context) => RoomDetailScreen(
-              id: id,
+              id: id ?? '',
             );
         break;
+      case LoginScreen.routerName:
       default:
-        builder = (context) => const NotFoundScreen();
+        builder = (context) => const LoginScreen();
         break;
     }
 
