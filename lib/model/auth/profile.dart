@@ -7,7 +7,6 @@ import 'package:roomeasy/model/location/ward.dart';
 
 class AuthProfileModel {
   String? id;
-  String? username;
   String? phone;
   String? email;
   String? zalo;
@@ -23,7 +22,6 @@ class AuthProfileModel {
   WardModel? ward;
   AuthProfileModel({
     this.id,
-    this.username,
     this.phone,
     this.email,
     this.zalo,
@@ -42,7 +40,6 @@ class AuthProfileModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'username': username,
       'phone': phone,
       'email': email,
       'zalo': zalo,
@@ -62,7 +59,6 @@ class AuthProfileModel {
   factory AuthProfileModel.fromMap(Map<String, dynamic> map) {
     return AuthProfileModel(
       id: map['id'] != null ? map['id'] as String : null,
-      username: map['username'] != null ? map['username'] as String : null,
       phone: map['phone'] != null ? map['phone'] as String : null,
       email: map['email'] != null ? map['email'] as String : null,
       zalo: map['zalo'] != null ? map['zalo'] as String : null,
