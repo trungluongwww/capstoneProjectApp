@@ -5,36 +5,77 @@ import 'package:http/http.dart' as http;
 
 import 'package:roomeasy/api/constant/constant.dart';
 import 'package:roomeasy/api/services/base/baseModel.dart';
+import 'package:roomeasy/form/login.dart';
+import 'package:roomeasy/form/register.dart';
 import 'package:roomeasy/model/auth/profile.dart';
 import 'package:roomeasy/model/response/response.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthServices extends BaseService {
-  Future<String?> login(String username, String password) async {
-    final uri = Uri.http(Apiconstants.baseUrl,
-        '${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/login');
-    var body = json.encode({'username': username, 'password': password});
+  Future<ResponseModel<String>> login(
+      {required LoginFormModel formData}) async {
     try {
-      final res = await http.post(uri,
-          headers: {'Content-Type': 'application/json'}, body: body);
-      if (res.statusCode.toString().startsWith('2')) {
-        return (jsonDecode(utf8.decode(res.bodyBytes)) as Map)['data']['token'];
+      final uri = Uri.http(Apiconstants.baseUrl,
+          '${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/login');
+      final res = await post(uri: uri, body: formData.toMap());
+      if (!res.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${uri.toString()} code:${res.code} message:${res.message}");
       }
 
-      return null;
+      String token = res.data != null ? res.data!['token'] : '';
+
+      var instance = await SharedPreferences.getInstance();
+      instance.setString(Apiconstants.authToken, token);
+
+      return ResponseModel<String>(
+          code: res.code, message: res.message, data: token);
     } catch (e) {
-      return null;
+      return ResponseModel<String>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
+
+  Future<ResponseModel<String>> register(
+      {required RegisterFormModel formData}) async {
+    try {
+      final uri = Uri.http(Apiconstants.baseUrl,
+          '${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/register');
+
+      final res = await post(uri: uri, body: formData.toMap());
+      if (!res.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${uri.toString()} code:${res.code} message:${res.message}");
+      }
+
+      String token = res.data!['token'] ?? '';
+
+      var instance = await SharedPreferences.getInstance();
+      instance.setString(Apiconstants.authToken, token);
+
+      return ResponseModel<String>(
+          code: res.code, message: res.message, data: token);
+    } catch (e) {
+      return ResponseModel<String>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
     }
   }
 
   Future<ResponseModel<AuthProfileModel>> getMe() async {
     try {
-      final url = Uri.http(Apiconstants.baseUrl,
+      final uri = Uri.http(Apiconstants.baseUrl,
           "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/me");
 
-      var response = await get(uri: url);
+      var response = await get(uri: uri);
       if (!response.code.toString().startsWith('2')) {
         debugPrint(
-            "[APIService] ${url.toString()} code:${response.code} message:${response.message}");
+            "[APIService] ${uri.toString()} code:${response.code} message:${response.message}");
       }
       return ResponseModel<AuthProfileModel>(
         code: response.code,

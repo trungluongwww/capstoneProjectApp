@@ -53,30 +53,18 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
           //     onPress: () {},
           //     showNotification: false,
           //     showNumber: countNotificationAccount),
-          Consumer(
-            builder: (context, ref, child) {
-              AsyncValue<ResponseModel<AuthProfileModel>> auth =
-                  ref.watch(authProvider);
-              return auth.when(
-                data: (res) {
-                  if (res.data != null) {
-                    return AppBarActionItem(
-                        icon: Icons.person,
-                        onPress: () {},
-                        showNotification: false,
-                        showNumber: countNotificationAccount);
-                  }
-                  return loginButton;
-                },
-                error: (error, stackTrace) {
-                  return loginButton;
-                },
-                loading: () {
-                  return loginButton;
-                },
-              );
-            },
-          ),
+          Consumer(builder: (context, ref, child) {
+            final auth = ref.watch(authProfileProvider);
+            if (auth != null) {
+              return AppBarActionItem(
+                  icon: Icons.person,
+                  onPress: () {},
+                  showNotification: false,
+                  showNumber: countNotificationAccount);
+            } else {
+              return loginButton;
+            }
+          }),
         ],
         backgroundColor: AppColor.appBackgroundColor,
       ),

@@ -32,4 +32,8 @@ class ResponseModel<T> {
 
   factory ResponseModel.fromJson(String source, int? code) =>
       ResponseModel.fromMap(json.decode(source) as Map<String, dynamic>, code);
+
+  bool isSuccess() {
+    return this.code.toString().startsWith('2');
+  }
 }
