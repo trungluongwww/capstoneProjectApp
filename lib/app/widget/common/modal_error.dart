@@ -9,11 +9,11 @@ class ModalError {
 
   ModalError._internal();
 
-  SnackBar showToast(int code, String message) {
+  void showToast(BuildContext context, int code, String message) {
     Widget _icon = code.toString().startsWith('2')
         ? const Icon(Icons.done, color: Colors.green, size: 16)
         : const Icon(Icons.error, color: Colors.red, size: 16);
-    return SnackBar(
+    SnackBar child = SnackBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         content: Material(
@@ -43,5 +43,7 @@ class ModalError {
             ),
           ),
         ));
+
+    ScaffoldMessenger.of(context).showSnackBar(child);
   }
 }
