@@ -250,10 +250,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         setState(() {
                                           isLoading = false;
                                         });
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(ModalError()
-                                                .showToast(
-                                                    res.code!, res.message!));
+                                        ModalError().showToast(
+                                            context, res.code!, res.message!);
                                         return;
                                       }
                                       var user = await ref
@@ -265,10 +263,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       });
 
                                       if (mounted) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(ModalError()
-                                                .showToast(
-                                                    res.code!, res.message!));
+                                        ModalError().showToast(
+                                            context, res.code!, res.message!);
                                         if (user.isSuccess()) {
                                           Navigator.of(context).pop();
                                         }

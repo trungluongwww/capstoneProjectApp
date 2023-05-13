@@ -1,4 +1,4 @@
-package com.example.roomeasy
+package com.capstone.roomeasy
 
 import io.flutter.embedding.android.FlutterActivity
 

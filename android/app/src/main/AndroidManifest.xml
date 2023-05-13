@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.roomeasy">
+    package="com.capstone.roomeasy">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="roomeasy"
+        android:label="Rent Easy"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
