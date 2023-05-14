@@ -51,7 +51,7 @@ class AuthServices extends BaseService {
             "[APIService] ${uri.toString()} code:${res.code} message:${res.message}");
       }
 
-      String token = res.data!['token'] ?? '';
+      String token = res.data != null ? res.data!['token'] : '';
 
       var instance = await SharedPreferences.getInstance();
       instance.setString(Apiconstants.authToken, token);

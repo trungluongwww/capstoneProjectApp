@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/app/screen/account/account.dart';
-import 'package:roomeasy/app/screen/common/not_found.dart';
 import 'package:roomeasy/app/screen/conversation/conversation.dart';
 import 'package:roomeasy/app/screen/favourite/favourite.dart';
 import 'package:roomeasy/app/screen/home/home.dart';
 import 'package:roomeasy/app/screen/home_filter/home_filter.dart';
+import 'package:roomeasy/app/screen/location/location.dart';
 import 'package:roomeasy/app/screen/login/login.dart';
+import 'package:roomeasy/app/screen/register/register.dart';
 import 'package:roomeasy/app/screen/room_detail/room_detail.dart';
+import 'package:roomeasy/form/location.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -32,6 +34,13 @@ class AppRouter {
         builder = (context) => RoomDetailScreen(
               id: id ?? '',
             );
+        break;
+      case SelectLocationScreen.routerName:
+        LocationFormModel? formdata = settings.arguments as LocationFormModel;
+        builder = (context) => SelectLocationScreen(input: formdata);
+        break;
+      case RegisterScreen.routerName:
+        builder = (context) => const RegisterScreen();
         break;
       case LoginScreen.routerName:
       default:

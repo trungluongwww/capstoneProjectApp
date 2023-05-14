@@ -156,6 +156,12 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                                   .copyWith(fontSize: 16),
                             ),
                             ListTitleSmallWithoutSpacing(
+                                colorLeadIcon: Colors.red,
+                                title: res.data!.status!.value,
+                                prefixTitle: "Trạng thái",
+                                defaultTitle: "Liên hệ người đăng",
+                                leadIcon: Icons.info_outline),
+                            ListTitleSmallWithoutSpacing(
                                 title: res.data!.type!.value,
                                 prefixTitle: "Loại cho thuê",
                                 defaultTitle: "Liên hệ người đăng",
