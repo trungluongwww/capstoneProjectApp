@@ -9,8 +9,8 @@ class ModalError {
 
   ModalError._internal();
 
-  void showToast(BuildContext context, int code, String message) {
-    Widget _icon = code.toString().startsWith('2')
+  void showToast(BuildContext context, String code, String message) {
+    Widget icon = code.startsWith('2')
         ? const Icon(Icons.done, color: Colors.green, size: 16)
         : const Icon(Icons.error, color: Colors.red, size: 16);
     SnackBar child = SnackBar(
@@ -30,7 +30,7 @@ class ModalError {
                   horizontal: VisualDensity.minimumDensity),
               contentPadding: const EdgeInsets.symmetric(horizontal: 8),
               dense: true,
-              leading: _icon,
+              leading: icon,
               title: Text(
                 message,
                 style: const TextStyle(

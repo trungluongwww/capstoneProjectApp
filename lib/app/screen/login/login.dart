@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
+import 'package:roomeasy/app/screen/register/register.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/common/position_center_loading.dart';
 import 'package:roomeasy/app/widget/login/login_app_bar.dart';
@@ -250,8 +251,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         setState(() {
                                           isLoading = false;
                                         });
-                                        ModalError().showToast(
-                                            context, res.code!, res.message!);
+                                        ModalError().showToast(context,
+                                            res.code!.toString(), res.message!);
                                         return;
                                       }
                                       var user = await ref
@@ -263,8 +264,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       });
 
                                       if (mounted) {
-                                        ModalError().showToast(
-                                            context, res.code!, res.message!);
+                                        ModalError().showToast(context,
+                                            res.code!.toString(), res.message!);
                                         if (user.isSuccess()) {
                                           Navigator.of(context).pop();
                                         }
@@ -285,7 +286,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushReplacementNamed(RegisterScreen.routerName);
+                        },
                         child: const Padding(
                           padding: EdgeInsets.only(top: 12),
                           child: Text(
