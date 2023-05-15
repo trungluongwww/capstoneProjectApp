@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roomeasy/api/services/auth/auth.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/router/router.dart';
@@ -16,7 +15,7 @@ class App extends ConsumerStatefulWidget {
 class _AppState extends ConsumerState<App> {
   @override
   Widget build(BuildContext context) {
-    final auth = ref.watch(authProvider);
+    final model = ref.read(authProfileProvider.notifier).init();
 
     return MaterialApp(
       theme: ThemeData(

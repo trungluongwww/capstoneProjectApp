@@ -7,7 +7,8 @@ import 'package:roomeasy/app/screen/home_filter/home_filter.dart';
 import 'package:roomeasy/app/screen/location/location.dart';
 import 'package:roomeasy/app/screen/login/login.dart';
 import 'package:roomeasy/app/screen/register/register.dart';
-import 'package:roomeasy/app/screen/room_detail/room_detail.dart';
+import 'package:roomeasy/app/screen/room/room_create.dart';
+import 'package:roomeasy/app/screen/room/room_detail.dart';
 import 'package:roomeasy/form/location.dart';
 
 class AppRouter {
@@ -34,6 +35,9 @@ class AppRouter {
         builder = (context) => RoomDetailScreen(
               id: id ?? '',
             );
+        break;
+      case RoomCreate.routeName:
+        builder = (context) => RoomCreate();
         break;
       case SelectLocationScreen.routerName:
         LocationFormModel? formdata = settings.arguments as LocationFormModel;
