@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:roomeasy/app/constant/app_color.dart';
-import 'package:roomeasy/app/screen/room_detail/room_detail.dart';
+import 'package:roomeasy/app/screen/room/room_detail.dart';
 import 'package:roomeasy/app/widget/common/list_title_small_without_spacing.dart';
 import 'package:roomeasy/model/room/room.dart';
 import 'package:roomeasy/ultils/strings.dart';
