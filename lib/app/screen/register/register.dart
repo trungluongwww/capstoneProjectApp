@@ -9,8 +9,8 @@ import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/register/register_app_bar.dart';
 import 'package:roomeasy/app/widget/register/register_input_default.dart';
 import 'package:roomeasy/app/widget/register/register_location.dart';
-import 'package:roomeasy/form/location.dart';
-import 'package:roomeasy/form/register.dart';
+import 'package:roomeasy/form/location/location.dart';
+import 'package:roomeasy/form/register/register.dart';
 
 class RegisterScreen extends ConsumerStatefulWidget {
   static const routerName = '/register';

@@ -5,13 +5,19 @@ import 'package:http/http.dart' as http;
 
 import 'package:roomeasy/api/constant/constant.dart';
 import 'package:roomeasy/api/services/base/baseModel.dart';
-import 'package:roomeasy/form/login.dart';
-import 'package:roomeasy/form/register.dart';
+import 'package:roomeasy/form/login/login.dart';
+import 'package:roomeasy/form/register/register.dart';
 import 'package:roomeasy/model/auth/profile.dart';
 import 'package:roomeasy/model/response/response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthServices extends BaseService {
+  static AuthProfileModel? user;
+
+  AuthProfileModel? getCurrentUserState() {
+    return user;
+  }
+
   Future<ResponseModel<String>> login(
       {required LoginFormModel formData}) async {
     try {
@@ -77,6 +83,11 @@ class AuthServices extends BaseService {
         debugPrint(
             "[APIService] ${uri.toString()} code:${response.code} message:${response.message}");
       }
+
+      if (response.data != null) {
+        user = AuthProfileModel.fromMap(response.data!);
+      }
+
       return ResponseModel<AuthProfileModel>(
         code: response.code,
         message: response.message,

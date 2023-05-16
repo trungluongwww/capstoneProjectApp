@@ -4,11 +4,11 @@ import 'dart:convert';
 import 'package:roomeasy/model/common/common_key_value.dart';
 
 class RoomFilterModel {
-  final List<KeyValueModel>? sort;
-  final List<KeyValueModel>? types;
+  final List<KeyValueModel> sort;
+  final List<KeyValueModel> types;
   RoomFilterModel({
-    this.sort,
-    this.types,
+    this.sort = const [],
+    this.types = const [],
   });
 
   factory RoomFilterModel.fromMap(Map<String, dynamic> map) {
@@ -19,14 +19,14 @@ class RoomFilterModel {
                 (x) => KeyValueModel.fromMap(x as Map<String, dynamic>),
               ),
             )
-          : null,
+          : [],
       types: map['types'] != null
           ? List<KeyValueModel>.from(
               (map['types'] as List<dynamic>).map<KeyValueModel?>(
                 (x) => KeyValueModel.fromMap(x as Map<String, dynamic>),
               ),
             )
-          : null,
+          : [],
     );
   }
 
