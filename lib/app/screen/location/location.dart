@@ -8,7 +8,7 @@ import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/location.dart';
 import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/widget/common/list_title_select_option.dart';
-import 'package:roomeasy/form/location.dart';
+import 'package:roomeasy/form/location/location.dart';
 import 'package:roomeasy/model/location/district.dart';
 import 'package:roomeasy/model/location/province.dart';
 import 'package:roomeasy/model/location/ward.dart';

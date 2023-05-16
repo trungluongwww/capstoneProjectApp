@@ -4,6 +4,7 @@ import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/router/router.dart';
 import 'package:roomeasy/app/screen/home/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class App extends ConsumerStatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _AppState extends ConsumerState<App> {
   @override
   Widget build(BuildContext context) {
     final model = ref.read(authProfileProvider.notifier).init();
-
+    SharedPreferences.getInstance().then((value) => value.remove('auth_token'));
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,

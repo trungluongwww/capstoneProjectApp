@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:roomeasy/model/auth/profile.dart';
 import 'package:roomeasy/model/common/common_key_value.dart';
+import 'package:roomeasy/model/convenience/convenience.dart';
 import 'package:roomeasy/model/location/district.dart';
 import 'package:roomeasy/model/location/province.dart';
 import 'package:roomeasy/model/location/ward.dart';
@@ -24,7 +25,8 @@ class RoomModel {
   KeyValueModel? type;
   DateTime? createdAt;
   DateTime? updatedAt;
-  List<RoomFileModel>? files;
+  List<RoomFileModel> files;
+  List<ConvenienceModel> conveniences;
   RoomModel({
     this.id,
     this.name,
@@ -41,7 +43,8 @@ class RoomModel {
     this.type,
     this.createdAt,
     this.updatedAt,
-    this.files,
+    this.files = const [],
+    this.conveniences = const [],
   });
 
   Map<String, dynamic> toMap() {
@@ -62,6 +65,7 @@ class RoomModel {
       'createdAt': createdAt?.millisecondsSinceEpoch,
       'updatedAt': updatedAt?.millisecondsSinceEpoch,
       'files': files?.map((x) => x.toMap()).toList(),
+      'covneniences': conveniences?.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -135,7 +139,14 @@ class RoomModel {
                 (x) => RoomFileModel.fromMap(x as Map<String, dynamic>),
               ),
             )
-          : null,
+          : [],
+      conveniences: map['covneniences'] != null
+          ? List<ConvenienceModel>.from(
+              (map['covneniences'] as List<dynamic>).map<ConvenienceModel?>(
+                (x) => ConvenienceModel.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : [],
     );
   }
 

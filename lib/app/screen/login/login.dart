@@ -7,7 +7,7 @@ import 'package:roomeasy/app/screen/register/register.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/common/position_center_loading.dart';
 import 'package:roomeasy/app/widget/login/login_app_bar.dart';
-import 'package:roomeasy/form/login.dart';
+import 'package:roomeasy/form/login/login.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routerName = '/login';

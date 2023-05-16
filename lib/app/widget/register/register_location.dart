@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 
-import 'package:roomeasy/form/location.dart';
+import 'package:roomeasy/form/location/location.dart';
 
 class RegisterLocation extends StatelessWidget {
   final VoidCallback onSelected;

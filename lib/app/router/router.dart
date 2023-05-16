@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roomeasy/api/services/auth/auth.dart';
 import 'package:roomeasy/app/screen/account/account.dart';
 import 'package:roomeasy/app/screen/conversation/conversation.dart';
 import 'package:roomeasy/app/screen/favourite/favourite.dart';
@@ -9,7 +10,7 @@ import 'package:roomeasy/app/screen/login/login.dart';
 import 'package:roomeasy/app/screen/register/register.dart';
 import 'package:roomeasy/app/screen/room/room_create.dart';
 import 'package:roomeasy/app/screen/room/room_detail.dart';
-import 'package:roomeasy/form/location.dart';
+import 'package:roomeasy/form/location/location.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -36,15 +37,21 @@ class AppRouter {
               id: id ?? '',
             );
         break;
-      case RoomCreate.routeName:
-        builder = (context) => RoomCreate();
-        break;
       case SelectLocationScreen.routerName:
         LocationFormModel? formdata = settings.arguments as LocationFormModel;
         builder = (context) => SelectLocationScreen(input: formdata);
         break;
       case RegisterScreen.routerName:
         builder = (context) => const RegisterScreen();
+        break;
+      case RoomCreate.routeName:
+        // if (AuthServices().getCurrentUserState() != null) {
+        //   builder = (context) => const RoomCreate();
+        // } else {
+        //   builder = (context) => const LoginScreen();
+        // }
+        builder = (context) => const RoomCreate();
+
         break;
       case LoginScreen.routerName:
       default:
