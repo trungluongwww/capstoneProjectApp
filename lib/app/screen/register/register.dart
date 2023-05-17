@@ -126,7 +126,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   controller: _phoneController,
                   keyboardType: TextInputType.number,
                   validator: (value) {
-                    if (value == null || value.length != 10) {
+                    if (value == null || value.trim().length != 10) {
                       return "Số điện thoại bao gồm 10 chữ số";
                     }
                     return null;
@@ -138,7 +138,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   controller: _nameController,
                   keyboardType: TextInputType.text,
                   validator: (value) {
-                    if (value == null || value.length < 8) {
+                    if (value == null || value.trim().length < 8) {
                       return "Ít nhất 8 ký tự";
                     }
                     return null;
@@ -150,7 +150,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   keyboardType: TextInputType.text,
                   controller: _passwordController,
                   validator: (value) {
-                    if (value == null || value.length < 8) {
+                    if (value == null || value.trim().length < 8) {
                       return "Ít nhất 8 ký tự";
                     }
                     return null;
@@ -162,7 +162,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   keyboardType: TextInputType.text,
                   controller: _rePasswordController,
                   validator: (value) {
-                    if (value == null || value.length < 8) {
+                    if (value == null || value.trim().length < 8) {
                       return "Ít nhất 8 ký tự";
                     }
 
@@ -180,7 +180,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   keyboardType: TextInputType.text,
                   controller: _addressController,
                   validator: (value) {
-                    if (value == null || value.length < 8) {
+                    if (value == null || value.trim().length < 8) {
                       return "Ít nhất 8 ký tự";
                     }
 

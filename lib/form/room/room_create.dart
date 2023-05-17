@@ -1,18 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:roomeasy/form/file/file.dart';
 
 class RoomCreateFormModel {
-  final String name;
-  final String description;
-  final int rentPerMonth;
-  final int deposit;
-  final int squareMetre;
-  final String provinceId;
-  final String districtId;
-  final String wardId;
-  final String address;
-  final List<String> convenienceIds;
-  final List<FileFormModel> files;
+  String name;
+  String description;
+  int rentPerMonth;
+  int deposit;
+  int squareMetre;
+  String provinceId;
+  String districtId;
+  String wardId;
+  String address;
+  String type;
+  List<String> convenienceIds;
+  List<FileFormModel> files;
   RoomCreateFormModel({
     required this.name,
     required this.description,
@@ -23,6 +26,7 @@ class RoomCreateFormModel {
     required this.districtId,
     required this.wardId,
     required this.address,
+    required this.type,
     required this.convenienceIds,
     required this.files,
   });
@@ -38,6 +42,7 @@ class RoomCreateFormModel {
       'districtId': districtId,
       'wardId': wardId,
       'address': address,
+      'type': type,
       'convenienceIds': convenienceIds,
       'files': files.map((x) => x.toMap()).toList(),
     };
@@ -53,6 +58,7 @@ class RoomCreateFormModel {
     String? districtId,
     String? wardId,
     String? address,
+    String? type,
     List<String>? convenienceIds,
     List<FileFormModel>? files,
   }) {
@@ -66,6 +72,7 @@ class RoomCreateFormModel {
       districtId: districtId ?? this.districtId,
       wardId: wardId ?? this.wardId,
       address: address ?? this.address,
+      type: type ?? this.type,
       convenienceIds: convenienceIds ?? this.convenienceIds,
       files: files ?? this.files,
     );

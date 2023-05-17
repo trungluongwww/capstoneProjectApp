@@ -14,20 +14,21 @@ class RoomCreateStepControlsBuilder extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        TextButton(
-          onPressed: details.onStepCancel,
-          child: Text(
-            'Quay lại',
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(color: AppColor.appTextDefaultColor, fontSize: 14),
+        if (details.stepIndex != 0)
+          TextButton(
+            onPressed: details.onStepCancel,
+            child: Text(
+              'Quay lại',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(color: AppColor.appTextDefaultColor, fontSize: 14),
+            ),
           ),
-        ),
         TextButton(
           onPressed: details.onStepContinue,
           child: Text(
-            'Tiếp tục',
+            details.stepIndex == 2 ? 'Xong' : 'Tiếp tục',
             style: Theme.of(context)
                 .textTheme
                 .titleMedium!
