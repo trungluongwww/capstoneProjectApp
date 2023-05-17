@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 
 class RoomCreateTextFieldInput extends StatelessWidget {
@@ -6,12 +7,15 @@ class RoomCreateTextFieldInput extends StatelessWidget {
   final String? Function(String?) validator;
   final String hintText;
   final TextInputType keyboardType;
+  final List<TextInputFormatter>? inputFormatter;
+
   const RoomCreateTextFieldInput(
       {Key? key,
       required this.controller,
       required this.validator,
       required this.hintText,
-      required this.keyboardType})
+      required this.keyboardType,
+      this.inputFormatter})
       : super(key: key);
 
   @override
@@ -21,6 +25,7 @@ class RoomCreateTextFieldInput extends StatelessWidget {
       controller: controller,
       validator: validator,
       keyboardType: keyboardType,
+      inputFormatters: inputFormatter,
       style: const TextStyle(
         color: Colors.black87,
         fontSize: 16,
