@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/api/constant/constant.dart';
 import 'package:roomeasy/api/services/base/baseModel.dart';
+import 'package:roomeasy/form/room/room_create.dart';
 import 'package:roomeasy/model/filter/room_filter.dart';
 import 'package:roomeasy/model/response/response.dart';
 import 'package:roomeasy/model/room/room.dart';
@@ -115,6 +116,30 @@ class RoomServices extends BaseService {
       );
     } catch (e) {
       debugPrint("Error in api.service.room.getDetailRoom: ${e.toString()}");
+      return ResponseModel<RoomModel>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
+
+  Future<ResponseModel<RoomModel>> create({
+    required RoomCreateFormModel formdata,
+  }) async {
+    try {
+      final url = Uri.http(Apiconstants.baseUrl,
+          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}");
+
+      var response = await post(uri: url, body: formdata.toMap());
+      if (!response.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${url.toString()} code:${response.code} message:${response.message}");
+      }
+      return ResponseModel<RoomModel>(
+          code: response.code, message: response.message, data: null);
+    } catch (e) {
+      debugPrint("Error in api.service.room.create: ${e.toString()}");
       return ResponseModel<RoomModel>(
         code: 500,
         message: e.toString(),
