@@ -1,6 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:roomeasy/api/services/convenience/convenience.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
+import 'package:roomeasy/app/constant/app_icon.dart';
 import 'package:roomeasy/app/screen/location/location.dart';
+import 'package:roomeasy/app/widget/common/list_title_small_without_spacing.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/room_create/room_create_app_bar.dart';
 import 'package:roomeasy/app/widget/room_create/room_create_group_info.dart';
@@ -10,6 +17,7 @@ import 'package:roomeasy/app/widget/room_create/room_create_step_controls_builde
 import 'package:roomeasy/app/widget/room_create/room_create_text_field_input.dart';
 import 'package:roomeasy/form/location/location.dart';
 import 'package:roomeasy/form/room/room_create.dart';
+import 'package:roomeasy/model/convenience/convenience.dart';
 
 class RoomCreate extends StatefulWidget {
   static const routeName = '/room-create';
@@ -20,6 +28,9 @@ class RoomCreate extends StatefulWidget {
 }
 
 class _RoomCreateState extends State<RoomCreate> {
+  // config
+  final maxFile = 4;
+
   // controller step 1
   final TextEditingController _nameController =
       TextEditingController(text: '11111111111111111111');
@@ -32,6 +43,13 @@ class _RoomCreateState extends State<RoomCreate> {
   final TextEditingController _squareMetreController =
       TextEditingController(text: '25');
   final TextEditingController _addressController = TextEditingController();
+
+  // state
+  List<ConvenienceModel> conveniences = [];
+  bool isLoadingConvenience = false;
+  List<String> selectedConveniences = [];
+
+  List<XFile> selectedFiles = [];
 
   // key step 1
   final GlobalKey<FormState> formKey1 = GlobalKey<FormState>();
@@ -66,6 +84,7 @@ class _RoomCreateState extends State<RoomCreate> {
   @override
   void initState() {
     super.initState();
+    _fetchConvenience();
   }
 
   @override
@@ -87,6 +106,26 @@ class _RoomCreateState extends State<RoomCreate> {
     setState(() {
       locationData = LocationFormModel.fromData(rs);
     });
+  }
+
+  void _fetchConvenience() async {
+    if (!isLoadingConvenience) {
+      setState(() {
+        isLoadingConvenience = true;
+      });
+
+      final res = await ConvenienceService().getAll();
+
+      if (res.code.toString().startsWith('2') && res.data != null) {
+        setState(() {
+          conveniences = res.data!.conveniences;
+        });
+      }
+
+      setState(() {
+        isLoadingConvenience = false;
+      });
+    }
   }
 
   @override
@@ -195,7 +234,138 @@ class _RoomCreateState extends State<RoomCreate> {
                       fontWeight: FontWeight.w500,
                       color: Colors.black54),
                 ),
-                content: Center()),
+                content: Consumer(builder: (context, ref, child) {
+                  return SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // photo
+                        const Text(
+                          'Chọn hình ảnh',
+                          style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        const Padding(
+                            padding: EdgeInsets.only(bottom: 8),
+                            child: Text(
+                              '(Tối đa 4 hình)',
+                              style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 12,
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w300),
+                            )),
+
+                        Flexible(
+                            child: GridView(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          padding: EdgeInsets.zero,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  crossAxisSpacing: 8,
+                                  mainAxisSpacing: 8,
+                                  childAspectRatio: 1),
+                          children: [
+                            ...selectedFiles
+                                .map((f) => Image.file(
+                                      File(f.path),
+                                      fit: BoxFit.cover,
+                                    ))
+                                .toList(),
+                            if (selectedFiles.length != maxFile)
+                              DecoratedBox(
+                                decoration: BoxDecoration(
+                                    color: Colors.black12,
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: IconButton(
+                                  onPressed: () async {
+                                    final f = await ImagePicker()
+                                        .pickImage(source: ImageSource.gallery);
+                                    if (f != null) {
+                                      setState(() {
+                                        selectedFiles.add(f);
+                                      });
+                                    }
+                                  },
+                                  icon: const Icon(
+                                      Icons.add_photo_alternate_outlined),
+                                ),
+                              )
+                          ],
+                        )),
+                        // convenience
+                        const Padding(
+                            padding: EdgeInsets.only(top: 32, bottom: 8),
+                            child: Text(
+                              'Chọn tiện ích có sẵn',
+                              style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400),
+                            )),
+                        Flexible(
+                          child: GridView(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            padding: EdgeInsets.zero,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 8,
+                                    mainAxisSpacing: 8,
+                                    childAspectRatio: 4),
+                            children: conveniences.map((conv) {
+                              return Container(
+                                padding: const EdgeInsets.all(4),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    color:
+                                        selectedConveniences.contains(conv.id!)
+                                            ? Colors.white70
+                                            : AppColor.appDarkWhiteColor,
+                                    border:
+                                        selectedConveniences.contains(conv.id!)
+                                            ? Border.all(
+                                                width: 1, color: Colors.blue)
+                                            : null,
+                                    borderRadius: BorderRadius.circular(6)),
+                                child: InkWell(
+                                  onTap: () {
+                                    if (!selectedConveniences
+                                        .contains(conv.id)) {
+                                      setState(() {
+                                        selectedConveniences.add(conv.id!);
+                                      });
+                                    } else {
+                                      setState(() {
+                                        selectedConveniences.remove(conv.id!);
+                                      });
+                                    }
+                                  },
+                                  child: ListTitleSmallWithoutSpacing(
+                                    defaultTitle: conv.name!,
+                                    leadIcon: AppIcon()
+                                            .getIconDataByKey(conv.code!) ??
+                                        Icons.help_outline,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                })),
           ],
           onStepContinue: () {
             // done step 1
@@ -246,6 +416,8 @@ class _RoomCreateState extends State<RoomCreate> {
                     districtId: locationData.districtId,
                     wardId: locationData.wardId);
               });
+
+              _fetchConvenience();
             }
 
             if (currentIndex < 2) {
