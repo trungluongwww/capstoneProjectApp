@@ -140,9 +140,9 @@ class RoomModel {
               ),
             )
           : [],
-      conveniences: map['covneniences'] != null
+      conveniences: map['conveniences'] != null
           ? List<ConvenienceModel>.from(
-              (map['covneniences'] as List<dynamic>).map<ConvenienceModel?>(
+              (map['conveniences'] as List<dynamic>).map<ConvenienceModel?>(
                 (x) => ConvenienceModel.fromMap(x as Map<String, dynamic>),
               ),
             )
