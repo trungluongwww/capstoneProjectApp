@@ -6,7 +6,9 @@ import 'package:readmore/readmore.dart';
 
 import 'package:roomeasy/api/services/room/room.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
+import 'package:roomeasy/app/constant/app_icon.dart';
 import 'package:roomeasy/app/provider/room/room_detail.dart';
+import 'package:roomeasy/app/screen/image/detail_image_path_screen.dart';
 import 'package:roomeasy/app/widget/common/button_icon_linear_primary.dart';
 import 'package:roomeasy/app/widget/common/button_icon_primary.dart';
 import 'package:roomeasy/app/widget/common/list_title_small_without_spacing.dart';
@@ -214,14 +216,22 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                                 mainAxisSpacing: 4,
                                 childAspectRatio: 1,
                                 crossAxisCount: 4),
-                        itemCount: res.data!.files!.length > 4
+                        itemCount: res.data!.files.length > 4
                             ? 4
-                            : res.data!.files!.length,
+                            : res.data!.files.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return SizedBox(
-                            child: Image.network(
-                              res.data!.files![index].info!.url!,
-                              fit: BoxFit.fill,
+                          return InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (ctx) => DetailImagePathScreen(
+                                      path:
+                                          res.data!.files[index].info!.url!)));
+                            },
+                            child: SizedBox(
+                              child: Image.network(
+                                res.data!.files[index].info!.url!,
+                                fit: BoxFit.fill,
+                              ),
                             ),
                           );
                         },
@@ -255,6 +265,48 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                                 .titleMedium!
                                 .copyWith(fontSize: 14, color: Colors.blue),
                           )),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16, bottom: 8),
+                        child: Text(
+                          'Tiện ích có sẵn',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(fontSize: 16),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: GridView(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          padding: EdgeInsets.zero,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 8,
+                                  mainAxisSpacing: 8,
+                                  childAspectRatio: 4),
+                          children: res.data!.conveniences.map((conv) {
+                            return Container(
+                              padding: const EdgeInsets.all(4),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color: AppColor.appDarkWhiteColor,
+                                  border:
+                                      Border.all(width: 1, color: Colors.blue),
+                                  borderRadius: BorderRadius.circular(6)),
+                              child: ListTitleSmallWithoutSpacing(
+                                defaultTitle: conv.name!,
+                                leadIcon:
+                                    AppIcon().getIconDataByKey(conv.code!) ??
+                                        Icons.help_outline,
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
                     ],
                   ),
                 ),

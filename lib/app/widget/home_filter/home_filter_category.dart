@@ -54,7 +54,7 @@ class _HomeFilterCategoryState extends ConsumerState<HomeFilterCategory> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: res.data!.types!.map<Widget>((e) {
+                      children: res.data!.types.map<Widget>((e) {
                         return InkWell(
                           onTap: () {
                             ref

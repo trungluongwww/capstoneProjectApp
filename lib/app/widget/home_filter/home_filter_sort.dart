@@ -55,7 +55,7 @@ class _HomeFilterSortState extends ConsumerState<HomeFilterSort> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: res.data!.sort!.map<Widget>((e) {
+                      children: res.data!.sort.map<Widget>((e) {
                         return InkWell(
                           onTap: () {
                             ref
