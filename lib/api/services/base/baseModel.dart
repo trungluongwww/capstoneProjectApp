@@ -102,4 +102,20 @@ class BaseService {
       }, 500);
     }
   }
+
+  // http post formdata
+  Future<ResponseModel<Map<String, dynamic>>> postFormData(
+      http.MultipartRequest request) async {
+    try {
+      var res = await request.send();
+
+      final resData = await http.Response.fromStream(res);
+
+      return ResponseModel.fromJson(resData.body, res.statusCode);
+    } catch (e) {
+      return ResponseModel.fromMap({
+        'message': e.toString(),
+      }, 500);
+    }
+  }
 }

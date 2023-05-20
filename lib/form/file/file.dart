@@ -4,8 +4,8 @@ import 'dart:convert';
 class FileFormModel {
   final String? name;
   final String? originName;
-  final String? width;
-  final String? height;
+  final int? width;
+  final int? height;
   final String? type;
   final String? url;
   FileFormModel({
