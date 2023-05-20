@@ -13,6 +13,7 @@ class Apiconstants {
   static String conversationEndpoint = "/conversations";
   static String locationEndpoint = "/locations";
   static String uploadEndpoint = "/uploads";
+  static String convenienceEndPoint = "/conveniences";
 
   // key
   static String authToken = 'auth_token';

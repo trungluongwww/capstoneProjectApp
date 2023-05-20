@@ -17,7 +17,6 @@ class _AppState extends ConsumerState<App> {
   @override
   Widget build(BuildContext context) {
     final model = ref.read(authProfileProvider.notifier).init();
-    SharedPreferences.getInstance().then((value) => value.remove('auth_token'));
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,
