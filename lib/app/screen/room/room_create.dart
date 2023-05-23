@@ -461,6 +461,10 @@ class _RoomCreateState extends State<RoomCreate> {
                   int code = 200;
 
                   if (!isSubmitCreate) {
+                    setState(() {
+                      isSubmitCreate = true;
+                    });
+
                     if (selectedFiles.isEmpty) {
                       errMsg = "Vui lòng chọn ít nhất một hình ảnh";
                       code = 400;

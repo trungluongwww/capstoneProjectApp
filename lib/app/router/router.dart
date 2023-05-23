@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
-import 'package:roomeasy/app/screen/account/account.dart';
+import 'package:roomeasy/app/screen/account/account_screen.dart';
 import 'package:roomeasy/app/screen/conversation/conversation.dart';
 import 'package:roomeasy/app/screen/favourite/favourite.dart';
 import 'package:roomeasy/app/screen/home/home.dart';
@@ -14,6 +14,8 @@ import 'package:roomeasy/form/location/location.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    bool isLogged = AuthServices().getCurrentUserState() != null;
+
     WidgetBuilder builder;
     switch (settings.name) {
       case Home.routeName:
@@ -25,8 +27,10 @@ class AppRouter {
       case Conversation.routeName:
         builder = (context) => const Conversation();
         break;
-      case Account.routeName:
-        builder = (context) => const Account();
+      case AccountScreen.routeName:
+        builder =
+            (context) => isLogged ? const AccountScreen() : const LoginScreen();
+
         break;
       case HomeFilterScreen.routerName:
         builder = (context) => const HomeFilterScreen();
@@ -45,13 +49,8 @@ class AppRouter {
         builder = (context) => const RegisterScreen();
         break;
       case RoomCreate.routeName:
-        // if (AuthServices().getCurrentUserState() != null) {
-        //   builder = (context) => const RoomCreate();
-        // } else {
-        //   builder = (context) => const LoginScreen();
-        // }
-        builder = (context) => const RoomCreate();
-
+        builder =
+            (context) => isLogged ? const RoomCreate() : const LoginScreen();
         break;
       case LoginScreen.routerName:
       default:

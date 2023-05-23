@@ -4,10 +4,10 @@ import 'package:roomeasy/app/constant/app_color.dart';
 
 import 'package:roomeasy/form/location/location.dart';
 
-class RoomCreateLocation extends StatelessWidget {
+class AccountFormLocation extends StatelessWidget {
   final VoidCallback onSelected;
   final LocationFormModel location;
-  const RoomCreateLocation({
+  const AccountFormLocation({
     Key? key,
     required this.onSelected,
     required this.location,

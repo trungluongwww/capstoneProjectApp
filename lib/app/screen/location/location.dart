@@ -79,16 +79,19 @@ class SelectLocationScreenState extends ConsumerState<SelectLocationScreen> {
                                     return InkWell(
                                       onTap: () {
                                         setState(() {
-                                          formResult.wardId = null;
-                                          formResult.wardName = null;
-                                          formResult.districtId = null;
-                                          formResult.districtName = null;
-                                          formResult = formResult.copyWith(
-                                            provinceId:
-                                                res.data!.provinces![index].id,
-                                            provinceName: res
-                                                .data!.provinces![index].name,
-                                          );
+                                          if (formResult.provinceId !=
+                                              res.data!.provinces![index].id) {
+                                            formResult.wardId = null;
+                                            formResult.wardName = null;
+                                            formResult.districtId = null;
+                                            formResult.districtName = null;
+                                            formResult = formResult.copyWith(
+                                              provinceId: res
+                                                  .data!.provinces![index].id,
+                                              provinceName: res
+                                                  .data!.provinces![index].name,
+                                            );
+                                          }
                                         });
                                         Navigator.pop(context);
                                       },
@@ -156,14 +159,17 @@ class SelectLocationScreenState extends ConsumerState<SelectLocationScreen> {
                                     return InkWell(
                                       onTap: () {
                                         setState(() {
-                                          formResult.wardId = null;
-                                          formResult.wardName = null;
-                                          formResult = formResult.copyWith(
-                                            districtId:
-                                                res.data!.districts![index].id,
-                                            districtName: res
-                                                .data!.districts![index].name,
-                                          );
+                                          if (formResult.districtId !=
+                                              res.data!.districts![index].id) {
+                                            formResult.wardId = null;
+                                            formResult.wardName = null;
+                                            formResult = formResult.copyWith(
+                                              districtId: res
+                                                  .data!.districts![index].id,
+                                              districtName: res
+                                                  .data!.districts![index].name,
+                                            );
+                                          }
                                         });
                                         Navigator.pop(context);
                                       },
@@ -229,11 +235,14 @@ class SelectLocationScreenState extends ConsumerState<SelectLocationScreen> {
                                     return InkWell(
                                       onTap: () {
                                         setState(() {
-                                          formResult = formResult.copyWith(
-                                              wardId:
-                                                  res.data!.wards![index].id,
-                                              wardName:
-                                                  res.data!.wards![index].name);
+                                          if (formResult.wardId !=
+                                              res.data!.wards![index].id) {
+                                            formResult = formResult.copyWith(
+                                                wardId:
+                                                    res.data!.wards![index].id,
+                                                wardName: res
+                                                    .data!.wards![index].name);
+                                          }
                                         });
 
                                         Navigator.pop(context);

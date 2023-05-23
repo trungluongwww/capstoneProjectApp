@@ -9,8 +9,6 @@ class AuthProfileModel {
   String? id;
   String? phone;
   String? email;
-  String? zalo;
-  String? facebook;
   String? name;
   String? avatar;
   DateTime? createdAt;
@@ -24,8 +22,6 @@ class AuthProfileModel {
     this.id,
     this.phone,
     this.email,
-    this.zalo,
-    this.facebook,
     this.name,
     this.avatar,
     this.createdAt,
@@ -42,8 +38,6 @@ class AuthProfileModel {
       'id': id,
       'phone': phone,
       'email': email,
-      'zalo': zalo,
-      'facebook': facebook,
       'name': name,
       'avatar': avatar,
       'createdAt': createdAt?.millisecondsSinceEpoch,
@@ -61,8 +55,6 @@ class AuthProfileModel {
       id: map['id'] != null ? map['id'] as String : null,
       phone: map['phone'] != null ? map['phone'] as String : null,
       email: map['email'] != null ? map['email'] as String : null,
-      zalo: map['zalo'] != null ? map['zalo'] as String : null,
-      facebook: map['facebook'] != null ? map['facebook'] as String : null,
       name: map['name'] != null ? map['name'] as String : null,
       avatar: map['avatar'] != null ? map['avatar'] as String : null,
       createdAt: map['createdAt'] != null

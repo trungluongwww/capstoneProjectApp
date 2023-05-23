@@ -4,14 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
 
-import 'package:roomeasy/api/services/room/room.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_icon.dart';
 import 'package:roomeasy/app/provider/room/room_detail.dart';
 import 'package:roomeasy/app/screen/image/detail_image_path_screen.dart';
-import 'package:roomeasy/app/widget/common/button_icon_linear_primary.dart';
 import 'package:roomeasy/app/widget/common/button_icon_primary.dart';
 import 'package:roomeasy/app/widget/common/list_title_small_without_spacing.dart';
+import 'package:roomeasy/app/widget/profile/profile_bottom_modal.dart';
 import 'package:roomeasy/app/widget/room_detail/room_detail_app_bar.dart';
 
 class RoomDetailScreen extends ConsumerStatefulWidget {
@@ -113,7 +112,7 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                                   res.data!.owner!.avatar != ""
                               ? NetworkImage(res.data!.owner!.avatar!)
                               : const AssetImage(
-                                      'assets/images/default_room.jpg')
+                                      'assets/images/default_user.png')
                                   as ImageProvider,
                         ),
                         title: Text(
@@ -136,10 +135,14 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                               child: InkWell(
                                   child: ButtonIconFlatPrimary(
                             size: 32,
-                            onClick: () {
+                            onClick: () async {
                               debugPrint(DateTime.now().toIso8601String());
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => ProfileBottomModal(
+                                      userId: res.data!.owner!.id!));
                             },
-                            icon: Icons.chat,
+                            icon: Icons.phone,
                           ))),
                         ),
                       ),

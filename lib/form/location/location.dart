@@ -33,6 +33,10 @@ class LocationFormModel {
     );
   }
 
+  bool isValid() {
+    return districtId != null && provinceId != null && wardId != null;
+  }
+
   factory LocationFormModel.fromData(dynamic data) {
     try {
       return data as LocationFormModel;

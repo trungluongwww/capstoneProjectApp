@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/screen/room/room_create.dart';
 import 'package:roomeasy/app/widget/home/home_app_bar.dart';
