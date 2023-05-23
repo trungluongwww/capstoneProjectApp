@@ -1,12 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:roomeasy/app/constant/app_value.dart';
-import 'package:roomeasy/app/provider/home/location.dart';
-import 'package:roomeasy/model/location/district.dart';
-import 'package:roomeasy/model/location/province.dart';
-import 'package:roomeasy/model/location/ward.dart';
-
 class HomeFilterProviderModel {
   String? selectedProvinceId;
   String? provinceName;

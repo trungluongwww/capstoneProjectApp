@@ -12,7 +12,7 @@ class ButtonTextPrimary extends StatelessWidget {
 
   const ButtonTextPrimary({
     Key? key,
-    required this.maxWidth,
+    this.maxWidth = double.infinity,
     required this.height,
     required this.onClick,
     required this.title,
@@ -25,25 +25,21 @@ class ButtonTextPrimary extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(maxWidth: maxWidth),
       height: height,
-      decoration: ShapeDecoration(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          gradient: const LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-            colors: [AppColor.appPrimaryColor, AppColor.appLightPrimaryColor],
-          )),
-      child: TextButton(
-        onPressed: onClick,
-        child: Center(
-          child: Text(
-            overflow: TextOverflow.ellipsis,
-            title,
-            style: style ??
-                const TextStyle(
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w300,
-                    fontSize: 12,
-                    color: AppColor.appBackgroundColor),
+      child: Material(
+        color: Colors.blue,
+        child: InkWell(
+          onTap: onClick,
+          child: Center(
+            child: Text(
+              overflow: TextOverflow.ellipsis,
+              title,
+              style: style ??
+                  const TextStyle(
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: AppColor.appBackgroundColor),
+            ),
           ),
         ),
       ),

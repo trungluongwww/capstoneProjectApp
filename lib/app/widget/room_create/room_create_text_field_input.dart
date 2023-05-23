@@ -8,6 +8,7 @@ class RoomCreateTextFieldInput extends StatelessWidget {
   final String hintText;
   final TextInputType keyboardType;
   final List<TextInputFormatter>? inputFormatter;
+  final int? maxLength;
 
   const RoomCreateTextFieldInput(
       {Key? key,
@@ -15,13 +16,14 @@ class RoomCreateTextFieldInput extends StatelessWidget {
       required this.validator,
       required this.hintText,
       required this.keyboardType,
+      this.maxLength = 64,
       this.inputFormatter})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      maxLength: 64,
+      maxLength: maxLength,
       controller: controller,
       validator: validator,
       keyboardType: keyboardType,

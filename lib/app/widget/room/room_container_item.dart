@@ -36,45 +36,23 @@ class RoomContainerItem extends StatelessWidget {
             children: [
               // list image
               Container(
-                clipBehavior: Clip.hardEdge,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                ),
-                width: double.infinity,
-                height: 200,
-                child: room.files.isEmpty
-                    ? Image.asset(
-                        "assets/images/default_room.jpg",
-                        fit: BoxFit.cover,
-                      )
-                    : room.files.length == 1
-                        ? Image.asset(
-                            "assets/images/default_room.jpg",
-                            fit: BoxFit.cover,
-                          )
-                        : ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: room.files.length,
-                            itemBuilder: (BuildContext ctx, int index2) {
-                              return Container(
-                                width: 348,
-                                height: double.infinity,
-                                margin: index2 != room.files.length - 1
-                                    ? const EdgeInsets.only(right: 2)
-                                    : null,
-                                // TODO set url file
-                                // child: Image.network(
-                                //     room
-                                //         .files![index2]
-                                //         .info!
-                                //         .url!),
-                                child: Image.asset(
-                                  "assets/images/default_room.jpg",
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            }),
-              ),
+                  clipBehavior: Clip.hardEdge,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                  width: double.infinity,
+                  height: 200,
+                  child: room.files.isEmpty
+                      ? Image.asset(
+                          "assets/images/default_room.jpg",
+                          fit: BoxFit.cover,
+                        )
+                      : Image.asset(
+                          //TODO
+                          // room.files[0].info!.url ??
+                          "assets/images/default_room.jpg",
+                          fit: BoxFit.cover,
+                        )),
               // infomation
               Padding(
                 padding: const EdgeInsets.only(top: 16),

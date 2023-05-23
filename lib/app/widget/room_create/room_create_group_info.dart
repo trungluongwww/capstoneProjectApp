@@ -31,7 +31,7 @@ class RoomCreateGroupInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Tên phòng',
+            'TÊN PHÒNG',
             style: TextStyle(
                 color: Colors.black54,
                 fontFamily: 'Inter',
@@ -54,7 +54,7 @@ class RoomCreateGroupInfo extends StatelessWidget {
               hintText: 'Nhập tên phòng',
               keyboardType: TextInputType.text),
           const Text(
-            'Mô tả chi tiết',
+            'MÔ TẢ CHI TIẾT',
             style: TextStyle(
                 color: Colors.black54,
                 fontFamily: 'Inter',
@@ -62,6 +62,7 @@ class RoomCreateGroupInfo extends StatelessWidget {
                 fontWeight: FontWeight.w400),
           ),
           RoomCreateTextFieldInput(
+              maxLength: 200,
               controller: descriptionController,
               validator: (val) {
                 if (val == null || val.trim().isEmpty) {
@@ -77,7 +78,7 @@ class RoomCreateGroupInfo extends StatelessWidget {
               hintText: 'Viết mô tả',
               keyboardType: TextInputType.text),
           const Text(
-            'Giá thuê một tháng',
+            'GIÁ THUÊ MỘT THÁNG',
             style: TextStyle(
                 color: Colors.black54,
                 fontFamily: 'Inter',
@@ -115,7 +116,7 @@ class RoomCreateGroupInfo extends StatelessWidget {
               hintText: 'Nhập số tiền (VNĐ)',
               keyboardType: TextInputType.number),
           const Text(
-            'Yêu cầu tiền cọc',
+            'TIỀN CỌC',
             style: TextStyle(
                 color: Colors.black54,
                 fontFamily: 'Inter',
@@ -149,7 +150,7 @@ class RoomCreateGroupInfo extends StatelessWidget {
               hintText: 'Nhập số tiền (VNĐ)',
               keyboardType: TextInputType.number),
           const Text(
-            'Diện tích (m²)',
+            'DIỆN TÍCH (M²)',
             style: TextStyle(
                 color: Colors.black54,
                 fontFamily: 'Inter',

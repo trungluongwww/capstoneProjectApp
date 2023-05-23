@@ -12,7 +12,7 @@ class RoomServices extends BaseService {
 
   Future<ResponseModel<RoomFilterModel>> getFilters() async {
     try {
-      final url = Uri.http(Apiconstants.baseUrl,
+      final url = Uri.http(Apiconstants.getBaseURL(),
           "${Apiconstants.apiVersion}${Apiconstants.filterEndpoint}");
 
       var response = await get(uri: url);
@@ -70,7 +70,7 @@ class RoomServices extends BaseService {
     }
 
     try {
-      final url = Uri.http(Apiconstants.baseUrl,
+      final url = Uri.http(Apiconstants.getBaseURL(),
           "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}", params);
 
       var response = await get(uri: url);
@@ -99,7 +99,7 @@ class RoomServices extends BaseService {
     required String id,
   }) async {
     try {
-      final url = Uri.http(Apiconstants.baseUrl,
+      final url = Uri.http(Apiconstants.getBaseURL(),
           "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/$id");
 
       var response = await get(uri: url);
@@ -128,7 +128,7 @@ class RoomServices extends BaseService {
     required RoomCreateFormModel formdata,
   }) async {
     try {
-      final url = Uri.http(Apiconstants.baseUrl,
+      final url = Uri.http(Apiconstants.getBaseURL(),
           "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}");
 
       var response = await post(uri: url, body: formdata.toMap());

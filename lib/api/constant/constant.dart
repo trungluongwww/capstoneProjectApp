@@ -1,7 +1,10 @@
+import 'package:flutter/foundation.dart';
+
 class Apiconstants {
   // domain
-  static String baseUrl = "10.0.2.2:5000";
-  // static String baseUrl = "34.124.228.220";
+  static String devBaseUrl = "10.0.2.2:5000";
+  // static String devBaseUrl = "192.168.1.126:5000";
+  static String productBaseUrl = "34.124.228.220";
 
   // apiversion
   static String apiVersion = "/api";
@@ -17,4 +20,11 @@ class Apiconstants {
 
   // key
   static String authToken = 'auth_token';
+
+  static String getBaseURL() {
+    if (kReleaseMode) {
+      return productBaseUrl;
+    }
+    return devBaseUrl;
+  }
 }

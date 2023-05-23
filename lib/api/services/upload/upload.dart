@@ -14,7 +14,7 @@ class UploadService extends BaseService {
   Future<ResponseModel<ListPhotoResponseModel>> uploadPhotos(
       List<File> files) async {
     try {
-      var uri = Uri.http(Apiconstants.baseUrl,
+      var uri = Uri.http(Apiconstants.getBaseURL(),
           "${Apiconstants.apiVersion}${Apiconstants.uploadEndpoint}/multiple-photo");
 
       var request = http.MultipartRequest(
