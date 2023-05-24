@@ -5,7 +5,7 @@ import 'package:roomeasy/model/file/file_info.dart';
 
 class RoomFileModel {
   String? id;
-  FileInfo? info;
+  FileInfoModel? info;
   DateTime? createdAt;
   RoomFileModel({
     this.id,
@@ -25,7 +25,7 @@ class RoomFileModel {
     return RoomFileModel(
       id: map['id'] != null ? map['id'] as String : null,
       info: map['info'] != null
-          ? FileInfo.fromMap(map['info'] as Map<String, dynamic>)
+          ? FileInfoModel.fromMap(map['info'] as Map<String, dynamic>)
           : null,
       createdAt: map['createdAt'] != null
           ? DateTime.parse(map['createdAt'] as String)

@@ -92,7 +92,7 @@ class RoomModel {
   String? getShortLocation() {
     List<String> names = [];
     if (province!.name.isNotEmpty) names.add('TP. ${province!.name}');
-    if (district!.name.isNotEmpty) names.add('Q. ${district!.name}');
+    if (district!.name.isNotEmpty) names.add(district!.name);
 
     return names.join(', ');
   }

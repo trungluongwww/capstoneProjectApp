@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:roomeasy/model/file/file_other_info.dart';
 import 'package:roomeasy/model/file/file_thumbnail_info.dart';
 
-class FileInfo {
+class FileInfoModel {
   String? name;
   String? originName;
   int? width;
@@ -13,7 +13,7 @@ class FileInfo {
   String? url;
   FileOtherInfo? others;
   FileThumbnailInfo? thumbnail;
-  FileInfo({
+  FileInfoModel({
     this.name,
     this.originName,
     this.width,
@@ -37,8 +37,8 @@ class FileInfo {
     };
   }
 
-  factory FileInfo.fromMap(Map<String, dynamic> map) {
-    return FileInfo(
+  factory FileInfoModel.fromMap(Map<String, dynamic> map) {
+    return FileInfoModel(
       name: map['name'] != null ? map['name'] as String : null,
       originName:
           map['originName'] != null ? map['originName'] as String : null,
@@ -57,6 +57,6 @@ class FileInfo {
 
   String toJson() => json.encode(toMap());
 
-  factory FileInfo.fromJson(String source) =>
-      FileInfo.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory FileInfoModel.fromJson(String source) =>
+      FileInfoModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

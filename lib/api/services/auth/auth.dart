@@ -7,6 +7,8 @@ import 'package:roomeasy/api/constant/constant.dart';
 import 'package:roomeasy/api/services/base/baseModel.dart';
 import 'package:roomeasy/form/login/login.dart';
 import 'package:roomeasy/form/register/register.dart';
+import 'package:roomeasy/form/user/user_change_avatar.dart';
+import 'package:roomeasy/form/user/user_change_password.dart';
 import 'package:roomeasy/form/user/user_update.dart';
 import 'package:roomeasy/model/auth/profile.dart';
 import 'package:roomeasy/model/response/response.dart';
@@ -152,6 +154,53 @@ class AuthServices extends BaseService {
           code: response.code, message: response.message, data: null);
     } catch (e) {
       debugPrint("Error in api.service.auth.updateProfile: ${e.toString()}");
+      return ResponseModel<AuthProfileModel>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
+
+  Future<ResponseModel> updateAvatar(UserChangeAvatarFormModel formdata) async {
+    try {
+      final url = Uri.http(Apiconstants.getBaseURL(),
+          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/avatar");
+
+      var response = await patch(uri: url, body: formdata.toMap());
+      if (!response.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${url.toString()} code:${response.code} message:${response.message}");
+      }
+
+      return ResponseModel(
+          code: response.code, message: response.message, data: null);
+    } catch (e) {
+      debugPrint("Error in api.service.auth.updateAvatar: ${e.toString()}");
+      return ResponseModel<AuthProfileModel>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
+
+  Future<ResponseModel> changePassword(
+      UserChangePassWordFormModel formdata) async {
+    try {
+      final url = Uri.http(Apiconstants.getBaseURL(),
+          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/password");
+
+      var response = await patch(uri: url, body: formdata.toMap());
+      if (!response.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${url.toString()} code:${response.code} message:${response.message}");
+      }
+
+      return ResponseModel(
+          code: response.code, message: response.message, data: null);
+    } catch (e) {
+      debugPrint("Error in api.service.auth.changePassword: ${e.toString()}");
       return ResponseModel<AuthProfileModel>(
         code: 500,
         message: e.toString(),

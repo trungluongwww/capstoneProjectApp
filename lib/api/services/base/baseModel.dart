@@ -15,7 +15,7 @@ class BaseService {
     };
   }
 
-  Future<Map<String, String>> getHeaderFormData() async {
+  Future<Map<String, String>> _getHeaderFormData() async {
     var token = await _getToken();
     return {
       'Content-Type': 'multipart/form-data',
@@ -107,6 +107,8 @@ class BaseService {
   Future<ResponseModel<Map<String, dynamic>>> postFormData(
       http.MultipartRequest request) async {
     try {
+      request.headers.addAll(await _getHeaderFormData());
+
       var res = await request.send();
 
       final resData = await http.Response.fromStream(res);

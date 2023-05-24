@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:roomeasy/model/file/file_info.dart';
 
 class ListPhotoResponseModel {
-  List<FileInfo> photos;
+  List<FileInfoModel> photos;
   ListPhotoResponseModel({
     required this.photos,
   });
@@ -18,9 +18,9 @@ class ListPhotoResponseModel {
   factory ListPhotoResponseModel.fromMap(Map<String, dynamic> map) {
     return ListPhotoResponseModel(
       photos: map['photos'] != null
-          ? List<FileInfo>.from(
-              (map['photos'] as List<dynamic>).map<FileInfo>(
-                (x) => FileInfo.fromMap(x as Map<String, dynamic>),
+          ? List<FileInfoModel>.from(
+              (map['photos'] as List<dynamic>).map<FileInfoModel>(
+                (x) => FileInfoModel.fromMap(x as Map<String, dynamic>),
               ),
             )
           : [],
