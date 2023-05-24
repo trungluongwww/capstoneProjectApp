@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/screen/account/tab_account_detail.dart';
+import 'package:roomeasy/app/screen/account/tab_change_password.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -57,10 +58,10 @@ class _AccountScreenState extends State<AccountScreen>
           ],
         ),
       ),
-      body: TabBarView(controller: _tabController, children: [
-        const TabAccountDetail(),
-        const Center(child: Text('Hello world: manage room ')),
-        const Center(child: Text('Hello world: manage room '))
+      body: TabBarView(controller: _tabController, children: const [
+        TabAccountDetail(),
+        Center(child: Text('Hello world: manage room ')),
+        TabChangePassword()
       ]),
     );
   }

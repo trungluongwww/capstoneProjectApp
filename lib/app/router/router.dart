@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
-import 'package:roomeasy/app/screen/account/account_screen.dart';
+import 'package:roomeasy/app/screen/account/account.dart';
 import 'package:roomeasy/app/screen/conversation/conversation.dart';
 import 'package:roomeasy/app/screen/favourite/favourite.dart';
 import 'package:roomeasy/app/screen/home/home.dart';

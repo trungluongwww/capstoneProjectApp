@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_image.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
-import 'package:roomeasy/app/screen/account/account_screen.dart';
+import 'package:roomeasy/app/screen/account/account.dart';
 import 'package:roomeasy/app/screen/login/login.dart';
 import 'package:roomeasy/app/widget/common/app_bar_action_item_with_bage.dart';
 import 'package:roomeasy/model/auth/profile.dart';
