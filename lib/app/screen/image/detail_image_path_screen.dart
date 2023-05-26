@@ -15,11 +15,13 @@ class DetailImagePathScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Hình ảnh'),
+        backgroundColor: Colors.black,
+        leading: const BackButton(
+          color: Colors.white,
+        ),
       ),
       body: GestureDetector(
-        onTap: () {
-          Navigator.of(context).pop();
-        },
+        onTap: () {},
         child: Container(
           color: Colors.black,
           child: Center(child: image),
