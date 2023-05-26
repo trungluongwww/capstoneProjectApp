@@ -12,6 +12,7 @@ import 'package:roomeasy/form/user/user_change_password.dart';
 import 'package:roomeasy/form/user/user_update.dart';
 import 'package:roomeasy/model/auth/profile.dart';
 import 'package:roomeasy/model/response/response.dart';
+import 'package:roomeasy/model/room/room_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthServices extends BaseService {
@@ -202,6 +203,40 @@ class AuthServices extends BaseService {
     } catch (e) {
       debugPrint("Error in api.service.auth.changePassword: ${e.toString()}");
       return ResponseModel<AuthProfileModel>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
+
+  // manage room
+  Future<ResponseModel<RoomResponseModel>> getMyRooms(String pageToken) async {
+    Map<String, dynamic> params = {
+      'pageToken': pageToken,
+    };
+
+    try {
+      final url = Uri.http(
+          Apiconstants.getBaseURL(),
+          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/rooms",
+          params);
+
+      var response = await get(uri: url);
+      if (!response.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${url.toString()} code:${response.code} message:${response.message}");
+      }
+      return ResponseModel<RoomResponseModel>(
+        code: response.code,
+        message: response.message,
+        data: response.data != null
+            ? RoomResponseModel.fromMap(response.data!)
+            : null,
+      );
+    } catch (e) {
+      debugPrint("Error in api.service.auth.getMyRooms: ${e.toString()}");
+      return ResponseModel<RoomResponseModel>(
         code: 500,
         message: e.toString(),
         data: null,

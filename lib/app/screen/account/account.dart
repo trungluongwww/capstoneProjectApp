@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/screen/account/tab_account_detail.dart';
 import 'package:roomeasy/app/screen/account/tab_change_password.dart';
+import 'package:roomeasy/app/screen/account/tab_room.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -40,6 +41,7 @@ class _AccountScreenState extends State<AccountScreen>
         ),
         centerTitle: true,
         bottom: TabBar(
+          isScrollable: false,
           unselectedLabelColor: Colors.black54,
           labelColor: AppColor.appPrimaryColor,
           labelStyle: const TextStyle(
@@ -47,10 +49,10 @@ class _AccountScreenState extends State<AccountScreen>
           controller: _tabController,
           tabs: const [
             Tab(
-              text: 'Cá nhân',
+              text: 'Phòng',
             ),
             Tab(
-              text: 'Phòng',
+              text: 'Cá nhân',
             ),
             Tab(
               text: 'Đổi mật khẩu',
@@ -58,11 +60,15 @@ class _AccountScreenState extends State<AccountScreen>
           ],
         ),
       ),
-      body: TabBarView(controller: _tabController, children: const [
-        TabAccountDetail(),
-        Center(child: Text('Hello world: manage room ')),
-        TabChangePassword()
-      ]),
+      body: TabBarView(
+        controller: _tabController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: const [
+          TabRoom(),
+          TabAccountDetail(),
+          TabChangePassword(),
+        ],
+      ),
     );
   }
 }
