@@ -1,7 +1,18 @@
 class UString {
   static String convertDateTimeToDescription(DateTime dateTime) {
-    final now = DateTime.now();
-    final difference = now.difference(dateTime);
+    final now = DateTime.now().toUtc();
+
+    DateTime utcPlus7 = DateTime.utc(
+      now.year,
+      now.month,
+      now.day,
+      now.hour + 7,
+      now.minute,
+      now.second,
+      now.millisecond,
+      now.microsecond,
+    );
+    var difference = utcPlus7.difference(dateTime);
 
     if (difference.inDays == 0) {
       if (difference.inHours == 0) {

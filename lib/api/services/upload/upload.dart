@@ -47,7 +47,7 @@ class UploadService extends BaseService {
     }
   }
 
-  Future<ResponseModel<FileInfoModel>> uploadAvatar(File files) async {
+  Future<ResponseModel<FileInfoModel>> uploadAvatar(File file) async {
     try {
       var uri = Uri.http(Apiconstants.getBaseURL(),
           "${Apiconstants.apiVersion}${Apiconstants.uploadEndpoint}/avatar");
@@ -58,8 +58,8 @@ class UploadService extends BaseService {
       );
 
       request.files.add(http.MultipartFile.fromBytes(
-          'file', await files.readAsBytes(),
-          filename: files.path.split('/').last));
+          'file', await file.readAsBytes(),
+          filename: file.path.split('/').last));
 
       final res = await postFormData(request);
 
@@ -69,6 +69,37 @@ class UploadService extends BaseService {
           message: res.message);
     } catch (e) {
       debugPrint("Error in api.service.upload.uploadAvatar: ${e.toString()}");
+      return ResponseModel<FileInfoModel>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
+
+  Future<ResponseModel<FileInfoModel>> uploadSinglePhoto(File file) async {
+    try {
+      var uri = Uri.http(Apiconstants.getBaseURL(),
+          "${Apiconstants.apiVersion}${Apiconstants.uploadEndpoint}/single-photo");
+
+      var request = http.MultipartRequest(
+        'POST',
+        uri,
+      );
+
+      request.files.add(http.MultipartFile.fromBytes(
+          'file', await file.readAsBytes(),
+          filename: file.path.split('/').last));
+
+      final res = await postFormData(request);
+
+      return ResponseModel<FileInfoModel>(
+          code: res.code,
+          data: res.data != null ? FileInfoModel.fromMap(res.data!) : null,
+          message: res.message);
+    } catch (e) {
+      debugPrint(
+          "Error in api.service.upload.uploadSinglePhoto: ${e.toString()}");
       return ResponseModel<FileInfoModel>(
         code: 500,
         message: e.toString(),

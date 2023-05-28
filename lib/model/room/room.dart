@@ -64,14 +64,14 @@ class RoomModel {
       'type': type?.toMap(),
       'createdAt': createdAt?.millisecondsSinceEpoch,
       'updatedAt': updatedAt?.millisecondsSinceEpoch,
-      'files': files?.map((x) => x.toMap()).toList(),
-      'covneniences': conveniences?.map((x) => x.toMap()).toList(),
+      'files': files.map((x) => x.toMap()).toList(),
+      'covneniences': conveniences.map((x) => x.toMap()).toList(),
     };
   }
 
   String? getAvatar() {
-    if (files != null && files!.isNotEmpty) {
-      return files![0].info!.url;
+    if (files.isNotEmpty) {
+      return files[0].info!.url;
     }
     return null;
   }

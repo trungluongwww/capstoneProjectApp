@@ -36,4 +36,8 @@ class ResponseModel<T> {
   bool isSuccess() {
     return this.code.toString().startsWith('2');
   }
+
+  bool isValidData() {
+    return this.data != null;
+  }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
+import 'package:roomeasy/app/screen/room/room_detail.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
-import 'package:roomeasy/app/widget/room/room_grid_time.dart';
+import 'package:roomeasy/app/widget/room/room_grid_item.dart';
 import 'package:roomeasy/model/room/room.dart';
 
 class TabRoom extends StatefulWidget {
@@ -22,7 +23,7 @@ class _TabRoomState extends State<TabRoom> {
   @override
   void initState() {
     _scrollController = ScrollController();
-    _scrollController.addListener(__scrollListener);
+    _scrollController.addListener(_scrollListener);
 
     _refreshRoom();
     super.initState();
@@ -82,15 +83,16 @@ class _TabRoomState extends State<TabRoom> {
     }
   }
 
-  // event
   // event lisner
-  void __scrollListener() {
+  void _scrollListener() {
     if (_scrollController.offset >=
             _scrollController.position.maxScrollExtent &&
         !_scrollController.position.outOfRange) {
       _loadMoreRoom();
     }
   }
+
+  // handler
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +103,7 @@ class _TabRoomState extends State<TabRoom> {
         backgroundColor: const Color.fromARGB(110, 158, 158, 158),
         strokeWidth: 2.0,
         child: Padding(
-          padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+          padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
           child: GridView.builder(
             itemCount: _rooms.length,
             controller: _scrollController,
@@ -111,9 +113,14 @@ class _TabRoomState extends State<TabRoom> {
                 mainAxisSpacing: 8,
                 crossAxisSpacing: 8),
             itemBuilder: (context, index) {
-              return RoomGridTime(
+              return RoomGridItem(
                 room: _rooms[index],
-                onTab: () {},
+                onTab: () {
+                  if (_rooms[index].id != null) {
+                    Navigator.of(context).pushNamed(RoomDetailScreen.routeName,
+                        arguments: {'id': _rooms[index].id});
+                  }
+                },
               );
             },
           ),

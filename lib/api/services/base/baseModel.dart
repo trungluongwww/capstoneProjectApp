@@ -91,9 +91,11 @@ class BaseService {
   }
 
   // http patch
-  Future<ResponseModel<Map<String, dynamic>>> delete({required Uri uri}) async {
+  Future<ResponseModel<Map<String, dynamic>>> delete(
+      {required Uri uri, required Map<String, dynamic> body}) async {
     try {
-      var res = await http.delete(uri, headers: await _getHeader());
+      var res = await http.delete(uri,
+          headers: await _getHeader(), body: json.encode(body));
 
       return ResponseModel.fromJson(res.body, res.statusCode);
     } catch (e) {
