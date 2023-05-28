@@ -24,7 +24,7 @@ class RoomCreateGroupTypeState extends ConsumerState<RoomCreateGroupType> {
   }
 
   // event
-  void _onChangedType(val) {
+  void onChangedType(val) {
     setState(() {
       groupValue = val as String;
       finalValue = groupValue;
@@ -56,7 +56,7 @@ class RoomCreateGroupTypeState extends ConsumerState<RoomCreateGroupType> {
                         title: e.value!,
                         value: e.key!,
                         groupValue: groupValue,
-                        onChange: _onChangedType))
+                        onChange: onChangedType))
                     .toList();
               }
               return [const CircularProgressIndicator()];

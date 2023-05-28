@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 import 'package:roomeasy/model/room/room.dart';
 
-class RoomGridTime extends StatelessWidget {
+class RoomGridItem extends StatelessWidget {
   final VoidCallback onTab;
   final RoomModel room;
-  const RoomGridTime({
+  const RoomGridItem({
     Key? key,
     required this.onTab,
     required this.room,

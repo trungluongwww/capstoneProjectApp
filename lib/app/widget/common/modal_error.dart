@@ -9,7 +9,7 @@ class ModalError {
 
   ModalError._internal();
 
-  void showToast(BuildContext context, String code, String message) {
+  void showToast(BuildContext context, String code, String? message) {
     Widget icon = code.startsWith('2')
         ? const Icon(Icons.done, color: Colors.green, size: 16)
         : const Icon(Icons.error, color: Colors.red, size: 16);
@@ -32,7 +32,7 @@ class ModalError {
               dense: true,
               leading: icon,
               title: Text(
-                message,
+                message ?? "Thất bại",
                 style: const TextStyle(
                   color: Colors.black87,
                   fontFamily: 'Inter',

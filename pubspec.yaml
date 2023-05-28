@@ -47,6 +47,7 @@ dependencies:
   material_design_icons_flutter: ^6.0.7096
   currency_text_input_formatter: ^2.1.9
   image_picker: ^0.8.7+5
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:

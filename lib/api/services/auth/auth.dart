@@ -22,6 +22,10 @@ class AuthServices extends BaseService {
     return user;
   }
 
+  void removeCurrentUserState() {
+    user = null;
+  }
+
   Future<ResponseModel<String>> login(
       {required LoginFormModel formData}) async {
     try {

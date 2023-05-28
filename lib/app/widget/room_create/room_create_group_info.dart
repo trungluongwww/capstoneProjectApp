@@ -2,8 +2,6 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/number_symbols_data.dart';
-
 import 'package:roomeasy/app/widget/room_create/room_create_text_field_input.dart';
 
 class RoomCreateGroupInfo extends StatelessWidget {
@@ -62,7 +60,7 @@ class RoomCreateGroupInfo extends StatelessWidget {
                 fontWeight: FontWeight.w400),
           ),
           RoomCreateTextFieldInput(
-              maxLength: 200,
+              maxLength: 600,
               controller: descriptionController,
               validator: (val) {
                 if (val == null || val.trim().isEmpty) {
@@ -76,7 +74,7 @@ class RoomCreateGroupInfo extends StatelessWidget {
                 return null;
               },
               hintText: 'Viết mô tả',
-              keyboardType: TextInputType.text),
+              keyboardType: TextInputType.multiline),
           const Text(
             'GIÁ THUÊ MỘT THÁNG',
             style: TextStyle(

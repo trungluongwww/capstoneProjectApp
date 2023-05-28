@@ -24,6 +24,7 @@ class RoomCreateTextFieldInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       maxLength: maxLength,
+      maxLines: null,
       controller: controller,
       validator: validator,
       keyboardType: keyboardType,

@@ -26,6 +26,11 @@ class AuthProfileNotifier extends StateNotifier<AuthProfileModel?> {
 
     return res;
   }
+
+  void removeCurrentUserState() {
+    AuthServices().removeCurrentUserState();
+    state = null;
+  }
 }
 
 final authProfileProvider =

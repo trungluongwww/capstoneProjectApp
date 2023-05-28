@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
+import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/screen/account/tab_account_detail.dart';
 import 'package:roomeasy/app/screen/account/tab_change_password.dart';
 import 'package:roomeasy/app/screen/account/tab_room.dart';
+import 'package:roomeasy/app/screen/home/home.dart';
+import 'package:roomeasy/app/screen/login/login.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -39,6 +43,27 @@ class _AccountScreenState extends State<AccountScreen>
               fontWeight: FontWeight.w300,
               color: Colors.black),
         ),
+        actions: [
+          Consumer(
+            builder: (context, ref, child) => TextButton(
+                onPressed: () {
+                  ref
+                      .read(authProfileProvider.notifier)
+                      .removeCurrentUserState();
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      LoginScreen.routerName,
+                      ModalRoute.withName(Home.routeName));
+                },
+                child: const Text(
+                  'Đăng xuất',
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.blue),
+                )),
+          )
+        ],
         centerTitle: true,
         bottom: TabBar(
           isScrollable: false,
