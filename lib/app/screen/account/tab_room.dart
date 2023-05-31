@@ -31,6 +31,8 @@ class _TabRoomState extends State<TabRoom> {
 
   @override
   void dispose() {
+    _scrollController.removeListener(_scrollListener);
+    _scrollController.dispose();
     super.dispose();
   }
 
