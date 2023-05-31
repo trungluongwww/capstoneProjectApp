@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class UString {
   static String convertDateTimeToDescription(DateTime dateTime) {
     final now = DateTime.now().toUtc();
@@ -35,5 +37,9 @@ class UString {
       final years = (difference.inDays / 365).floor();
       return '$years năm trước';
     }
+  }
+
+  static String getShortTime(DateTime time) {
+    return DateFormat("dd/MM HH:mm").format(time);
   }
 }

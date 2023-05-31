@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:roomeasy/api/constant/constant.dart';
 import 'package:roomeasy/api/services/base/baseModel.dart';
 import 'package:roomeasy/form/file/file.dart';
+import 'package:roomeasy/form/room/room_change_status.dart';
 import 'package:roomeasy/form/room/room_create.dart';
 import 'package:roomeasy/form/room/room_remove_photo.dart';
 import 'package:roomeasy/form/room/room_update.dart';
@@ -224,6 +225,32 @@ class RoomServices extends BaseService {
           code: response.code, message: response.message, data: null);
     } catch (e) {
       debugPrint("Error in api.service.room.addPhoto: ${e.toString()}");
+      return ResponseModel<CommonUpsertResponseModel>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
+
+  Future<ResponseModel<CommonUpsertResponseModel>> changeStatus({
+    required String roomId,
+    required RoomChangeStatusFormModel formdata,
+  }) async {
+    try {
+      final url = Uri.http(Apiconstants.getBaseURL(),
+          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/$roomId/status");
+      var response = await patch(uri: url, body: formdata.toMap());
+
+      if (!response.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${url.toString()} code:${response.code} message:${response.message}");
+      }
+
+      return ResponseModel<CommonUpsertResponseModel>(
+          code: response.code, message: response.message, data: null);
+    } catch (e) {
+      debugPrint("Error in api.service.room.changeStatus: ${e.toString()}");
       return ResponseModel<CommonUpsertResponseModel>(
         code: 500,
         message: e.toString(),
