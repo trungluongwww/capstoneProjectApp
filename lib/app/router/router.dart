@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
 import 'package:roomeasy/app/screen/account/account.dart';
 import 'package:roomeasy/app/screen/conversation/conversation.dart';
+import 'package:roomeasy/app/screen/conversation/conversation_detail.dart';
 import 'package:roomeasy/app/screen/favourite/favourite.dart';
 import 'package:roomeasy/app/screen/home/home.dart';
 import 'package:roomeasy/app/screen/home_filter/home_filter.dart';
@@ -12,6 +13,7 @@ import 'package:roomeasy/app/screen/room/room_create.dart';
 import 'package:roomeasy/app/screen/room/room_detail.dart';
 import 'package:roomeasy/app/screen/room/room_update.dart';
 import 'package:roomeasy/form/location/location.dart';
+import 'package:roomeasy/model/room/room.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -28,6 +30,23 @@ class AppRouter {
       case Conversation.routeName:
         builder =
             (context) => isLogged ? const Conversation() : const LoginScreen();
+        break;
+      case ConversationDetail.routeName:
+        final conversationId =
+            (settings.arguments as Map<String, dynamic>)['id'];
+        final roomAttach = (settings.arguments as Map<String, dynamic>)['room'];
+        RoomModel? room;
+
+        if (roomAttach is RoomModel) {
+          room = roomAttach;
+        }
+
+        builder = (context) => isLogged
+            ? ConversationDetail(
+                conversationId: conversationId,
+                attachRoom: room,
+              )
+            : const LoginScreen();
         break;
       case AccountScreen.routeName:
         builder =

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/api/services/conversation/conversation.dart';
+import 'package:roomeasy/api/socket/socket.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/widget/common/center_content_something_loading.dart';
@@ -15,6 +16,9 @@ class ConversationListRoom extends ConsumerStatefulWidget {
 }
 
 class _ConversationListRoomState extends ConsumerState<ConversationListRoom> {
+  // socket
+  final _socketManager = SocketManager();
+
   // state
   bool isGlobalLoading = false;
 
@@ -31,6 +35,29 @@ class _ConversationListRoomState extends ConsumerState<ConversationListRoom> {
 
     refreshConversation();
     super.initState();
+
+    _socketManager.connect().then((_) => onNewMessage());
+  }
+
+  void onNewMessage() {
+    _socketManager.streamNewMessage.listen((data) {
+      var conv = convs
+          .firstWhere(
+            (element) => element.id == data.conversationId,
+            orElse: () => ConversationModel(),
+          )
+          .copyWith(lastMessage: data);
+
+      conv = conv.copyWith(
+          unread: conv.unread ?? 0 + 1, lastSenderId: data.authorId);
+
+      if (conv.id != null) {
+        setState(() {
+          convs.removeWhere((element) => element.id == conv.id);
+          convs.insert(0, conv);
+        });
+      }
+    });
   }
 
   Future<void> refreshConversation() async {
@@ -108,6 +135,7 @@ class _ConversationListRoomState extends ConsumerState<ConversationListRoom> {
   void dispose() {
     _scrollController.removeListener(_scrollListener);
     _scrollController.dispose();
+    _socketManager.disconnect();
     super.dispose();
   }
 }
