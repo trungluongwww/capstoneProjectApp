@@ -11,12 +11,6 @@ class Conversation extends StatefulWidget {
 }
 
 class _ConversationState extends State<Conversation> {
-  @protected
-  @mustCallSuper
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +30,7 @@ class _ConversationState extends State<Conversation> {
               color: Colors.black87),
         ),
       ),
-      body: ConversationListRoom(),
+      body: const ConversationListRoom(),
     );
   }
 }

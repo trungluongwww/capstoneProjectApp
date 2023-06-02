@@ -32,7 +32,7 @@ class ModalError {
               dense: true,
               leading: icon,
               title: Text(
-                message ?? "Thất bại",
+                message ?? "",
                 style: const TextStyle(
                   color: Colors.black87,
                   fontFamily: 'Inter',

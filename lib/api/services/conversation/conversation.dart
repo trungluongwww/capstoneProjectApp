@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/api/constant/constant.dart';
 import 'package:roomeasy/api/services/base/baseModel.dart';
+import 'package:roomeasy/model/conversation/conversation.dart';
 import 'package:roomeasy/model/conversation/conversation_response.dart';
 import 'package:roomeasy/model/response/response.dart';
 
@@ -35,6 +36,37 @@ class ConversationService extends BaseService {
     } catch (e) {
       debugPrint("Error in api.service.convenience.getAll: ${e.toString()}");
       return ResponseModel<ConversationResponseModel>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
+
+  Future<ResponseModel<ConversationModel>> getDetail(String id) async {
+    try {
+      final uri = Uri.http(
+        Apiconstants.getBaseURL(),
+        "${Apiconstants.apiVersion}${Apiconstants.conversationEndpoint}/$id",
+      );
+
+      var response = await get(uri: uri);
+
+      if (!response.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${uri.toString()} code:${response.code} message:${response.message}");
+      }
+
+      return ResponseModel<ConversationModel>(
+        code: response.code,
+        message: response.message,
+        data: response.data != null
+            ? ConversationModel.fromMap(response.data!['conversation'])
+            : null,
+      );
+    } catch (e) {
+      debugPrint("Error in api.service.convenience.getAll: ${e.toString()}");
+      return ResponseModel<ConversationModel>(
         code: 500,
         message: e.toString(),
         data: null,
