@@ -74,15 +74,16 @@ class ConversationListItem extends StatelessWidget {
 
   ImageProvider _getImageProvider() {
     NetworkImage? image;
-    if (userId == conv.owner?.id &&
-        conv.participant!.avatar != null &&
-        conv.participant!.avatar!.isNotEmpty) {
-      image = NetworkImage(conv.participant!.avatar!);
-    } else if (userId == conv.participant?.id &&
-        conv.owner!.avatar != null &&
-        conv.owner!.avatar!.isNotEmpty) {
-      image = NetworkImage(conv.owner!.avatar!);
-    }
+    // TODO
+    // if (userId == conv.owner?.id &&
+    //     conv.participant!.avatar != null &&
+    //     conv.participant!.avatar!.isNotEmpty) {
+    //   image = NetworkImage(conv.participant!.avatar!);
+    // } else if (userId == conv.participant?.id &&
+    //     conv.owner!.avatar != null &&
+    //     conv.owner!.avatar!.isNotEmpty) {
+    //   image = NetworkImage(conv.owner!.avatar!);
+    // }
 
     return image != null
         ? image as ImageProvider

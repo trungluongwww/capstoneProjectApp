@@ -8,14 +8,19 @@ import 'package:roomeasy/api/services/conversation/conversation.dart';
 import 'package:roomeasy/api/services/upload/upload.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_type.dart';
+import 'package:roomeasy/app/widget/common/cache_image_contain.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/form/file/file.dart';
 import 'package:roomeasy/form/message/message_create.dart';
+import 'package:roomeasy/model/room/room.dart';
+import 'package:roomeasy/ultils/strings.dart';
 
 class ConversationBottomSend extends StatefulWidget {
+  final RoomModel? attachRoom;
   final String conversationId;
   const ConversationBottomSend({
     Key? key,
+    required this.attachRoom,
     required this.conversationId,
   }) : super(key: key);
 
@@ -24,6 +29,9 @@ class ConversationBottomSend extends StatefulWidget {
 }
 
 class _ConversationBottomSendState extends State<ConversationBottomSend> {
+  // state
+  RoomModel? attachRoom;
+
   TextEditingController msgController = TextEditingController();
 
   bool isSending = false;
@@ -35,7 +43,9 @@ class _ConversationBottomSendState extends State<ConversationBottomSend> {
       final res = await ConversationService().sendMessage(
           widget.conversationId,
           MessageCreateFormModel(
-              type: AppType.text, content: msgController.text));
+              type: attachRoom != null ? AppType.room : AppType.text,
+              content: msgController.text.trim(),
+              roomId: attachRoom?.id));
 
       if (!res.isSuccess()) {
         if (mounted) {
@@ -43,9 +53,31 @@ class _ConversationBottomSendState extends State<ConversationBottomSend> {
         }
       }
 
+      setState(() {
+        attachRoom = null;
+      });
       msgController.text = "";
       isSending = false;
     }
+  }
+
+  Image getAvatarAttachRoom() {
+    if (attachRoom?.getAvatar() != null) {
+      return Image.network(
+        attachRoom!.getAvatar()!,
+        width: 50,
+        height: 50,
+        fit: BoxFit.cover,
+        alignment: Alignment.center,
+      );
+    }
+
+    return Image.asset(
+      'assets/images/default_room.jpg',
+      width: 50,
+      height: 50,
+      fit: BoxFit.cover,
+    );
   }
 
   void sendMessagePhoto() async {
@@ -87,59 +119,101 @@ class _ConversationBottomSendState extends State<ConversationBottomSend> {
   }
 
   @override
+  void initState() {
+    if (widget.attachRoom != null) {
+      attachRoom = widget.attachRoom;
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
       color: Colors.white,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Column(
         children: [
-          InkWell(
-            onTap: sendMessagePhoto,
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.add_a_photo_outlined,
-                color: Colors.black54,
-                size: 20,
+          if (attachRoom != null) _getAttachRoom(),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: sendMessagePhoto,
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.add_a_photo_outlined,
+                    color: Colors.black54,
+                    size: 20,
+                  ),
+                ),
               ),
-            ),
-          ),
-          Expanded(
-            child: TextFormField(
-              controller: msgController,
-              validator: (val) {
-                return null;
-              },
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              style: const TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14,
-                  color: Colors.black87),
-              decoration: const InputDecoration(
-                  hintText: "Tin nhắn ...",
-                  hintStyle: TextStyle(color: Colors.black54),
-                  border: InputBorder.none),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(right: 4),
-            width: 40,
-            height: 40,
-            child: FloatingActionButton(
-              onPressed: sendMessageText,
-              backgroundColor: Colors.blue,
-              elevation: 0,
-              child: const Icon(
-                Icons.send,
-                color: Colors.white,
-                size: 16,
+              Expanded(
+                child: TextFormField(
+                  controller: msgController,
+                  validator: (val) {
+                    return null;
+                  },
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  style: const TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Colors.black87),
+                  decoration: const InputDecoration(
+                      hintText: "Tin nhắn ...",
+                      hintStyle: TextStyle(color: Colors.black54),
+                      border: InputBorder.none),
+                ),
               ),
-            ),
+              Container(
+                margin: const EdgeInsets.only(right: 4),
+                width: 40,
+                height: 40,
+                child: FloatingActionButton(
+                  onPressed: sendMessageText,
+                  backgroundColor: Colors.blue,
+                  elevation: 0,
+                  child: const Icon(
+                    Icons.send,
+                    color: Colors.white,
+                    size: 16,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _getAttachRoom() {
+    return SizedBox(
+      width: double.infinity,
+      height: 70,
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+        leading: getAvatarAttachRoom(),
+        title: Text(
+          attachRoom?.name ?? "",
+          overflow: TextOverflow.ellipsis,
+          maxLines: 2,
+          style: const TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Colors.black87),
+        ),
+        subtitle: Text(
+          "${UString.getCurrentcy(attachRoom?.rentPerMonth)} VND",
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: Colors.black54),
+        ),
       ),
     );
   }

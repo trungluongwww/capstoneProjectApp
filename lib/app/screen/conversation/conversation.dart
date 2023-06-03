@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
-import 'package:roomeasy/app/widget/conversation/conversation_list_room.dart';
+import 'package:roomeasy/app/widget/conversation/conversation_list.dart';
 
 class Conversation extends StatefulWidget {
   const Conversation({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class _ConversationState extends State<Conversation> {
               color: Colors.black87),
         ),
       ),
-      body: const ConversationListRoom(),
+      body: const ConversationList(),
     );
   }
 }

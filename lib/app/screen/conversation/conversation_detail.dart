@@ -90,6 +90,7 @@ class _ConversationDetailState extends State<ConversationDetail> {
           ),
           ConversationBottomSend(
             conversationId: widget.conversationId,
+            attachRoom: null,
           )
         ],
       ),

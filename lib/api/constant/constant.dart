@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 
 class Apiconstants {
   // domain
-  static String devBaseUrl = "10.0.2.2:5000";
-  // static String devBaseUrl = "192.168.1.10:5000";
+  // static String devBaseUrl = "10.0.2.2:5000";
+  static String devBaseUrl = "192.168.1.10:5000";
   static String productBaseUrl = "34.124.228.220";
 
   // apiversion

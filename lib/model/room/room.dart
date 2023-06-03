@@ -14,6 +14,7 @@ class RoomModel {
   String? name;
   String? description;
   String? address;
+  String? avatar;
   AuthProfileModel? owner;
   int? rentPerMonth;
   int? deposit;
@@ -32,6 +33,7 @@ class RoomModel {
     this.name,
     this.description,
     this.address,
+    this.avatar,
     this.owner,
     this.rentPerMonth,
     this.deposit,
@@ -53,6 +55,7 @@ class RoomModel {
       'name': name,
       'description': description,
       'address': address,
+      'avatar': avatar,
       'owner': owner?.toMap(),
       'rentPerMonth': rentPerMonth,
       'deposit': deposit,
@@ -70,10 +73,16 @@ class RoomModel {
   }
 
   String? getAvatar() {
-    if (files.isNotEmpty) {
-      return files[0].info!.url;
-    }
+    // TODO
     return null;
+    // if (avatar != null && avatar!.isNotEmpty) {
+    //   return avatar;
+    // }
+
+    // if (files.isNotEmpty) {
+    //   return files[0].info!.url;
+    // }
+    // return null;
   }
 
   String? getFullNameLocation() {
@@ -101,6 +110,7 @@ class RoomModel {
     return RoomModel(
       id: map['id'] != null ? map['id'] as String : null,
       name: map['name'] != null ? map['name'] as String : null,
+      avatar: map['avatar'] != null ? map['avatar'] as String : null,
       description:
           map['description'] != null ? map['description'] as String : null,
       address: map['address'] != null ? map['address'] as String : null,

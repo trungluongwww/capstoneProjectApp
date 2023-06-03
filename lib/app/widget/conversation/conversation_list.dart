@@ -10,14 +10,14 @@ import 'package:roomeasy/app/widget/common/center_content_something_loading.dart
 import 'package:roomeasy/app/widget/conversation/conversation_list_item.dart';
 import 'package:roomeasy/model/conversation/conversation.dart';
 
-class ConversationListRoom extends ConsumerStatefulWidget {
-  const ConversationListRoom({Key? key}) : super(key: key);
+class ConversationList extends ConsumerStatefulWidget {
+  const ConversationList({Key? key}) : super(key: key);
 
   @override
-  _ConversationListRoomState createState() => _ConversationListRoomState();
+  _ConversationListState createState() => _ConversationListState();
 }
 
-class _ConversationListRoomState extends ConsumerState<ConversationListRoom> {
+class _ConversationListState extends ConsumerState<ConversationList> {
   // socket
   final _socketManager = SocketManager();
 

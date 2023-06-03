@@ -74,7 +74,6 @@ class HomeBodyState extends ConsumerState<HomeBody> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     reloadRoom();
 

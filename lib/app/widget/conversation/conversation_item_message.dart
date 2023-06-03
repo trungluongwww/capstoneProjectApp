@@ -21,12 +21,81 @@ class ConversationItemMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Image getAvatarRoom() {
+      if (message.room?.getAvatar() != null) {
+        return Image.network(
+          message.room!.getAvatar()!,
+          width: 50,
+          height: 50,
+          fit: BoxFit.cover,
+          alignment: Alignment.center,
+        );
+      }
+
+      return Image.asset(
+        'assets/images/default_room.jpg',
+        width: 50,
+        height: 50,
+        fit: BoxFit.cover,
+      );
+    }
+
     Widget getContent() {
       Widget? content;
       switch (message.type) {
         case AppType.photo:
-          content = CacheImageContain(
-            url: message.file!.url!,
+          // TODO
+          // content = CacheImageContain(
+          //   url: message.file!.url!,
+          // );
+          content = Image.asset('assets/images/default_room.jpg');
+          break;
+        case AppType.room:
+          content = Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                color: Colors.white,
+                width: double.infinity,
+                height: 70,
+                child: ListTile(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+                  leading: getAvatarRoom(),
+                  title: Text(
+                    message.room?.name ?? "",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: const TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black87),
+                  ),
+                  subtitle: Text(
+                    "${UString.getCurrentcy(message.room?.rentPerMonth)} VND",
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black54),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Text(
+                  message.content ?? "",
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                      color: userId == message.authorId
+                          ? Colors.white
+                          : Colors.black),
+                ),
+              )
+            ],
           );
           break;
         default:
