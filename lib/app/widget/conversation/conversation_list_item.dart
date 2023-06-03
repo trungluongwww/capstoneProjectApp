@@ -1,17 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:roomeasy/app/screen/conversation/conversation_detail.dart';
 
+import 'package:roomeasy/app/screen/conversation/conversation_detail.dart';
 import 'package:roomeasy/model/conversation/conversation.dart';
 import 'package:roomeasy/ultils/strings.dart';
 
 class ConversationListItem extends StatelessWidget {
   final ConversationModel conv;
   final String userId;
+  final Function(String) seenConversation;
   const ConversationListItem({
     Key? key,
     required this.conv,
     required this.userId,
+    required this.seenConversation,
   }) : super(key: key);
 
   String _getNameRoom() {
@@ -94,6 +96,8 @@ class ConversationListItem extends StatelessWidget {
         Navigator.of(context)
             .pushNamed(ConversationDetail.routeName, arguments: {
           "id": conv.id,
+        }).then((value) {
+          seenConversation(conv.id!);
         });
       },
       splashColor: Colors.grey,

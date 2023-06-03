@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:roomeasy/api/constant/constant.dart';
@@ -11,6 +12,7 @@ class SocketManager {
 
   // event name
   final String eventNewMessage = "message.new";
+  final String eventConversationSeen = "conversation.seen";
 
   Future<Map<String, String>> _getHeader() async {
     var token = await _getToken();
@@ -57,6 +59,10 @@ class SocketManager {
       MessageModel msg = MessageModel.fromMap(data);
       _streamControllerNewMessage.add(msg);
     });
+  }
+
+  void emitConversationSeen(String conversationId) {
+    _socket?.emit(eventConversationSeen, {"conversationId": conversationId});
   }
 
   void disconnect() {

@@ -88,7 +88,9 @@ class _ConversationDetailState extends State<ConversationDetail> {
               covnersationId: widget.conversationId,
             ),
           ),
-          const ConversationBottomSend()
+          ConversationBottomSend(
+            conversationId: widget.conversationId,
+          )
         ],
       ),
     );
