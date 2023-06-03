@@ -32,7 +32,6 @@ class _AccountTextFieldInputState extends State<AccountTextFieldInput> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _focusNode.removeListener(_handleFocusChange);
     _focusNode.dispose();
     super.dispose();

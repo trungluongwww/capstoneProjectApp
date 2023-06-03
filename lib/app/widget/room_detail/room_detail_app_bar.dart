@@ -4,14 +4,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
+import 'package:roomeasy/app/screen/conversation/conversation_detail_by_user.dart';
 import 'package:roomeasy/app/screen/room/room_update.dart';
+import 'package:roomeasy/model/room/room.dart';
 
 class RoomDetailAppBar extends ConsumerWidget with PreferredSizeWidget {
-  final String ownerId;
+  final RoomModel? room;
   final String roomId;
   const RoomDetailAppBar({
     Key? key,
-    required this.ownerId,
+    required this.room,
     required this.roomId,
   }) : super(key: key);
 
@@ -27,7 +29,7 @@ class RoomDetailAppBar extends ConsumerWidget with PreferredSizeWidget {
         leading: const BackButton(color: AppColor.appPrimaryColor),
         backgroundColor: Colors.white,
         elevation: 1,
-        actions: userId == ownerId
+        actions: userId == room?.owner?.id
             ? [
                 TextButton.icon(
                   label: const Text(
@@ -48,7 +50,24 @@ class RoomDetailAppBar extends ConsumerWidget with PreferredSizeWidget {
                   },
                 ),
               ]
-            : null,
+            : [
+                TextButton.icon(
+                  label: const Text(
+                    'Nhắn tin',
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 14,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400),
+                  ),
+                  icon: const Icon(Icons.chat),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(
+                        ConversationDetailByUser.routeName,
+                        arguments: {'id': room?.owner!.id ?? "", 'room': room});
+                  },
+                ),
+              ],
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:roomeasy/api/services/auth/auth.dart';
 import 'package:roomeasy/app/screen/account/account.dart';
 import 'package:roomeasy/app/screen/conversation/conversation.dart';
 import 'package:roomeasy/app/screen/conversation/conversation_detail.dart';
+import 'package:roomeasy/app/screen/conversation/conversation_detail_by_user.dart';
 import 'package:roomeasy/app/screen/favourite/favourite.dart';
 import 'package:roomeasy/app/screen/home/home.dart';
 import 'package:roomeasy/app/screen/home_filter/home_filter.dart';
@@ -44,6 +45,22 @@ class AppRouter {
         builder = (context) => isLogged
             ? ConversationDetail(
                 conversationId: conversationId,
+                attachRoom: room,
+              )
+            : const LoginScreen();
+        break;
+      case ConversationDetailByUser.routeName:
+        final targetId = (settings.arguments as Map<String, dynamic>)['id'];
+        final roomAttach = (settings.arguments as Map<String, dynamic>)['room'];
+        RoomModel? room;
+
+        if (roomAttach is RoomModel) {
+          room = roomAttach;
+        }
+
+        builder = (context) => isLogged
+            ? ConversationDetailByUser(
+                targetId: targetId,
                 attachRoom: room,
               )
             : const LoginScreen();

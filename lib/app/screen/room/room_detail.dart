@@ -42,12 +42,12 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
 
     return Scaffold(
         appBar: RoomDetailAppBar(
-            ownerId: room.when(
+            room: room.when(
               data: (res) {
-                return res.data != null ? res.data!.owner!.id! : "";
+                return res.data;
               },
-              error: (error, stackTrace) => "",
-              loading: () => "",
+              error: (error, stackTrace) => null,
+              loading: () => null,
             ),
             roomId: widget.id),
         body: room.when(

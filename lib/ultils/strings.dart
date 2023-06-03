@@ -50,4 +50,10 @@ class UString {
   static String getTimeWithoutDate(DateTime time) {
     return DateFormat("HH:mm").format(time);
   }
+
+  static String getCurrentcy(int? numb) {
+    if (numb == null) return "0";
+
+    return NumberFormat("#,##0", "es_US").format(numb);
+  }
 }

@@ -76,6 +76,41 @@ class ConversationService extends BaseService {
     }
   }
 
+  Future<ResponseModel<ConversationModel>> getDetailByUserId(String id) async {
+    Map<String, dynamic> params = {
+      'targetId': id,
+    };
+    try {
+      final uri = Uri.http(
+          Apiconstants.getBaseURL(),
+          "${Apiconstants.apiVersion}${Apiconstants.conversationEndpoint}/detail",
+          params);
+
+      var response = await get(uri: uri);
+
+      if (!response.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${uri.toString()} code:${response.code} message:${response.message}");
+      }
+
+      return ResponseModel<ConversationModel>(
+        code: response.code,
+        message: response.message,
+        data: response.data != null
+            ? ConversationModel.fromMap(response.data!['conversation'])
+            : null,
+      );
+    } catch (e) {
+      debugPrint(
+          "Error in api.service.conversation.getDetail: ${e.toString()}");
+      return ResponseModel<ConversationModel>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
+
   Future<ResponseModel<dynamic>> sendMessage(
       String conversationId, MessageCreateFormModel formdata) async {
     try {
