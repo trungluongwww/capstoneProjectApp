@@ -1,12 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/location.dart';
-import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/widget/common/list_title_select_option.dart';
 import 'package:roomeasy/form/location/location.dart';
 import 'package:roomeasy/model/location/district.dart';

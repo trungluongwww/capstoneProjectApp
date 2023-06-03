@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/api/constant/constant.dart';
-import 'package:roomeasy/api/services/base/baseModel.dart';
+import 'package:roomeasy/api/services/base/base.dart';
 import 'package:roomeasy/form/file/file.dart';
 import 'package:roomeasy/form/room/room_change_status.dart';
 import 'package:roomeasy/form/room/room_create.dart';

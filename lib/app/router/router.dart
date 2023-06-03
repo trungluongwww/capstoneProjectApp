@@ -75,9 +75,11 @@ class AppRouter {
         break;
       case RoomDetailScreen.routeName:
         final id = (settings.arguments as Map<String, dynamic>)['id'];
-        builder = (context) => RoomDetailScreen(
-              id: id ?? '',
-            );
+        builder = (context) => isLogged
+            ? RoomDetailScreen(
+                id: id ?? '',
+              )
+            : const LoginScreen();
         break;
       case RoomUpdateScreen.routeName:
         final id = (settings.arguments as Map<String, dynamic>)['id'];

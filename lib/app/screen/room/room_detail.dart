@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
+import 'package:roomeasy/api/services/auth/auth.dart';
 
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_icon.dart';
@@ -12,6 +13,7 @@ import 'package:roomeasy/app/screen/image/detail_image_path_screen.dart';
 import 'package:roomeasy/app/widget/common/button_icon_primary.dart';
 import 'package:roomeasy/app/widget/common/center_content_something_error.dart';
 import 'package:roomeasy/app/widget/common/list_title_small_without_spacing.dart';
+import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/profile/profile_bottom_modal.dart';
 import 'package:roomeasy/app/widget/room_detail/room_detail_app_bar.dart';
 
@@ -30,6 +32,8 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
 
   bool isOpenForRent = true;
 
+  bool isFavourited = false;
+
   @override
   void initState() {
     super.initState();
@@ -38,7 +42,6 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final room = ref.watch(roomDetailProvider(widget.id));
-    final userId = ref.read(authProfileProvider)?.id;
 
     return Scaffold(
         appBar: RoomDetailAppBar(
@@ -85,6 +88,43 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                         ),
                         child: Stack(
                           children: [
+                            Positioned(
+                              top: 16,
+                              right: 16,
+                              child: InkWell(
+                                splashColor: Colors.grey,
+                                onTap: () async {
+                                  if (!isFavourited) {
+                                    final rs = await AuthServices()
+                                        .addToFavouriteRoom(res.data?.id ?? "");
+                                    if (rs.isSuccess() && mounted) {
+                                      ModalError().showToast(
+                                          context,
+                                          rs.code.toString(),
+                                          "Đã thêm vào danh sách yêu thích");
+                                    }
+                                  } else {
+                                    AuthServices().removeFavouriteRoom(
+                                        res.data!.id ?? "");
+                                  }
+
+                                  setState(() {
+                                    isFavourited = !isFavourited;
+                                  });
+                                },
+                                child: isFavourited
+                                    ? const Icon(
+                                        Icons.favorite,
+                                        size: 30,
+                                        color: Colors.red,
+                                      )
+                                    : const Icon(
+                                        Icons.favorite_border_outlined,
+                                        size: 30,
+                                        color: Colors.white,
+                                      ),
+                              ),
+                            ),
                             Positioned(
                               bottom: 0,
                               left: 0,

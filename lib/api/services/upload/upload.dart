@@ -1,8 +1,7 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:roomeasy/api/services/base/baseModel.dart';
+import 'package:roomeasy/api/services/base/base.dart';
 import 'package:roomeasy/api/constant/constant.dart';
 import 'package:http/http.dart' as http;
 import 'package:roomeasy/model/file/file_info.dart';
