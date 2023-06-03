@@ -42,4 +42,12 @@ class UString {
   static String getShortTime(DateTime time) {
     return DateFormat("dd/MM HH:mm").format(time);
   }
+
+  static String getDateWithoutTime(DateTime time) {
+    return DateFormat("dd/MM/yyyy").format(time);
+  }
+
+  static String getTimeWithoutDate(DateTime time) {
+    return DateFormat("HH:mm").format(time);
+  }
 }

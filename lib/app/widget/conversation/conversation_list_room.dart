@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/api/services/conversation/conversation.dart';
@@ -18,6 +20,9 @@ class ConversationListRoom extends ConsumerStatefulWidget {
 class _ConversationListRoomState extends ConsumerState<ConversationListRoom> {
   // socket
   final _socketManager = SocketManager();
+
+  // stream
+  late StreamSubscription _sub;
 
   // state
   bool isGlobalLoading = false;
@@ -40,7 +45,7 @@ class _ConversationListRoomState extends ConsumerState<ConversationListRoom> {
   }
 
   void onNewMessage() {
-    _socketManager.streamNewMessage.listen((data) {
+    _sub = _socketManager.streamNewMessage.listen((data) {
       var conv = convs
           .firstWhere(
             (element) => element.id == data.conversationId,
@@ -100,6 +105,15 @@ class _ConversationListRoomState extends ConsumerState<ConversationListRoom> {
     pageToken = res.data?.pageToken ?? "";
   }
 
+  // handler
+  void onSeenConversation(String id) {
+    var index = convs.indexWhere((element) => element.id == id);
+    setState(() {
+      convs[index] =
+          convs.firstWhere((element) => element.id == id).copyWith(unread: 0);
+    });
+  }
+
   // event
   // event lisner
   void _scrollListener() {
@@ -124,7 +138,9 @@ class _ConversationListRoomState extends ConsumerState<ConversationListRoom> {
                 itemCount: convs.length,
                 itemBuilder: (context, index) {
                   return ConversationListItem(
-                      conv: convs[index], userId: userId ?? "");
+                      seenConversation: onSeenConversation,
+                      conv: convs[index],
+                      userId: userId ?? "");
                 },
               ),
       ),
@@ -136,6 +152,7 @@ class _ConversationListRoomState extends ConsumerState<ConversationListRoom> {
     _scrollController.removeListener(_scrollListener);
     _scrollController.dispose();
     _socketManager.disconnect();
+    _sub.pause();
     super.dispose();
   }
 }
