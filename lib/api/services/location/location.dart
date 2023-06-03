@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/api/constant/constant.dart';
-import 'package:roomeasy/api/services/base/baseModel.dart';
+import 'package:roomeasy/api/services/base/base.dart';
 import 'package:roomeasy/model/location/district.dart';
 import 'package:roomeasy/model/location/province.dart';
 import 'package:roomeasy/model/location/ward.dart';

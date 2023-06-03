@@ -29,6 +29,13 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
             showNotification: false,
             showNumber: 0),
         AppBarActionItem(
+            icon: Icons.favorite,
+            onPress: () {
+              Navigator.of(context).pushNamed(Conversation.routeName);
+            },
+            showNotification: false,
+            showNumber: 0),
+        AppBarActionItem(
             icon: Icons.settings,
             onPress: () {
               Navigator.of(context).pushNamed(AccountScreen.routeName);

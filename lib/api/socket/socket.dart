@@ -1,11 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:roomeasy/api/constant/constant.dart';
 import 'package:roomeasy/model/message/message.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:socket_io_client/socket_io_client.dart' as io;
 
 class SocketManager {
   SocketManager();
@@ -26,7 +23,7 @@ class SocketManager {
     return prefs.getString(Apiconstants.authToken);
   }
 
-  static IO.Socket? _socket;
+  static io.Socket? _socket;
 
   late StreamController<MessageModel> _streamControllerNewMessage;
   Stream<MessageModel> get streamNewMessage =>
@@ -37,7 +34,7 @@ class SocketManager {
     if (_socket != null) {
       _socket?.connect();
     } else {
-      _socket = IO.io('http://${Apiconstants.getBaseURL()}', <String, dynamic>{
+      _socket = io.io('http://${Apiconstants.getBaseURL()}', <String, dynamic>{
         'transports': ['websocket'],
         'extraHeaders': await _getHeader(),
       });
@@ -66,7 +63,6 @@ class SocketManager {
   }
 
   void disconnect() {
-    _streamControllerNewMessage.close();
     _socket?.disconnect();
     _socket?.dispose();
   }

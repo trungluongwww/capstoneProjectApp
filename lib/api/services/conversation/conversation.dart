@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/api/constant/constant.dart';
-import 'package:roomeasy/api/services/base/baseModel.dart';
+import 'package:roomeasy/api/services/base/base.dart';
 import 'package:roomeasy/form/message/message_create.dart';
 import 'package:roomeasy/model/conversation/conversation.dart';
 import 'package:roomeasy/model/conversation/conversation_response.dart';

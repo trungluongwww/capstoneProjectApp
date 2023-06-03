@@ -1,10 +1,7 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 import 'package:roomeasy/api/constant/constant.dart';
-import 'package:roomeasy/api/services/base/baseModel.dart';
+import 'package:roomeasy/api/services/base/base.dart';
 import 'package:roomeasy/form/login/login.dart';
 import 'package:roomeasy/form/register/register.dart';
 import 'package:roomeasy/form/user/user_change_avatar.dart';
@@ -241,6 +238,54 @@ class AuthServices extends BaseService {
     } catch (e) {
       debugPrint("Error in api.service.auth.getMyRooms: ${e.toString()}");
       return ResponseModel<RoomResponseModel>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
+
+  Future<ResponseModel> addToFavouriteRoom(String roomId) async {
+    try {
+      final url = Uri.http(Apiconstants.getBaseURL(),
+          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/favourite-room");
+
+      var response = await post(uri: url, body: {'roomId': roomId});
+      if (!response.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${url.toString()} code:${response.code} message:${response.message}");
+      }
+
+      return ResponseModel(
+          code: response.code, message: response.message, data: null);
+    } catch (e) {
+      debugPrint(
+          "Error in api.service.auth.addToFavouriteRoom: ${e.toString()}");
+      return ResponseModel<AuthProfileModel>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
+
+  Future<ResponseModel> removeFavouriteRoom(String roomId) async {
+    try {
+      final url = Uri.http(Apiconstants.getBaseURL(),
+          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/favourite-room");
+
+      var response = await delete(uri: url, body: {'roomId': roomId});
+      if (!response.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${url.toString()} code:${response.code} message:${response.message}");
+      }
+
+      return ResponseModel(
+          code: response.code, message: response.message, data: null);
+    } catch (e) {
+      debugPrint(
+          "Error in api.service.auth.removeFavouriteRoom: ${e.toString()}");
+      return ResponseModel<AuthProfileModel>(
         code: 500,
         message: e.toString(),
         data: null,

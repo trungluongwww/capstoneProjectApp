@@ -9,18 +9,16 @@ class Favourite extends StatefulWidget {
 }
 
 class _FavouriteState extends State<Favourite> {
-  @protected
-  @mustCallSuper
-  void initState() {
-    super.initState();
-
-    print("init home");
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const Center(child: const Text('hello world: favourite')),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: const BackButton(color: Colors.blue),
+        ),
+        body: const Center(child: const Text('hello world: favourite')),
+      ),
     );
   }
 }
