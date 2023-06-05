@@ -26,7 +26,8 @@ class AppRouter {
         builder = (context) => const Home();
         break;
       case Favourite.routeName:
-        builder = (context) => const Favourite();
+        builder =
+            (context) => isLogged ? const Favourite() : const LoginScreen();
         break;
       case Conversation.routeName:
         builder =

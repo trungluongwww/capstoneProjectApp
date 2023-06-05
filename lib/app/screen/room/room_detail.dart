@@ -89,40 +89,69 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                         child: Stack(
                           children: [
                             Positioned(
-                              top: 16,
-                              right: 16,
-                              child: InkWell(
-                                splashColor: Colors.grey,
-                                onTap: () async {
-                                  if (!isFavourited) {
-                                    final rs = await AuthServices()
-                                        .addToFavouriteRoom(res.data?.id ?? "");
-                                    if (rs.isSuccess() && mounted) {
-                                      ModalError().showToast(
-                                          context,
-                                          rs.code.toString(),
-                                          "Đã thêm vào danh sách yêu thích");
+                              top: 0,
+                              right: 0,
+                              child: Material(
+                                borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(16)),
+                                elevation: 1,
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  splashColor: Colors.grey,
+                                  onTap: () async {
+                                    if (!isFavourited) {
+                                      final rs = await AuthServices()
+                                          .addToFavouriteRoom(
+                                              res.data?.id ?? "");
+                                      if (rs.isSuccess() && mounted) {
+                                        ModalError().showToast(
+                                            context,
+                                            rs.code.toString(),
+                                            "Đã thêm vào danh sách yêu thích");
+                                      }
+                                    } else {
+                                      AuthServices().removeFavouriteRoom(
+                                          res.data!.id ?? "");
                                     }
-                                  } else {
-                                    AuthServices().removeFavouriteRoom(
-                                        res.data!.id ?? "");
-                                  }
 
-                                  setState(() {
-                                    isFavourited = !isFavourited;
-                                  });
-                                },
-                                child: isFavourited
-                                    ? const Icon(
-                                        Icons.favorite,
-                                        size: 30,
-                                        color: Colors.red,
-                                      )
-                                    : const Icon(
-                                        Icons.favorite_border_outlined,
-                                        size: 30,
-                                        color: Colors.white,
-                                      ),
+                                    setState(() {
+                                      isFavourited = !isFavourited;
+                                    });
+                                  },
+                                  child: isFavourited
+                                      ? TextButton.icon(
+                                          icon: const Icon(
+                                            Icons.favorite,
+                                            size: 30,
+                                            color: Colors.red,
+                                          ),
+                                          label: const Text(
+                                            'Lưu',
+                                            style: TextStyle(
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w800,
+                                                fontSize: 14,
+                                                color: Colors.red),
+                                          ),
+                                          onPressed: null,
+                                        )
+                                      : TextButton.icon(
+                                          icon: const Icon(
+                                            Icons.favorite,
+                                            size: 30,
+                                            color: Colors.white,
+                                          ),
+                                          label: const Text(
+                                            'Lưu',
+                                            style: TextStyle(
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14,
+                                                color: Colors.white),
+                                          ),
+                                          onPressed: null,
+                                        ),
+                                ),
                               ),
                             ),
                             Positioned(

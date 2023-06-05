@@ -5,6 +5,7 @@ import 'package:roomeasy/api/services/room/room.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/provider/room/room.dart';
+import 'package:roomeasy/app/widget/home/home_body_recommend.dart';
 import 'package:roomeasy/app/widget/room/room_container_item.dart';
 
 class HomeBody extends ConsumerStatefulWidget {
@@ -104,19 +105,23 @@ class HomeBodyState extends ConsumerState<HomeBody> {
           child: Container(
             color: AppColor.appDarkWhiteColor,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   // list room
-
                   child: ListView.builder(
                       controller: _scrollController,
                       physics: const AlwaysScrollableScrollPhysics(),
-                      itemCount: rooms.length,
+                      itemCount: rooms.length + 1,
                       itemBuilder: (BuildContext context, int index) {
-                        return index == rooms.length - 1
+                        if (index == 0) {
+                          return const HomeBodyRecommend();
+                        }
+
+                        return index - 1 == rooms.length - 1
                             ? Column(
                                 children: [
-                                  RoomContainerItem(room: rooms[index]),
+                                  RoomContainerItem(room: rooms[index - 1]),
                                   if (isLoading)
                                     Container(
                                       width: double.infinity,
@@ -131,7 +136,7 @@ class HomeBodyState extends ConsumerState<HomeBody> {
                                     )
                                 ],
                               )
-                            : RoomContainerItem(room: rooms[index]);
+                            : RoomContainerItem(room: rooms[index - 1]);
                       }),
                 ),
               ],

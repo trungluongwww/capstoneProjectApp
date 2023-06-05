@@ -19,8 +19,10 @@ class AuthServices extends BaseService {
     return user;
   }
 
-  void removeCurrentUserState() {
+  void removeCurrentUserState() async {
     user = null;
+    var instance = await SharedPreferences.getInstance();
+    instance.remove(Apiconstants.authToken);
   }
 
   Future<ResponseModel<String>> login(
@@ -286,6 +288,41 @@ class AuthServices extends BaseService {
       debugPrint(
           "Error in api.service.auth.removeFavouriteRoom: ${e.toString()}");
       return ResponseModel<AuthProfileModel>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
+
+  Future<ResponseModel<RoomResponseModel>> getFavouriteRooms(
+      String pageToken) async {
+    Map<String, dynamic> params = {
+      'pageToken': pageToken,
+    };
+
+    try {
+      final url = Uri.http(
+          Apiconstants.getBaseURL(),
+          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/favourite-room",
+          params);
+
+      var response = await get(uri: url);
+      if (!response.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${url.toString()} code:${response.code} message:${response.message}");
+      }
+      return ResponseModel<RoomResponseModel>(
+        code: response.code,
+        message: response.message,
+        data: response.data != null
+            ? RoomResponseModel.fromMap(response.data!)
+            : null,
+      );
+    } catch (e) {
+      debugPrint(
+          "Error in api.service.auth.getFavouriteRooms: ${e.toString()}");
+      return ResponseModel<RoomResponseModel>(
         code: 500,
         message: e.toString(),
         data: null,
