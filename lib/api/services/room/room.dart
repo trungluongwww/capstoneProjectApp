@@ -258,4 +258,33 @@ class RoomServices extends BaseService {
       );
     }
   }
+
+  Future<ResponseModel<RoomResponseModel>> getRecommends() async {
+    try {
+      final url = Uri.http(
+        Apiconstants.getBaseURL(),
+        "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/recommends",
+      );
+
+      var response = await get(uri: url);
+      if (!response.code.toString().startsWith('2')) {
+        debugPrint(
+            "[APIService] ${url.toString()} code:${response.code} message:${response.message}");
+      }
+      return ResponseModel<RoomResponseModel>(
+        code: response.code,
+        message: response.message,
+        data: response.data != null
+            ? RoomResponseModel.fromMap(response.data!)
+            : null,
+      );
+    } catch (e) {
+      debugPrint("Error in api.service.auth.getRecommends: ${e.toString()}");
+      return ResponseModel<RoomResponseModel>(
+        code: 500,
+        message: e.toString(),
+        data: null,
+      );
+    }
+  }
 }

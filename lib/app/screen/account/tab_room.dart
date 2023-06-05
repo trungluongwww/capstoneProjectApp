@@ -62,7 +62,6 @@ class _TabRoomState extends State<TabRoom> {
   }
 
   Future<void> _loadMoreRoom() async {
-    print(DateTime.now());
     if (_pageToken.isNotEmpty) {
       setState(() {
         _isRoomLoading = true;

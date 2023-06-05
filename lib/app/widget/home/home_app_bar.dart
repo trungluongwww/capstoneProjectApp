@@ -7,6 +7,7 @@ import 'package:roomeasy/app/constant/app_image.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/screen/account/account.dart';
 import 'package:roomeasy/app/screen/conversation/conversation.dart';
+import 'package:roomeasy/app/screen/favourite/favourite.dart';
 import 'package:roomeasy/app/screen/login/login.dart';
 import 'package:roomeasy/app/widget/common/app_bar_action_item_with_bage.dart';
 
@@ -31,7 +32,7 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
         AppBarActionItem(
             icon: Icons.favorite,
             onPress: () {
-              Navigator.of(context).pushNamed(Conversation.routeName);
+              Navigator.of(context).pushNamed(Favourite.routeName);
             },
             showNotification: false,
             showNumber: 0),
