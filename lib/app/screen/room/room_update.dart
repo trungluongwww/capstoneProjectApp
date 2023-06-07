@@ -6,13 +6,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:roomeasy/api/services/auth/auth.dart';
-
 import 'package:roomeasy/api/services/convenience/convenience.dart';
 import 'package:roomeasy/api/services/room/room.dart';
 import 'package:roomeasy/api/services/upload/upload.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_icon.dart';
+import 'package:roomeasy/app/screen/common/no_network_screen.dart';
 import 'package:roomeasy/app/screen/location/location.dart';
 import 'package:roomeasy/app/widget/common/center_content_something_loading.dart';
 import 'package:roomeasy/app/widget/common/list_title_small_without_spacing.dart';
@@ -225,6 +224,11 @@ class _RoomUpdateScreenState extends State<RoomUpdateScreen> {
       setState(() {
         isLoadingConvenience = false;
       });
+
+      if (res.code.toString().startsWith('5') && mounted) {
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            NoNetworkScreen.routerName, (Route route) => false);
+      }
     }
   }
 

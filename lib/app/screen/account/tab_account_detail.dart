@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
 import 'package:roomeasy/api/services/upload/upload.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
+import 'package:roomeasy/app/screen/common/no_network_screen.dart';
 import 'package:roomeasy/app/screen/location/location.dart';
 import 'package:roomeasy/app/widget/account/account_form_location.dart';
 import 'package:roomeasy/app/widget/account/account_text_field_input.dart';
@@ -103,6 +104,13 @@ class _TabAccountDetailState extends State<TabAccountDetail> {
                                       context,
                                       resUpload.code.toString(),
                                       resUpload.message!);
+                                }
+
+                                if (resUpload.code.toString().startsWith('5') &&
+                                    mounted) {
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                      NoNetworkScreen.routerName,
+                                      (Route route) => false);
                                 }
                                 return;
                               }

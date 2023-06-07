@@ -27,6 +27,46 @@ class _RoomGridItemState extends State<RoomGridItem> {
     super.initState();
   }
 
+  Widget _getStatusWidget() {
+    if (widget.room.status?.key == AppValue.banned) {
+      return Padding(
+        padding: const EdgeInsets.only(left: 8.0, top: 4),
+        child: Text(
+          widget.room.status?.value ?? "Phòng đã bị admin khóa",
+          style: const TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: Colors.red),
+        ),
+      );
+    }
+
+    return SwitchListTile(
+      title: const Text(
+        "Mở cho thuê",
+        style: TextStyle(
+            fontFamily: 'Inter',
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            color: Colors.black54),
+      ),
+      contentPadding: const EdgeInsets.only(left: 8),
+      value: isActive,
+      onChanged: (val) async {
+        final res = await RoomServices().changeStatus(
+            roomId: widget.room.id!,
+            formdata: RoomChangeStatusFormModel(
+                status: val ? AppValue.active : AppValue.inactive));
+        if (res.isSuccess()) {
+          setState(() {
+            isActive = !isActive;
+          });
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -44,31 +84,7 @@ class _RoomGridItemState extends State<RoomGridItem> {
                 fit: BoxFit.cover,
               ),
             )),
-        Flexible(
-            flex: 1,
-            child: SwitchListTile(
-              title: const Text(
-                "Mở cho thuê",
-                style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black54),
-              ),
-              contentPadding: const EdgeInsets.only(left: 8),
-              value: isActive,
-              onChanged: (val) async {
-                final res = await RoomServices().changeStatus(
-                    roomId: widget.room.id!,
-                    formdata: RoomChangeStatusFormModel(
-                        status: val ? AppValue.active : AppValue.inactive));
-                if (res.isSuccess()) {
-                  setState(() {
-                    isActive = !isActive;
-                  });
-                }
-              },
-            )),
+        Flexible(flex: 1, child: _getStatusWidget()),
         Flexible(
           flex: 3,
           child: InkWell(

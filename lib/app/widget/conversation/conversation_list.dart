@@ -6,6 +6,7 @@ import 'package:roomeasy/api/services/conversation/conversation.dart';
 import 'package:roomeasy/api/socket/socket.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
+import 'package:roomeasy/app/screen/common/no_network_screen.dart';
 import 'package:roomeasy/app/widget/common/center_content_something_loading.dart';
 import 'package:roomeasy/app/widget/conversation/conversation_list_item.dart';
 import 'package:roomeasy/model/conversation/conversation.dart';
@@ -87,6 +88,11 @@ class _ConversationListState extends ConsumerState<ConversationList> {
     setState(() {
       isGlobalLoading = false;
     });
+
+    if (res.code.toString().startsWith('5') && mounted) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          NoNetworkScreen.routerName, (Route route) => false);
+    }
   }
 
   Future<void> loadMoreConversation() async {
