@@ -6,4 +6,5 @@ class AppValue {
   // status
   static String active = 'active';
   static String inactive = 'inactive';
+  static String banned = 'banned';
 }

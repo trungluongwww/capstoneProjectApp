@@ -6,6 +6,7 @@ import 'package:roomeasy/api/socket/socket.dart';
 
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
+import 'package:roomeasy/app/screen/common/no_network_screen.dart';
 import 'package:roomeasy/app/widget/common/center_content_something_loading.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/conversation/conversation_bottom_send.dart';
@@ -46,6 +47,11 @@ class _ConversationDetailByUserState extends State<ConversationDetailByUser> {
     setState(() {
       conversation = res.data;
     });
+
+    if (res.code.toString().startsWith('5') && mounted) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          NoNetworkScreen.routerName, (Route route) => false);
+    }
   }
 
   // helper

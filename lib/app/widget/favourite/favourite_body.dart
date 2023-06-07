@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
+import 'package:roomeasy/app/screen/common/no_network_screen.dart';
 import 'package:roomeasy/app/screen/room/room_detail.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/favourite/favourite_room_grid_item.dart';
-import 'package:roomeasy/app/widget/room/room_grid_item.dart';
 import 'package:roomeasy/model/room/room.dart';
 
 class FavouriteBody extends StatefulWidget {
@@ -60,6 +60,13 @@ class _FavouriteBodyState extends State<FavouriteBody> {
       _rooms = res.data!.rooms ?? [];
       _isRoomLoading = false;
     });
+
+    if (res.code.toString().startsWith('5')) {
+      if (mounted) {
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            NoNetworkScreen.routerName, (Route route) => false);
+      }
+    }
   }
 
   Future<void> _loadMoreRoom() async {

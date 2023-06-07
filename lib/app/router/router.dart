@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
 import 'package:roomeasy/app/screen/account/account.dart';
+import 'package:roomeasy/app/screen/common/no_network_screen.dart';
 import 'package:roomeasy/app/screen/conversation/conversation.dart';
 import 'package:roomeasy/app/screen/conversation/conversation_detail.dart';
 import 'package:roomeasy/app/screen/conversation/conversation_detail_by_user.dart';
@@ -22,6 +23,9 @@ class AppRouter {
 
     WidgetBuilder builder;
     switch (settings.name) {
+      case NoNetworkScreen.routerName:
+        builder = (context) => const NoNetworkScreen();
+        break;
       case Home.routeName:
         builder = (context) => const Home();
         break;

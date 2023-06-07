@@ -1,10 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
+import 'package:roomeasy/app/screen/common/no_network_screen.dart';
 import 'package:roomeasy/app/screen/room/room_create.dart';
 import 'package:roomeasy/app/widget/home/home_app_bar.dart';
 import 'package:roomeasy/app/widget/home/home_body.dart';
 import 'package:roomeasy/app/widget/home/home_header.dart';
+import 'package:roomeasy/network/connection.dart';
 
 class Home extends StatefulWidget {
   static const String routeName = '/';
@@ -15,9 +20,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  StreamSubscription? _trackingNetwork;
   @override
   void initState() {
+    final ConnectionNetwork instance = ConnectionNetwork.getInstance();
+    _trackingNetwork = instance.streamNetwork.listen((event) {
+      if (!event) {
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            NoNetworkScreen.routerName, (Route route) => false);
+      }
+    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _trackingNetwork?.cancel();
+    super.dispose();
   }
 
   // global key

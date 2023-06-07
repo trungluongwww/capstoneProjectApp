@@ -8,6 +8,7 @@ import 'package:roomeasy/api/services/room/room.dart';
 import 'package:roomeasy/api/services/upload/upload.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_icon.dart';
+import 'package:roomeasy/app/screen/common/no_network_screen.dart';
 import 'package:roomeasy/app/screen/location/location.dart';
 import 'package:roomeasy/app/widget/common/list_title_small_without_spacing.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
@@ -125,6 +126,11 @@ class _RoomCreateState extends State<RoomCreate> {
       setState(() {
         isLoadingConvenience = false;
       });
+
+      if (res.code.toString().startsWith('5') && mounted) {
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            NoNetworkScreen.routerName, (Route route) => false);
+      }
     }
   }
 

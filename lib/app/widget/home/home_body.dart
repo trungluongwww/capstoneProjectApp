@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:roomeasy/api/services/room/room.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/provider/room/room.dart';
+import 'package:roomeasy/app/screen/common/no_network_screen.dart';
 import 'package:roomeasy/app/widget/home/home_body_recommend.dart';
 import 'package:roomeasy/app/widget/room/room_container_item.dart';
 
@@ -17,6 +17,7 @@ class HomeBody extends ConsumerStatefulWidget {
 
 class HomeBodyState extends ConsumerState<HomeBody> {
   // state
+  Widget? home = const HomeBodyRecommend();
   String pageToken = "";
   bool isLoading = false;
   late ScrollController _scrollController;
@@ -45,6 +46,11 @@ class HomeBodyState extends ConsumerState<HomeBody> {
     setState(() {
       isLoading = false;
     });
+
+    if (response.code.toString().startsWith('5') && mounted) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          NoNetworkScreen.routerName, (Route route) => false);
+    }
   }
 
   Future<void> loadMore() async {
@@ -68,6 +74,7 @@ class HomeBodyState extends ConsumerState<HomeBody> {
       ref.read(roomProvider.notifier).addToList(response.data!.rooms!);
       pageToken = response.data!.pageToken ?? "";
     }
+
     setState(() {
       isLoading = false;
     });
@@ -77,7 +84,6 @@ class HomeBodyState extends ConsumerState<HomeBody> {
   void initState() {
     super.initState();
     reloadRoom();
-
     _scrollController = ScrollController();
     _scrollController.addListener(__scrollListener);
   }
@@ -115,7 +121,7 @@ class HomeBodyState extends ConsumerState<HomeBody> {
                       itemCount: rooms.length + 1,
                       itemBuilder: (BuildContext context, int index) {
                         if (index == 0) {
-                          return const HomeBodyRecommend();
+                          return home;
                         }
 
                         return index - 1 == rooms.length - 1
