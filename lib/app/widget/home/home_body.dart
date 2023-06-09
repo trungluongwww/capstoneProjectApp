@@ -123,7 +123,7 @@ class HomeBodyState extends ConsumerState<HomeBody> {
                         return index == rooms.length - 1
                             ? Column(
                                 children: [
-                                  RoomContainerItem(room: rooms[index - 1]),
+                                  RoomContainerItem(room: rooms[index]),
                                   if (isLoading)
                                     Container(
                                       width: double.infinity,
