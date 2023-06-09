@@ -41,7 +41,7 @@ class _HomeFilterCategoryState extends ConsumerState<HomeFilterCategory> {
                     fontFamily: 'Inter',
                     fontSize: 16,
                     color: Colors.black87,
-                    fontWeight: FontWeight.w400)),
+                    fontWeight: FontWeight.w600)),
           ),
           Container(
             color: AppColor.white,
