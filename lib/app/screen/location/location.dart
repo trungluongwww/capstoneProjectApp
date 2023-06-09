@@ -58,7 +58,7 @@ class SelectLocationScreenState extends ConsumerState<SelectLocationScreen> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          color: AppColor.appTextBlurColor,
+                          color: Colors.black54,
                           icon: const Icon(Icons.close)),
                       TextButton(
                         onPressed: () {},
@@ -137,7 +137,7 @@ class SelectLocationScreenState extends ConsumerState<SelectLocationScreen> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          color: AppColor.appTextBlurColor,
+                          color: Colors.black54,
                           icon: const Icon(Icons.close)),
                       TextButton(
                         onPressed: () {},
@@ -213,7 +213,7 @@ class SelectLocationScreenState extends ConsumerState<SelectLocationScreen> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          color: AppColor.appTextBlurColor,
+                          color: Colors.black54,
                           icon: const Icon(Icons.close)),
                       TextButton(
                         onPressed: () {},
@@ -280,31 +280,29 @@ class SelectLocationScreenState extends ConsumerState<SelectLocationScreen> {
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.white,
-            leading: const BackButton(color: AppColor.appPrimaryColor),
-            title: Text(
-              'Chọn địa chỉ',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(fontSize: 16, color: Colors.black87),
-            ),
+            leading: const BackButton(color: AppColor.primary),
+            title: const Text('Chọn địa chỉ',
+                style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 16,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.w400)),
             actions: [
               TextButton(
                   onPressed: () {
                     Navigator.of(context).pop<LocationFormModel>(formResult);
                   },
-                  child: Text(
-                    'Xong',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(fontSize: 16, color: Colors.black87),
-                  ))
+                  child: const Text('Xong',
+                      style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 16,
+                          color: Colors.black87,
+                          fontWeight: FontWeight.w400)))
             ],
           ),
           body: Container(
             width: double.infinity,
-            color: AppColor.appDarkWhiteColor,
+            color: AppColor.darkWhiteBackground,
             constraints: const BoxConstraints(
               minHeight: 0,
               maxHeight: double.infinity,
@@ -314,13 +312,14 @@ class SelectLocationScreenState extends ConsumerState<SelectLocationScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
+                const Padding(
+                  padding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
                   child: Text("Khu vực",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(color: AppColor.appTextBlurColor)),
+                      style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 14,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w500)),
                 ),
                 ListTitleSelectOption(
                   title: provinces.value != null &&

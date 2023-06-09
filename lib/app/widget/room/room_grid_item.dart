@@ -1,10 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:roomeasy/api/services/room/room.dart';
+import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_value.dart';
 import 'package:roomeasy/form/room/room_change_status.dart';
 
 import 'package:roomeasy/model/room/room.dart';
+import 'package:roomeasy/ultils/strings.dart';
 
 class RoomGridItem extends StatefulWidget {
   final VoidCallback onTab;
@@ -43,6 +45,8 @@ class _RoomGridItemState extends State<RoomGridItem> {
     }
 
     return SwitchListTile(
+      activeColor: AppColor.primary,
+      inactiveTrackColor: AppColor.textBlue,
       title: const Text(
         "Mở cho thuê",
         style: TextStyle(
@@ -119,14 +123,14 @@ class _RoomGridItemState extends State<RoomGridItem> {
                     ),
                   ),
                   Text(
-                    '${widget.room.rentPerMonth?.toString() ?? "0đ"} VND',
+                    '${UString.getCurrentcy(widget.room.rentPerMonth)} VND',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 12,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w500,
-                      color: Colors.blue,
+                      color: AppColor.textBlue,
                     ),
                   ),
                   Text(

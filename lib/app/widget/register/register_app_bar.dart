@@ -21,13 +21,14 @@ class RegisterAppbar extends StatelessWidget with PreferredSizeWidget {
         elevation: 0,
         toolbarHeight: appBarHeight,
         backgroundColor: Colors.white,
-        leading: const BackButton(color: AppColor.appPrimaryColor),
-        title: Text(
+        leading: const BackButton(color: AppColor.primary),
+        title: const Text(
           'Tạo tài khoản',
-          style: Theme.of(context)
-              .textTheme
-              .titleMedium!
-              .copyWith(fontSize: 16, color: Colors.black87),
+          style: TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 16,
+              color: Colors.black87,
+              fontWeight: FontWeight.w600),
         ),
         actions: [
           TextButton(onPressed: onSubmit, child: const Text('Đăng ký'))

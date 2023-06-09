@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
 import 'package:roomeasy/api/services/upload/upload.dart';
+import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/screen/common/no_network_screen.dart';
 import 'package:roomeasy/app/screen/location/location.dart';
@@ -140,7 +141,7 @@ class _TabAccountDetailState extends State<TabAccountDetail> {
                         child: const Text(
                           'Thay đổi ảnh đại diện',
                           style: TextStyle(
-                              color: Colors.blue,
+                              color: AppColor.primary,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               fontSize: 14),

@@ -5,6 +5,7 @@ import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/provider/room/room.dart';
 import 'package:roomeasy/app/screen/common/no_network_screen.dart';
+import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/home/home_body_recommend.dart';
 import 'package:roomeasy/app/widget/room/room_container_item.dart';
 
@@ -17,7 +18,6 @@ class HomeBody extends ConsumerStatefulWidget {
 
 class HomeBodyState extends ConsumerState<HomeBody> {
   // state
-  Widget? home = const HomeBodyRecommend();
   String pageToken = "";
   bool isLoading = false;
   late ScrollController _scrollController;
@@ -109,7 +109,7 @@ class HomeBodyState extends ConsumerState<HomeBody> {
           strokeWidth: 2.0,
           onRefresh: reloadRoom,
           child: Container(
-            color: AppColor.appDarkWhiteColor,
+            color: AppColor.darkWhiteBackground,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -118,13 +118,9 @@ class HomeBodyState extends ConsumerState<HomeBody> {
                   child: ListView.builder(
                       controller: _scrollController,
                       physics: const AlwaysScrollableScrollPhysics(),
-                      itemCount: rooms.length + 1,
+                      itemCount: rooms.length,
                       itemBuilder: (BuildContext context, int index) {
-                        if (index == 0) {
-                          return home;
-                        }
-
-                        return index - 1 == rooms.length - 1
+                        return index == rooms.length - 1
                             ? Column(
                                 children: [
                                   RoomContainerItem(room: rooms[index - 1]),
@@ -132,7 +128,7 @@ class HomeBodyState extends ConsumerState<HomeBody> {
                                     Container(
                                       width: double.infinity,
                                       height: 32,
-                                      color: AppColor.appDarkWhiteColor,
+                                      color: AppColor.darkWhiteBackground,
                                       child: const Center(
                                         child: SizedBox(
                                             width: 16,
@@ -142,7 +138,7 @@ class HomeBodyState extends ConsumerState<HomeBody> {
                                     )
                                 ],
                               )
-                            : RoomContainerItem(room: rooms[index - 1]);
+                            : RoomContainerItem(room: rooms[index]);
                       }),
                 ),
               ],

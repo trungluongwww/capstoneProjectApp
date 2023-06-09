@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
-
-import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_size.dart';
 
 class AppBarActionItem extends StatelessWidget {
@@ -31,14 +29,15 @@ class AppBarActionItem extends StatelessWidget {
           showBadge: showNumber > 0,
           badgeContent: Text(
             showNumber.toString(),
-            style: Theme.of(context)
-                .textTheme
-                .titleSmall!
-                .copyWith(color: Colors.white),
+            style: const TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 16,
+                color: Colors.black87,
+                fontWeight: FontWeight.w400),
           ),
           badgeStyle: const badges.BadgeStyle(
             shape: badges.BadgeShape.circle,
-            badgeColor: AppColor.appWarningColor,
+            badgeColor: Colors.red,
           ),
           child: SizedBox(
             width: 40,
@@ -48,7 +47,7 @@ class AppBarActionItem extends StatelessWidget {
               icon: Icon(
                 icon,
                 size: AppSize.iconDefault,
-                color: iconColor ?? AppColor.appIconDefaultColor,
+                color: Colors.grey.shade700,
               ),
             ),
           ),

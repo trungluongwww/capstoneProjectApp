@@ -52,7 +52,14 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
         onPressed: () {
           Navigator.of(context).pushNamed(LoginScreen.routerName);
         },
-        child: const Text('Đăng nhập'));
+        child: const Text(
+          'Đăng nhập',
+          style: TextStyle(
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+              color: AppColor.textBlue),
+        ));
     return PreferredSize(
       preferredSize: Size.fromHeight(appBarHeight),
       child: Consumer(builder: (context, ref, child) {
@@ -65,11 +72,11 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
             width: 200,
           ),
           leadingWidth: 100,
-          shadowColor: AppColor.appBackgroundColor,
+          shadowColor: AppColor.white,
           elevation: 0,
           toolbarHeight: appBarHeight,
           actions: auth != null ? getAppBarActions() : [loginButton],
-          backgroundColor: AppColor.appBackgroundColor,
+          backgroundColor: AppColor.white,
         );
       }),
     );

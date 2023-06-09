@@ -11,9 +11,20 @@ class ModalError {
 
   void showToast(BuildContext context, String code, String? message) {
     Widget icon = code.startsWith('2')
-        ? const Icon(Icons.done, color: Colors.green, size: 16)
-        : const Icon(Icons.error, color: Colors.red, size: 16);
+        ? const Icon(
+            Icons.done,
+            color: Colors.green,
+            size: 24,
+            weight: 16,
+          )
+        : const Icon(
+            Icons.error,
+            color: Colors.red,
+            size: 24,
+            weight: 16,
+          );
     SnackBar child = SnackBar(
+        duration: const Duration(seconds: 10),
         backgroundColor: Colors.transparent,
         elevation: 0,
         content: Material(
@@ -36,8 +47,8 @@ class ModalError {
                 style: const TextStyle(
                   color: Colors.black87,
                   fontFamily: 'Inter',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),

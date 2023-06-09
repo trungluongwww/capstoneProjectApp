@@ -24,7 +24,7 @@ class TextFieldSearchWithIcon extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: AppColor.appDarkWhiteColor,
+        color: AppColor.darkWhiteBackground,
       ),
       child: Row(
         children: [

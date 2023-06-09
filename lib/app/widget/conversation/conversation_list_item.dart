@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:roomeasy/app/constant/app_color.dart';
 
 import 'package:roomeasy/app/screen/conversation/conversation_detail.dart';
 import 'package:roomeasy/model/conversation/conversation.dart';
@@ -59,7 +60,7 @@ class ConversationListItem extends StatelessWidget {
       return Colors.black87;
     }
 
-    return Colors.black;
+    return AppColor.textBlue;
   }
 
   FontWeight _getFontWeight() {

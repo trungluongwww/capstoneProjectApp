@@ -91,12 +91,12 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
     return Scaffold(
       appBar: RegisterAppbar(onSubmit: onSubmit),
-      backgroundColor: AppColor.appDarkWhiteColor,
+      backgroundColor: AppColor.darkWhiteBackground,
       resizeToAvoidBottomInset: true,
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
-          color: AppColor.appDarkWhiteColor,
+          color: AppColor.darkWhiteBackground,
           padding: const EdgeInsets.only(top: 12, left: 12, right: 12),
           width: double.infinity,
           child: Form(

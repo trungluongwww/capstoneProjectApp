@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
+import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/screen/register/register.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
@@ -87,14 +88,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(12.0),
+                      const Padding(
+                        padding: EdgeInsets.all(12.0),
                         child: Text(
                           'Đăng nhập',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .copyWith(color: Colors.black),
+                          style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 20,
+                              color: AppColor.textBlue,
+                              fontWeight: FontWeight.w700),
                         ),
                       ),
                       Container(
@@ -106,29 +108,32 @@ class _LoginScreenState extends State<LoginScreen> {
                             border: Border.all(
                               width: 0.5,
                               color: _isFocusedEmail
-                                  ? Colors.lightBlue
-                                  : Colors.black54,
+                                  ? AppColor.lightPrimary
+                                  : AppColor.textBlue,
                             ),
                             boxShadow: _isFocusedEmail
-                                ? [BoxShadow(color: Colors.blue, blurRadius: 2)]
+                                ? [
+                                    const BoxShadow(
+                                        color: AppColor.primary, blurRadius: 2)
+                                  ]
                                 : null,
                             borderRadius: BorderRadius.circular(8)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Email',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(color: Colors.black87),
-                            ),
+                            const Text('Email',
+                                style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 16,
+                                    color: AppColor.textBlue,
+                                    fontWeight: FontWeight.w400)),
                             TextFormField(
                               controller: _emailController,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(fontSize: 18),
+                              style: const TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 18,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.w600),
                               validator: (val) {
                                 if (val == null || val.isEmpty) {
                                   return "Vui lòng điền thông tin email";
@@ -163,26 +168,25 @@ class _LoginScreenState extends State<LoginScreen> {
                             border: Border.all(
                               width: 0.5,
                               color: _isFocusedPassword
-                                  ? Colors.lightBlue
-                                  : Colors.black54,
+                                  ? AppColor.lightPrimary
+                                  : AppColor.textBlue,
                             ),
                             boxShadow: _isFocusedPassword
                                 ? [
                                     const BoxShadow(
-                                        color: Colors.blue, blurRadius: 2)
+                                        color: AppColor.primary, blurRadius: 2)
                                   ]
                                 : null,
                             borderRadius: BorderRadius.circular(8)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Mật khẩu',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(color: Colors.black87),
-                            ),
+                            const Text('Mật khẩu',
+                                style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 18,
+                                    color: AppColor.textBlue,
+                                    fontWeight: FontWeight.w400)),
                             TextFormField(
                               controller: _passwordController,
                               validator: (val) {
@@ -197,10 +201,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 return null;
                               },
                               obscureText: passwordVisible,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(fontSize: 18),
+                              style: const TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 18,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.w600),
                               decoration: InputDecoration(
                                   suffixIcon: IconButton(
                                       onPressed: () {
@@ -209,8 +214,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                         });
                                       },
                                       icon: passwordVisible
-                                          ? const Icon(Icons.visibility)
-                                          : const Icon(Icons.visibility_off)),
+                                          ? const Icon(
+                                              Icons.visibility,
+                                              color: AppColor.textBlue,
+                                            )
+                                          : const Icon(
+                                              Icons.visibility_off,
+                                              color: AppColor.textBlue,
+                                            )),
                                   errorStyle: const TextStyle(
                                       color: Colors.red,
                                       fontFamily: 'Inter',
@@ -235,6 +246,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             clipBehavior: Clip.hardEdge,
                             child: Consumer(builder: (context, ref, child) {
                               return ElevatedButton(
+                                  style: const ButtonStyle(
+                                    backgroundColor: MaterialStatePropertyAll(
+                                        AppColor.primary),
+                                  ),
                                   onPressed: () async {
                                     if (formKey.currentState!.validate()) {
                                       setState(() {
@@ -273,7 +288,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                       }
                                     }
                                   },
-                                  child: const Text('Đăng nhập'));
+                                  child: const Text(
+                                    'Đăng nhập',
+                                    style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                        fontSize: 14),
+                                  ));
                             }),
                           ),
                           const Positioned(
@@ -296,7 +318,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             'Đăng ký tài khoản',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.blue,
+                                color: AppColor.primary,
                                 fontFamily: 'Inter',
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,

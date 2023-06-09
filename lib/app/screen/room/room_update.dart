@@ -492,7 +492,7 @@ class _RoomUpdateScreenState extends State<RoomUpdateScreen> {
                                         color: selectedConveniences
                                                 .contains(conv.id!)
                                             ? Colors.white70
-                                            : AppColor.appDarkWhiteColor,
+                                            : AppColor.darkWhiteBackground,
                                         border: selectedConveniences
                                                 .contains(conv.id!)
                                             ? Border.all(
@@ -646,7 +646,7 @@ class _RoomUpdateScreenState extends State<RoomUpdateScreen> {
                   width: 24,
                   height: 24,
                   child: CircularProgressIndicator(
-                    color: AppColor.appBlurPrimaryColor,
+                    color: AppColor.lightPrimary,
                   ),
                 ),
               ),

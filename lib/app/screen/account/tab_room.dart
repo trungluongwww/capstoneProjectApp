@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
+import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/screen/room/room_detail.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/room/room_grid_item.dart';
@@ -103,7 +104,8 @@ class _TabRoomState extends State<TabRoom> {
         color: Colors.white,
         backgroundColor: const Color.fromARGB(110, 158, 158, 158),
         strokeWidth: 2.0,
-        child: Padding(
+        child: Container(
+          color: AppColor.darkWhiteBackground,
           padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
           child: GridView.builder(
             itemCount: _rooms.length,

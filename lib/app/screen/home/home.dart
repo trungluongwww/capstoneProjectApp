@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const HomeAppBar(),
-        backgroundColor: AppColor.appBackgroundColor,
+        backgroundColor: Colors.white,
         body: SafeArea(
           top: true,
           bottom: true,
@@ -68,33 +68,32 @@ class _HomeState extends State<Home> {
         floatingActionButton: Container(
           padding: const EdgeInsets.all(2),
           width: 100,
-          height: 32,
+          height: 40,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
           clipBehavior: Clip.hardEdge,
           child: Material(
-            color: AppColor.appPrimaryColor,
+            color: AppColor.primary,
             elevation: 4,
             child: InkWell(
               onTap: () {
                 Navigator.of(context).pushNamed(RoomCreate.routeName);
               },
-              splashColor: AppColor.appBlurPrimaryColor,
+              splashColor: Colors.grey,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Icon(
+                children: const [
+                  Icon(
                     Icons.add,
                     color: Colors.white,
                     size: 14,
                   ),
-                  Text(
-                    'Đăng phòng',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: Colors.white, fontSize: 12),
-                  )
+                  Text('Đăng phòng',
+                      style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white))
                 ],
               ),
             ),

@@ -27,14 +27,14 @@ class ButtonIconLinearPrimary extends StatelessWidget {
           gradient: const LinearGradient(
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
-            colors: [AppColor.appPrimaryColor, AppColor.appLightPrimaryColor],
+            colors: [AppColor.primary, AppColor.lightPrimary],
           )),
       child: IconButton(
         padding: EdgeInsets.zero,
         alignment: Alignment.center,
         icon: Icon(
           icon ?? Icons.tune,
-          color: AppColor.appBackgroundColor,
+          color: AppColor.white,
           size: 24,
           weight: 0.1,
         ),

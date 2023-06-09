@@ -38,7 +38,7 @@ class RoomCreateTextFieldInput extends StatelessWidget {
       decoration: InputDecoration(
           hintText: hintText,
           border: const UnderlineInputBorder(),
-          focusColor: AppColor.appPrimaryColor,
+          focusColor: AppColor.primary,
           floatingLabelAlignment: FloatingLabelAlignment.start,
           errorStyle: const TextStyle(
               color: Colors.red,

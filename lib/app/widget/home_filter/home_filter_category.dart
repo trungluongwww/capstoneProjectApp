@@ -24,7 +24,7 @@ class _HomeFilterCategoryState extends ConsumerState<HomeFilterCategory> {
 
     return Container(
       width: double.infinity,
-      color: AppColor.appDarkWhiteColor,
+      color: AppColor.darkWhiteBackground,
       constraints: const BoxConstraints(
         minHeight: 0,
         maxHeight: double.infinity,
@@ -34,16 +34,17 @@ class _HomeFilterCategoryState extends ConsumerState<HomeFilterCategory> {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
+          const Padding(
+            padding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
             child: Text("Loại nhà thuê",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(color: AppColor.appTextBlurColor)),
+                style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 16,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.w400)),
           ),
           Container(
-            color: AppColor.appBackgroundColor,
+            color: AppColor.white,
             width: double.infinity,
             height: 56,
             child: filterProvider.when(
@@ -68,24 +69,19 @@ class _HomeFilterCategoryState extends ConsumerState<HomeFilterCategory> {
                             decoration: BoxDecoration(
                               border: selectedRoomType == e.key
                                   ? null
-                                  : Border.all(
-                                      width: 1,
-                                      color: AppColor.appTextBlurColor),
+                                  : Border.all(width: 1, color: Colors.black54),
                               borderRadius: BorderRadius.circular(10),
                               color: selectedRoomType == e.key
-                                  ? AppColor.appBlurPrimaryColor
+                                  ? AppColor.lightPrimary
                                   : Colors.white70,
                             ),
                             child: Text(
                               e.value!,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(
-                                      fontSize: 14,
-                                      color: selectedRoomType == e.key
-                                          ? Colors.white
-                                          : AppColor.appTextDefaultColor),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: selectedRoomType == e.key
+                                      ? Colors.white
+                                      : Colors.black87),
                             ),
                           ),
                         );

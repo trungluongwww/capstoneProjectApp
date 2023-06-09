@@ -19,7 +19,7 @@ class _ConversationState extends State<Conversation> {
         backgroundColor: Colors.white,
         centerTitle: true,
         leading: const BackButton(
-          color: AppColor.appPrimaryColor,
+          color: AppColor.textBlue,
         ),
         title: const Text(
           "Tin nhắn",

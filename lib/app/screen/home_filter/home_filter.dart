@@ -30,13 +30,12 @@ class _HomeFilterScreenState extends ConsumerState<HomeFilterScreen> {
       child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            title: Text(
-              "Bộ lọc",
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(color: AppColor.appTextDefaultColor, fontSize: 18),
-            ),
+            title: const Text("Bộ lọc",
+                style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 18,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.w400)),
             actions: [
               TextButton(
                 onPressed: () {
@@ -44,19 +43,19 @@ class _HomeFilterScreenState extends ConsumerState<HomeFilterScreen> {
                 },
                 child: const Text(
                   "Thiết lặp lại",
-                  style: TextStyle(color: AppColor.appPrimaryColor),
+                  style: TextStyle(color: AppColor.primary),
                 ),
               ),
             ],
-            leading: const BackButton(color: AppColor.appPrimaryColor),
-            backgroundColor: AppColor.appBackgroundColor,
+            leading: const BackButton(color: AppColor.primary),
+            backgroundColor: AppColor.white,
             elevation: 0,
           ),
           body: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
             const double applyButtonHeight = 50.0;
             return Container(
-              color: AppColor.appDarkWhiteColor,
+              color: AppColor.darkWhiteBackground,
               child: Column(
                 children: [
                   Expanded(
@@ -76,7 +75,7 @@ class _HomeFilterScreenState extends ConsumerState<HomeFilterScreen> {
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.zero,
                         ),
-                        backgroundColor: Colors.blue,
+                        backgroundColor: AppColor.textBlue,
                       ),
                       onPressed: () async {
                         Navigator.pop(context, true);

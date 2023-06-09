@@ -13,13 +13,13 @@ class RoomCreateAppBar extends StatelessWidget with PreferredSizeWidget {
     return PreferredSize(
       preferredSize: Size.fromHeight(appBarHeight),
       child: AppBar(
-        leading: const BackButton(color: AppColor.appPrimaryColor),
-        title: Text(
-          'Đăng tin phòng',
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+        leading: const BackButton(color: AppColor.primary),
+        title: const Text('Đăng tin phòng',
+            style: TextStyle(
+                fontFamily: 'Inter',
                 fontSize: 16,
-              ),
-        ),
+                color: Colors.black87,
+                fontWeight: FontWeight.w700)),
         backgroundColor: Colors.white,
         elevation: 0,
         bottom: PreferredSize(

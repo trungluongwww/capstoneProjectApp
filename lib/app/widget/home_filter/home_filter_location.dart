@@ -47,7 +47,7 @@ class _HomeFilterLocationState extends ConsumerState<HomeFilterLocation> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          color: AppColor.appTextBlurColor,
+                          color: Colors.black54,
                           icon: const Icon(Icons.close)),
                       TextButton(
                         onPressed: () {},
@@ -117,7 +117,7 @@ class _HomeFilterLocationState extends ConsumerState<HomeFilterLocation> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          color: AppColor.appTextBlurColor,
+                          color: Colors.black54,
                           icon: const Icon(Icons.close)),
                       TextButton(
                         onPressed: () {},
@@ -186,7 +186,7 @@ class _HomeFilterLocationState extends ConsumerState<HomeFilterLocation> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          color: AppColor.appTextBlurColor,
+                          color: Colors.black54,
                           icon: const Icon(Icons.close)),
                       TextButton(
                         onPressed: () {},
@@ -238,7 +238,7 @@ class _HomeFilterLocationState extends ConsumerState<HomeFilterLocation> {
 
     return Container(
       width: double.infinity,
-      color: AppColor.appDarkWhiteColor,
+      color: AppColor.darkWhiteBackground,
       constraints: const BoxConstraints(
         minHeight: 0,
         maxHeight: double.infinity,
@@ -248,13 +248,14 @@ class _HomeFilterLocationState extends ConsumerState<HomeFilterLocation> {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
+          const Padding(
+            padding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
             child: Text("Khu vực",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(color: AppColor.appTextBlurColor)),
+                style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 16,
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600)),
           ),
           ListTitleSelectOption(
             title: provinces.value != null &&

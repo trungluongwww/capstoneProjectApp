@@ -31,7 +31,7 @@ class _AccountScreenState extends State<AccountScreen>
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(
-          color: AppColor.appPrimaryColor,
+          color: AppColor.primary,
         ),
         elevation: 0,
         backgroundColor: Colors.white,
@@ -60,17 +60,18 @@ class _AccountScreenState extends State<AccountScreen>
                       fontFamily: 'Inter',
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
-                      color: Colors.blue),
+                      color: AppColor.primary),
                 )),
           )
         ],
         centerTitle: true,
         bottom: TabBar(
+          indicatorColor: AppColor.primary,
           isScrollable: false,
           unselectedLabelColor: Colors.black54,
-          labelColor: AppColor.appPrimaryColor,
+          labelColor: AppColor.primary,
           labelStyle: const TextStyle(
-              fontFamily: 'Inter', fontWeight: FontWeight.w300, fontSize: 14),
+              fontFamily: 'Inter', fontWeight: FontWeight.w500, fontSize: 14),
           controller: _tabController,
           tabs: const [
             Tab(

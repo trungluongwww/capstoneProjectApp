@@ -136,7 +136,7 @@ class _ConversationListState extends ConsumerState<ConversationList> {
     return RefreshIndicator(
       onRefresh: refreshConversation,
       child: Material(
-        color: AppColor.appDarkWhiteColor,
+        color: AppColor.darkWhiteBackground,
         child: isGlobalLoading
             ? const CenterContentSomethingLoading()
             : ListView.builder(
