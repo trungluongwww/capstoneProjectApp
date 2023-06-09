@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roomeasy/api/services/room/room.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
-import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/provider/room/room_recommend.dart';
 import 'package:roomeasy/app/screen/room/room_detail.dart';
 import 'package:roomeasy/app/widget/common/center_content_something_error.dart';
 import 'package:roomeasy/app/widget/common/center_content_something_loading.dart';
-import 'package:roomeasy/model/auth/profile.dart';
-import 'package:roomeasy/model/room/room.dart';
 
 class HomeBodyRecommend extends ConsumerStatefulWidget {
   const HomeBodyRecommend({Key? key}) : super(key: key);
@@ -39,7 +35,7 @@ class _HomeBodyRecommendState extends ConsumerState<HomeBodyRecommend> {
                 children: [
                   Container(
                     width: double.infinity,
-                    color: AppColor.appDarkWhiteColor,
+                    color: AppColor.darkWhiteBackground,
                     padding: const EdgeInsets.all(8),
                     child: const Text(
                       'Đề xuất gần bạn',

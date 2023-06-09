@@ -25,7 +25,7 @@ class RoomDetailAppBar extends ConsumerWidget with PreferredSizeWidget {
     return PreferredSize(
       preferredSize: Size.fromHeight(appBarHeight),
       child: AppBar(
-        leading: const BackButton(color: AppColor.appPrimaryColor),
+        leading: const BackButton(color: AppColor.textBlue),
         backgroundColor: Colors.white,
         elevation: 1,
         actions: userId == room?.owner?.id
@@ -34,12 +34,15 @@ class RoomDetailAppBar extends ConsumerWidget with PreferredSizeWidget {
                   label: const Text(
                     'Chỉnh sửa',
                     style: TextStyle(
-                        color: Colors.blue,
+                        color: AppColor.primary,
                         fontSize: 14,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w400),
                   ),
-                  icon: const Icon(Icons.edit_square),
+                  icon: const Icon(
+                    Icons.edit_square,
+                    color: AppColor.primary,
+                  ),
                   onPressed: () {
                     Navigator.of(context).pushReplacementNamed(
                         RoomUpdateScreen.routeName,
@@ -54,12 +57,15 @@ class RoomDetailAppBar extends ConsumerWidget with PreferredSizeWidget {
                   label: const Text(
                     'Nhắn tin',
                     style: TextStyle(
-                        color: Colors.blue,
+                        color: AppColor.primary,
                         fontSize: 14,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w400),
                   ),
-                  icon: const Icon(Icons.chat),
+                  icon: const Icon(
+                    Icons.chat,
+                    color: AppColor.primary,
+                  ),
                   onPressed: () {
                     Navigator.of(context).pushNamed(
                         ConversationDetailByUser.routeName,

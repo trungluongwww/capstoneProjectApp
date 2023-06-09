@@ -73,7 +73,7 @@ class _ConversationDetailState extends State<ConversationDetail> {
         backgroundColor: Colors.white,
         centerTitle: true,
         leading: const BackButton(
-          color: AppColor.appPrimaryColor,
+          color: AppColor.primary,
         ),
         title: Consumer(builder: (context, ref, child) {
           final userId = ref.watch(authProfileProvider)?.id;
@@ -83,7 +83,7 @@ class _ConversationDetailState extends State<ConversationDetail> {
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
-                color: Colors.black87),
+                color: AppColor.textBlue),
           );
         }),
       ),

@@ -37,7 +37,7 @@ class RoomCreateLocation extends StatelessWidget {
                 onPressed: onSelected,
                 child: const Text(
                   'Chọn',
-                  style: TextStyle(color: AppColor.appPrimaryColor),
+                  style: TextStyle(color: AppColor.primary),
                 )),
           ),
           Text(

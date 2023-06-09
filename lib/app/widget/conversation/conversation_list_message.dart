@@ -136,7 +136,7 @@ class _ConversationListMessageState
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       return Container(
-        color: AppColor.appDarkWhiteColor,
+        color: AppColor.darkWhiteBackground,
         child: ListView.builder(
           controller: _scrollController,
           itemCount: messages.length,

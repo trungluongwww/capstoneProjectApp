@@ -13,7 +13,7 @@ class LoginAppBar extends StatelessWidget with PreferredSizeWidget {
     return PreferredSize(
       preferredSize: Size.fromHeight(appBarHeight),
       child: AppBar(
-        leading: const BackButton(color: AppColor.appPrimaryColor),
+        leading: const BackButton(color: AppColor.primary),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),

@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:roomeasy/app/constant/app_color.dart';
 
 import 'package:roomeasy/app/constant/app_value.dart';
 import 'package:roomeasy/model/room/room.dart';
+import 'package:roomeasy/ultils/strings.dart';
 
 class FavouriteRoomGridItem extends StatefulWidget {
   final VoidCallback onTab;
@@ -56,7 +58,7 @@ class _FavouriteRoomGridItemState extends State<FavouriteRoomGridItem> {
                     fontFamily: 'Inter',
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
-                    color: Colors.amber),
+                    color: AppColor.orange),
               ),
               trailing: IconButton(
                   onPressed: widget.unlike,
@@ -89,14 +91,14 @@ class _FavouriteRoomGridItemState extends State<FavouriteRoomGridItem> {
                     ),
                   ),
                   Text(
-                    '${widget.room.rentPerMonth?.toString() ?? "0đ"} VND',
+                    '${UString.getCurrentcy(widget.room.rentPerMonth)} VND',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 12,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w500,
-                      color: Colors.blue,
+                      color: AppColor.textBlue,
                     ),
                   ),
                   Text(

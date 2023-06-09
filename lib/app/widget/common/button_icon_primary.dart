@@ -24,13 +24,13 @@ class ButtonIconFlatPrimary extends StatelessWidget {
       height: size,
       decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-          color: Colors.lightBlue),
+          color: AppColor.lightPrimary),
       child: IconButton(
         padding: EdgeInsets.zero,
         alignment: Alignment.center,
         icon: Icon(
           icon ?? Icons.tune,
-          color: AppColor.appBackgroundColor,
+          color: AppColor.white,
           size: 24,
           weight: 0.1,
         ),

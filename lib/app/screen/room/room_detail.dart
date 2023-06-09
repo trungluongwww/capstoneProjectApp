@@ -166,22 +166,21 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                                 child: ListTile(
                                   title: Text(
                                     res.data!.name!,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge!
-                                        .copyWith(
-                                            color: Colors.white, fontSize: 18),
+                                    style: const TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   subtitle: Text(
                                       '${res.data!.getFullNameLocation()}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .copyWith(
-                                              fontSize: 13,
-                                              color: Colors.white)),
+                                      style: const TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: 13,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400)),
                                 ),
                               ),
                             ),
@@ -203,18 +202,18 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                         ),
                         title: Text(
                           res.data!.owner!.name!,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .copyWith(fontSize: 16),
+                          style: const TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 16,
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w500),
                         ),
-                        subtitle: Text(
-                          'Người cho thuê',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall!
-                              .copyWith(fontSize: 12, color: Colors.black54),
-                        ),
+                        subtitle: const Text('Người cho thuê',
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: 12,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.w400)),
                         trailing: Padding(
                             padding: const EdgeInsets.all(4.0),
                             child: InkWell(
@@ -237,14 +236,13 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Thông tin',
-                              textAlign: TextAlign.left,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(fontSize: 16),
-                            ),
+                            const Text('Thông tin',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 16,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.w600)),
                             ListTitleSmallWithoutSpacing(
                                 colorLeadIcon: Colors.red,
                                 title: res.data!.status!.value,
@@ -286,14 +284,13 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                       Container(
                         padding: const EdgeInsets.only(top: 4, bottom: 4),
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Hình ảnh thực tế',
-                          textAlign: TextAlign.left,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .copyWith(fontSize: 16),
-                        ),
+                        child: const Text('Hình ảnh thực tế',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: 16,
+                                color: Colors.black87,
+                                fontWeight: FontWeight.w600)),
                       ),
                       GridView.builder(
                         padding: const EdgeInsets.only(top: 16, bottom: 16),
@@ -327,41 +324,39 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                       ListTile(
                           contentPadding:
                               const EdgeInsets.symmetric(vertical: 8),
-                          title: Padding(
-                            padding: const EdgeInsets.only(bottom: 16),
-                            child: Text(
-                              'Mô tả chi tiết',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(fontSize: 16),
-                            ),
+                          title: const Padding(
+                            padding: EdgeInsets.only(bottom: 16),
+                            child: Text('Mô tả chi tiết',
+                                style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 16,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.w600)),
                           ),
-                          subtitle: ReadMoreText(
-                            res.data!.description!,
-                            trimLines: 2,
-                            colorClickableText: AppColor.appBlurPrimaryColor,
-                            trimMode: TrimMode.Line,
-                            trimCollapsedText: 'xem thêm',
-                            trimExpandedText: 'ẩn bớt',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleSmall!
-                                .copyWith(fontSize: 14, color: Colors.black87),
-                            moreStyle: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(fontSize: 14, color: Colors.blue),
-                          )),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16, bottom: 8),
-                        child: Text(
-                          'Tiện ích có sẵn',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .copyWith(fontSize: 16),
-                        ),
+                          subtitle: ReadMoreText(res.data!.description!,
+                              trimLines: 2,
+                              colorClickableText: AppColor.lightPrimary,
+                              trimMode: TrimMode.Line,
+                              trimCollapsedText: 'xem thêm',
+                              trimExpandedText: 'ẩn bớt',
+                              style: const TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 14,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.w400),
+                              moreStyle: const TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 14,
+                                  color: AppColor.primary,
+                                  fontWeight: FontWeight.w400))),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 16, bottom: 8),
+                        child: Text('Tiện ích có sẵn',
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: 16,
+                                color: Colors.black87,
+                                fontWeight: FontWeight.w400)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 16),
@@ -381,9 +376,9 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                               padding: const EdgeInsets.all(4),
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                  color: AppColor.appDarkWhiteColor,
-                                  border:
-                                      Border.all(width: 1, color: Colors.blue),
+                                  color: AppColor.darkWhiteBackground,
+                                  border: Border.all(
+                                      width: 1, color: AppColor.lightPrimary),
                                   borderRadius: BorderRadius.circular(6)),
                               child: ListTitleSmallWithoutSpacing(
                                 defaultTitle: conv.name!,

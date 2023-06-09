@@ -90,11 +90,13 @@ class _HomeHeaderState extends ConsumerState<HomeHeader> {
                     ].where((e) => e != null).join(", ");
 
                     return Text(
-                      "Địa điểm: ${locationName != '' ? locationName : 'chưa chọn'}",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          color: AppColor.appTextBlurColor,
-                          overflow: TextOverflow.ellipsis),
-                    );
+                        "Địa điểm: ${locationName != '' ? locationName : 'chưa chọn'}",
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 16,
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w500));
                   },
                 )
               ],

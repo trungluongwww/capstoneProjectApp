@@ -1,8 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_type.dart';
-import 'package:roomeasy/app/widget/common/cache_image_contain.dart';
+import 'package:roomeasy/app/widget/common/custom_cache_image.dart';
 
 import 'package:roomeasy/model/message/message.dart';
 import 'package:roomeasy/ultils/strings.dart';
@@ -92,7 +93,7 @@ class ConversationItemMessage extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                       color: userId == message.authorId
                           ? Colors.white
-                          : Colors.black),
+                          : AppColor.textBlue),
                 ),
               )
             ],
@@ -105,8 +106,9 @@ class ConversationItemMessage extends StatelessWidget {
                 fontSize: 14,
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
-                color:
-                    userId == message.authorId ? Colors.white : Colors.black),
+                color: userId == message.authorId
+                    ? Colors.white
+                    : AppColor.textBlue),
           );
       }
 
@@ -135,7 +137,9 @@ class ConversationItemMessage extends StatelessWidget {
         child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: (userId != message.authorId ? Colors.white : Colors.blue),
+              color: (userId != message.authorId
+                  ? Colors.white
+                  : AppColor.lightPrimary),
             ),
             padding: const EdgeInsets.all(8),
             child: getContent()),

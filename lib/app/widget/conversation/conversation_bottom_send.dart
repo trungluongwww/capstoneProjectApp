@@ -8,7 +8,7 @@ import 'package:roomeasy/api/services/conversation/conversation.dart';
 import 'package:roomeasy/api/services/upload/upload.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_type.dart';
-import 'package:roomeasy/app/widget/common/cache_image_contain.dart';
+import 'package:roomeasy/app/widget/common/custom_cache_image.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/form/file/file.dart';
 import 'package:roomeasy/form/message/message_create.dart';
@@ -172,7 +172,7 @@ class _ConversationBottomSendState extends State<ConversationBottomSend> {
                 height: 40,
                 child: FloatingActionButton(
                   onPressed: sendMessageText,
-                  backgroundColor: Colors.blue,
+                  backgroundColor: AppColor.primary,
                   elevation: 0,
                   child: const Icon(
                     Icons.send,

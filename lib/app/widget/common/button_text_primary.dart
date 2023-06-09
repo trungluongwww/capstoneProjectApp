@@ -26,7 +26,7 @@ class ButtonTextPrimary extends StatelessWidget {
       constraints: BoxConstraints(maxWidth: maxWidth),
       height: height,
       child: Material(
-        color: Colors.blue,
+        color: AppColor.primary,
         child: InkWell(
           onTap: onClick,
           child: Center(
@@ -38,7 +38,7 @@ class ButtonTextPrimary extends StatelessWidget {
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
-                      color: AppColor.appBackgroundColor),
+                      color: Colors.white),
             ),
           ),
         ),

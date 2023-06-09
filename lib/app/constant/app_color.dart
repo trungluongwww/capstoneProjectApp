@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
-  static const Color appPrimaryColor = Colors.blue;
-  static const Color appLightPrimaryColor = Color.fromRGBO(150, 210, 245, 1);
-  static const Color appBlurPrimaryColor = Colors.lightBlue;
-  static const Color appDarkWhiteColor = Color.fromRGBO(246, 247, 249, 1);
-  static const Color appUnselectedColor = Color.fromARGB(255, 117, 117, 117);
-  static const Color appBackgroundColor = Colors.white;
-  static const Color appTextDefaultColor = Color.fromRGBO(7, 45, 86, 1);
-  static const Color appTextBlurColor = Colors.grey;
-  static const Color appWarningColor = Colors.red;
-  static const Color appSuccessColor = Colors.green;
-  static const Color appIconDefaultColor = Color.fromRGBO(56, 64, 89, 0.7);
+  static const Color primary = Color.fromRGBO(33, 195, 146, 1);
+  static const Color lightPrimary = Color.fromRGBO(107, 198, 165, 1);
+  static const Color textBlue = Color.fromRGBO(10, 86, 136, 1);
+  static Color white = Colors.white;
+  static const Color yellow = Color.fromRGBO(249, 209, 98, 1);
+  static const Color orange = Color.fromRGBO(243, 149, 79, 1);
+  static const Color darkWhiteBackground = Color.fromRGBO(246, 247, 249, 1);
 }

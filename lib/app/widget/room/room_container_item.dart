@@ -1,9 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/screen/room/room_detail.dart';
+import 'package:roomeasy/app/widget/common/custom_cache_image.dart';
 import 'package:roomeasy/app/widget/common/list_title_small_without_spacing.dart';
 import 'package:roomeasy/model/room/room.dart';
 import 'package:roomeasy/ultils/strings.dart';
@@ -26,7 +28,7 @@ class RoomContainerItem extends StatelessWidget {
           }
         },
         child: Container(
-          color: AppColor.appBackgroundColor,
+          color: AppColor.white,
           padding: const EdgeInsets.all(12),
           width: double.infinity,
           height: 400,
@@ -47,10 +49,8 @@ class RoomContainerItem extends StatelessWidget {
                           "assets/images/default_room.jpg",
                           fit: BoxFit.cover,
                         )
-                      : Image.asset(
-                          //TODO
-                          // room.files[0].info!.url ??
-                          "assets/images/default_room.jpg",
+                      : CustomCacheImage(
+                          url: room.files[0].info!.url ?? "",
                           fit: BoxFit.cover,
                         )),
               // infomation
@@ -63,12 +63,13 @@ class RoomContainerItem extends StatelessWidget {
                       children: [
                         Text(
                           room.name!,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .copyWith(
-                                  fontSize: 16,
-                                  overflow: TextOverflow.ellipsis),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: AppColor.textBlue),
                         ),
                         ListTitleSmallWithoutSpacing(
                             title: room.type!.value,

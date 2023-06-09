@@ -33,7 +33,7 @@ class RegisterInputDefault extends StatelessWidget {
           hintText: hintText,
           labelText: labelText,
           border: const UnderlineInputBorder(),
-          focusColor: AppColor.appPrimaryColor,
+          focusColor: AppColor.primary,
           labelStyle: const TextStyle(
             color: Colors.black,
             fontSize: 16,

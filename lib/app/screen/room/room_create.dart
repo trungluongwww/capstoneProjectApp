@@ -370,7 +370,7 @@ class _RoomCreateState extends State<RoomCreate> {
                                         color: selectedConveniences
                                                 .contains(conv.id!)
                                             ? Colors.white70
-                                            : AppColor.appDarkWhiteColor,
+                                            : AppColor.darkWhiteBackground,
                                         border: selectedConveniences
                                                 .contains(conv.id!)
                                             ? Border.all(
@@ -544,7 +544,7 @@ class _RoomCreateState extends State<RoomCreate> {
                   width: 24,
                   height: 24,
                   child: CircularProgressIndicator(
-                    color: AppColor.appBlurPrimaryColor,
+                    color: AppColor.lightPrimary,
                   ),
                 ),
               ),

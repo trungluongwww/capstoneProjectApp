@@ -63,17 +63,19 @@ class _AccountTextFieldInputState extends State<AccountTextFieldInput> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            widget.name,
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(color: Colors.black87),
-          ),
+          Text(widget.name,
+              style: const TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 18,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w600)),
           TextFormField(
             controller: widget.controller,
-            style:
-                Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 18),
+            style: const TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 18,
+                color: Colors.black87,
+                fontWeight: FontWeight.w600),
             validator: widget.validator,
             decoration: InputDecoration(
                 errorStyle: const TextStyle(

@@ -25,7 +25,7 @@ class _HomeFilterSortState extends ConsumerState<HomeFilterSort> {
 
     return Container(
       width: double.infinity,
-      color: AppColor.appDarkWhiteColor,
+      color: AppColor.darkWhiteBackground,
       constraints: const BoxConstraints(
         minHeight: 0,
         maxHeight: double.infinity,
@@ -35,16 +35,17 @@ class _HomeFilterSortState extends ConsumerState<HomeFilterSort> {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
+          const Padding(
+            padding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
             child: Text("sắp xếp theo tiêu chí",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(color: AppColor.appTextBlurColor)),
+                style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 16,
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600)),
           ),
           Container(
-            color: AppColor.appBackgroundColor,
+            color: AppColor.white,
             width: double.infinity,
             height: 56,
             child: filterProvider.when(
@@ -70,26 +71,23 @@ class _HomeFilterSortState extends ConsumerState<HomeFilterSort> {
                               border: selectedSortField == e.key &&
                                       selectedSortValue == e.option
                                   ? null
-                                  : Border.all(
-                                      width: 1,
-                                      color: AppColor.appTextBlurColor),
+                                  : Border.all(width: 1, color: Colors.black54),
                               borderRadius: BorderRadius.circular(10),
                               color: selectedSortField == e.key &&
                                       selectedSortValue == e.option
-                                  ? AppColor.appBlurPrimaryColor
+                                  ? AppColor.lightPrimary
                                   : Colors.white70,
                             ),
                             child: Text(
                               e.value!,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(
-                                      fontSize: 14,
-                                      color: selectedSortField == e.key &&
-                                              selectedSortValue == e.option
-                                          ? Colors.white
-                                          : AppColor.appTextDefaultColor),
+                              style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  color: selectedSortField == e.key &&
+                                          selectedSortValue == e.option
+                                      ? Colors.white
+                                      : Colors.black87),
                             ),
                           ),
                         );

@@ -17,22 +17,24 @@ class RoomCreateStepControlsBuilder extends StatelessWidget {
         if (details.stepIndex != 0)
           TextButton(
             onPressed: details.onStepCancel,
-            child: Text(
+            child: const Text(
               'Quay lại',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(color: AppColor.appTextDefaultColor, fontSize: 14),
+              style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 14,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w600),
             ),
           ),
         TextButton(
           onPressed: details.onStepContinue,
           child: Text(
             details.stepIndex == 2 ? 'Xong' : 'Tiếp tục',
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(color: AppColor.appPrimaryColor, fontSize: 14),
+            style: const TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 14,
+                color: AppColor.primary,
+                fontWeight: FontWeight.w600),
           ),
         ),
       ],
