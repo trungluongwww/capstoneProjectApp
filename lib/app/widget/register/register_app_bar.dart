@@ -27,11 +27,20 @@ class RegisterAppbar extends StatelessWidget with PreferredSizeWidget {
           style: TextStyle(
               fontFamily: 'Inter',
               fontSize: 16,
-              color: Colors.black87,
+              color: AppColor.textBlue,
               fontWeight: FontWeight.w600),
         ),
         actions: [
-          TextButton(onPressed: onSubmit, child: const Text('Đăng ký'))
+          TextButton(
+              onPressed: onSubmit,
+              child: const Text(
+                'Đăng ký',
+                style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: AppColor.primary),
+              ))
         ],
       ),
     );

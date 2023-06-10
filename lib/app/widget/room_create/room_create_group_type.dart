@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/app/provider/common/filter.dart';
+import 'package:roomeasy/app/widget/common/center_content_something_error.dart';
+import 'package:roomeasy/app/widget/common/center_content_something_loading.dart';
 import 'package:roomeasy/app/widget/room_create/room_create_radio_input.dart';
 import 'package:roomeasy/model/filter/room_filter.dart';
 import 'package:roomeasy/model/response/response.dart';
@@ -62,9 +64,9 @@ class RoomCreateGroupTypeState extends ConsumerState<RoomCreateGroupType> {
               return [const CircularProgressIndicator()];
             },
             error: (error, stackTrace) {
-              return [const CircularProgressIndicator()];
+              return [const CenterContentSomethingError()];
             },
-            loading: () => [const CircularProgressIndicator()],
+            loading: () => [const CenterContentSomethingLoading()],
           )
         ],
       ),

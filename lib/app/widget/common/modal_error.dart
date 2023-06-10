@@ -26,12 +26,16 @@ class ModalError {
           );
     SnackBar child = SnackBar(
         duration: const Duration(seconds: 3),
-        backgroundColor: AppColor.textBlue,
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        content: Material(
-            elevation: 0,
-            borderRadius: BorderRadius.circular(8),
-            color: AppColor.textBlue,
+        padding: EdgeInsets.zero,
+        content: Container(
+            decoration: const BoxDecoration(
+                color: AppColor.textBlue,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8), topRight: Radius.circular(8))),
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             child: Row(
               children: [
                 icon,
