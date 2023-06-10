@@ -27,11 +27,9 @@ class ConnectionNetwork {
   }
 
   void _checkConnection(ConnectivityResult event) async {
-    print(event.toString());
     try {
       final res = await InternetAddress.lookup('www.google.com');
       if (res.isNotEmpty && res[0].rawAddress.isNotEmpty) {
-        print(res[0].rawAddress.isNotEmpty);
         _controller.add(true);
       } else {
         _controller.add(false);

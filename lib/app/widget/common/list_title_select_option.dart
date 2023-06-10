@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:roomeasy/app/constant/app_color.dart';
 
 class ListTitleSelectOption extends StatelessWidget {
   final String title;

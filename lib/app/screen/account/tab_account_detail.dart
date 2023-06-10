@@ -22,7 +22,7 @@ class TabAccountDetail extends StatefulWidget {
   const TabAccountDetail({Key? key}) : super(key: key);
 
   @override
-  _TabAccountDetailState createState() => _TabAccountDetailState();
+  State createState() => _TabAccountDetailState();
 }
 
 class _TabAccountDetailState extends State<TabAccountDetail> {
@@ -48,7 +48,6 @@ class _TabAccountDetailState extends State<TabAccountDetail> {
 
   @override
   void dispose() {
-    print('dispose');
     _nameController.dispose();
     _addressController.dispose();
     super.dispose();

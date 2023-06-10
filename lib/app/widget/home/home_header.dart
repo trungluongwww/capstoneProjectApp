@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/screen/home_filter/home_filter.dart';
 import 'package:roomeasy/app/widget/common/button_icon_linear_primary.dart';
@@ -14,7 +12,7 @@ class HomeHeader extends ConsumerStatefulWidget {
   const HomeHeader({required this.bodyKey, Key? key}) : super(key: key);
 
   @override
-  _HomeHeaderState createState() => _HomeHeaderState();
+  ConsumerState createState() => _HomeHeaderState();
 }
 
 class _HomeHeaderState extends ConsumerState<HomeHeader> {
@@ -107,7 +105,6 @@ class _HomeHeaderState extends ConsumerState<HomeHeader> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _searchController.dispose();
   }

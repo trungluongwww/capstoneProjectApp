@@ -19,7 +19,10 @@ class CustomCacheImage extends StatelessWidget {
       fit: fit,
       imageUrl: url,
       placeholder: (context, url) => const CenterContentSomethingLoading(),
-      errorWidget: (context, url, error) => const Icon(Icons.error),
+      errorWidget: (context, url, error) => Image.asset(
+        'assets/images/default_room.jpg',
+        fit: fit,
+      ),
     );
   }
 }

@@ -23,7 +23,7 @@ class ConversationDetail extends StatefulWidget {
   static const routeName = '/conversation-detail';
 
   @override
-  _ConversationDetailState createState() => _ConversationDetailState();
+  State createState() => _ConversationDetailState();
 }
 
 class _ConversationDetailState extends State<ConversationDetail> {

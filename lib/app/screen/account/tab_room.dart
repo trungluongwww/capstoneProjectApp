@@ -10,13 +10,13 @@ class TabRoom extends StatefulWidget {
   const TabRoom({Key? key}) : super(key: key);
 
   @override
-  _TabRoomState createState() => _TabRoomState();
+  State createState() => _TabRoomState();
 }
 
 class _TabRoomState extends State<TabRoom> {
   // state
   List<RoomModel> _rooms = [];
-  bool _isRoomLoading = false;
+  bool isRoomLoading = false;
   String _pageToken = "";
 
   late ScrollController _scrollController;
@@ -40,7 +40,7 @@ class _TabRoomState extends State<TabRoom> {
   // fetch
   Future<void> _refreshRoom() async {
     setState(() {
-      _isRoomLoading = true;
+      isRoomLoading = true;
     });
     _pageToken = "";
     final res = await AuthServices().getMyRooms(_pageToken);
@@ -58,14 +58,14 @@ class _TabRoomState extends State<TabRoom> {
 
     setState(() {
       _rooms = res.data!.rooms ?? [];
-      _isRoomLoading = false;
+      isRoomLoading = false;
     });
   }
 
   Future<void> _loadMoreRoom() async {
     if (_pageToken.isNotEmpty) {
       setState(() {
-        _isRoomLoading = true;
+        isRoomLoading = true;
       });
 
       final res = await AuthServices().getMyRooms(_pageToken);
@@ -80,7 +80,7 @@ class _TabRoomState extends State<TabRoom> {
 
       setState(() {
         _rooms.addAll(res.data!.rooms ?? []);
-        _isRoomLoading = false;
+        isRoomLoading = false;
       });
     }
   }

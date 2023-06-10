@@ -25,8 +25,7 @@ class ConversationDetailByUser extends StatefulWidget {
   static const routeName = '/conversation-detail-by-user';
 
   @override
-  _ConversationDetailByUserState createState() =>
-      _ConversationDetailByUserState();
+  State createState() => _ConversationDetailByUserState();
 }
 
 class _ConversationDetailByUserState extends State<ConversationDetailByUser> {

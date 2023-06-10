@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roomeasy/app/constant/app_color.dart';
 
 class ModalError {
   static final ModalError _instance = ModalError._internal();
@@ -13,7 +14,7 @@ class ModalError {
     Widget icon = code.startsWith('2')
         ? const Icon(
             Icons.done,
-            color: Colors.green,
+            color: AppColor.lightPrimary,
             size: 24,
             weight: 16,
           )
@@ -24,36 +25,34 @@ class ModalError {
             weight: 16,
           );
     SnackBar child = SnackBar(
-        duration: const Duration(seconds: 10),
-        backgroundColor: Colors.transparent,
+        duration: const Duration(seconds: 3),
+        backgroundColor: AppColor.textBlue,
         elevation: 0,
         content: Material(
-          elevation: 2,
-          borderRadius: BorderRadius.circular(8),
-          child: Container(
-            width: 200,
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-            child: ListTile(
-              horizontalTitleGap: 0,
-              visualDensity: const VisualDensity(
-                  vertical: VisualDensity.minimumDensity,
-                  horizontal: VisualDensity.minimumDensity),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-              dense: true,
-              leading: icon,
-              title: Text(
-                message ?? "",
-                style: const TextStyle(
-                  color: Colors.black87,
-                  fontFamily: 'Inter',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+            elevation: 0,
+            borderRadius: BorderRadius.circular(8),
+            color: AppColor.textBlue,
+            child: Row(
+              children: [
+                icon,
+                const SizedBox(
+                  width: 12,
                 ),
-              ),
-            ),
-          ),
-        ));
+                Expanded(
+                  child: Text(
+                    message ?? "",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                    style: const TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              ],
+            )));
 
     ScaffoldMessenger.of(context).showSnackBar(child);
   }

@@ -11,7 +11,7 @@ class HomeFilterScreen extends ConsumerStatefulWidget {
   const HomeFilterScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeFilterScreenState createState() => _HomeFilterScreenState();
+  ConsumerState createState() => _HomeFilterScreenState();
 }
 
 class _HomeFilterScreenState extends ConsumerState<HomeFilterScreen> {

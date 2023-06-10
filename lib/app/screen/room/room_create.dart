@@ -28,7 +28,7 @@ class RoomCreate extends StatefulWidget {
   const RoomCreate({Key? key}) : super(key: key);
 
   @override
-  _RoomCreateState createState() => _RoomCreateState();
+  State createState() => _RoomCreateState();
 }
 
 class _RoomCreateState extends State<RoomCreate> {
@@ -374,7 +374,8 @@ class _RoomCreateState extends State<RoomCreate> {
                                         border: selectedConveniences
                                                 .contains(conv.id!)
                                             ? Border.all(
-                                                width: 1, color: Colors.blue)
+                                                width: 1,
+                                                color: AppColor.primary)
                                             : null,
                                         borderRadius: BorderRadius.circular(6)),
                                     child: InkWell(

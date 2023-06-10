@@ -21,8 +21,7 @@ class ConversationListMessage extends ConsumerStatefulWidget {
   }) : super(key: key);
 
   @override
-  _ConversationListMessageState createState() =>
-      _ConversationListMessageState();
+  ConsumerState createState() => _ConversationListMessageState();
 }
 
 class _ConversationListMessageState

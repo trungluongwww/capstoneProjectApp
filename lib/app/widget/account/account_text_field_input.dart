@@ -16,7 +16,7 @@ class AccountTextFieldInput extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AccountTextFieldInputState createState() => _AccountTextFieldInputState();
+  State createState() => _AccountTextFieldInputState();
 }
 
 class _AccountTextFieldInputState extends State<AccountTextFieldInput> {

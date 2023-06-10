@@ -8,7 +8,7 @@ class App extends ConsumerStatefulWidget {
   const App({Key? key}) : super(key: key);
 
   @override
-  _AppState createState() => _AppState();
+  ConsumerState createState() => _AppState();
 }
 
 class _AppState extends ConsumerState<App> {

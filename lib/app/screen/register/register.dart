@@ -17,7 +17,7 @@ class RegisterScreen extends ConsumerStatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  _RegisterScreenState createState() => _RegisterScreenState();
+  ConsumerState createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends ConsumerState<RegisterScreen> {
@@ -35,7 +35,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    void _onSelectedLoation() async {
+    void onSelectedLoation() async {
       var rs = await Navigator.of(context)
           .pushNamed(SelectLocationScreen.routerName, arguments: locationData);
 
@@ -175,7 +175,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   labelText: 'Xác nhân mật khẩu',
                 ),
                 RegisterLocation(
-                    onSelected: _onSelectedLoation, location: locationData),
+                    onSelected: onSelectedLoation, location: locationData),
                 RegisterInputDefault(
                   keyboardType: TextInputType.text,
                   controller: _addressController,

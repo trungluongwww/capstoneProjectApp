@@ -7,7 +7,7 @@ class Favourite extends StatefulWidget {
   static const routeName = '/favourite';
 
   @override
-  _FavouriteState createState() => _FavouriteState();
+  State createState() => _FavouriteState();
 }
 
 class _FavouriteState extends State<Favourite> {

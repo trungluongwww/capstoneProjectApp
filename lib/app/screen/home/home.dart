@@ -1,7 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/screen/common/no_network_screen.dart';
@@ -16,7 +14,7 @@ class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  State createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {

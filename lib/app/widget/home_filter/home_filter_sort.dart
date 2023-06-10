@@ -10,7 +10,7 @@ class HomeFilterSort extends ConsumerStatefulWidget {
   const HomeFilterSort({Key? key}) : super(key: key);
 
   @override
-  _HomeFilterSortState createState() => _HomeFilterSortState();
+  ConsumerState createState() => _HomeFilterSortState();
 }
 
 class _HomeFilterSortState extends ConsumerState<HomeFilterSort> {

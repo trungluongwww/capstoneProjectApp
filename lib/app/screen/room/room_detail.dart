@@ -7,7 +7,6 @@ import 'package:roomeasy/api/services/auth/auth.dart';
 
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_icon.dart';
-import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/provider/room/room_detail.dart';
 import 'package:roomeasy/app/screen/image/detail_image_path_screen.dart';
 import 'package:roomeasy/app/widget/common/button_icon_primary.dart';
@@ -197,8 +196,8 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                               //         res.data!.owner!.avatar != ""
                               //     ? NetworkImage(res.data!.owner!.avatar!)
                               //     :
-                              const AssetImage('assets/images/default_user.png')
-                                  as ImageProvider,
+                              const AssetImage(
+                                  'assets/images/default_user.png'),
                         ),
                         title: Text(
                           res.data!.owner!.name!,

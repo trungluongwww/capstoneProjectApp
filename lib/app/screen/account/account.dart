@@ -13,7 +13,7 @@ class AccountScreen extends StatefulWidget {
   static const routeName = '/account';
 
   @override
-  _AccountScreenState createState() => _AccountScreenState();
+  State createState() => _AccountScreenState();
 }
 
 class _AccountScreenState extends State<AccountScreen>
@@ -40,8 +40,8 @@ class _AccountScreenState extends State<AccountScreen>
           style: TextStyle(
               fontFamily: 'Inter',
               fontSize: 16,
-              fontWeight: FontWeight.w300,
-              color: Colors.black),
+              fontWeight: FontWeight.w400,
+              color: AppColor.textBlue),
         ),
         actions: [
           Consumer(
