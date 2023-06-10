@@ -10,7 +10,7 @@ class HomeFilterCategory extends ConsumerStatefulWidget {
   const HomeFilterCategory({Key? key}) : super(key: key);
 
   @override
-  _HomeFilterCategoryState createState() => _HomeFilterCategoryState();
+  ConsumerState createState() => _HomeFilterCategoryState();
 }
 
 class _HomeFilterCategoryState extends ConsumerState<HomeFilterCategory> {

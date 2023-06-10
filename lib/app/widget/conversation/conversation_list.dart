@@ -15,7 +15,7 @@ class ConversationList extends ConsumerStatefulWidget {
   const ConversationList({Key? key}) : super(key: key);
 
   @override
-  _ConversationListState createState() => _ConversationListState();
+  ConsumerState createState() => _ConversationListState();
 }
 
 class _ConversationListState extends ConsumerState<ConversationList> {

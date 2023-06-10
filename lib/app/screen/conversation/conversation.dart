@@ -7,7 +7,7 @@ class Conversation extends StatefulWidget {
   static const routeName = '/conversation';
 
   @override
-  _ConversationState createState() => _ConversationState();
+  State createState() => _ConversationState();
 }
 
 class _ConversationState extends State<Conversation> {
@@ -27,7 +27,7 @@ class _ConversationState extends State<Conversation> {
               fontFamily: 'Inter',
               fontWeight: FontWeight.w500,
               fontSize: 16,
-              color: Colors.black87),
+              color: AppColor.textBlue),
         ),
       ),
       body: const ConversationList(),

@@ -10,7 +10,7 @@ class HomeBodyRecommend extends ConsumerStatefulWidget {
   const HomeBodyRecommend({Key? key}) : super(key: key);
 
   @override
-  _HomeBodyRecommendState createState() => _HomeBodyRecommendState();
+  ConsumerState createState() => _HomeBodyRecommendState();
 }
 
 class _HomeBodyRecommendState extends ConsumerState<HomeBodyRecommend> {

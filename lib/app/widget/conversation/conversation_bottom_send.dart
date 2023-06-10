@@ -8,7 +8,6 @@ import 'package:roomeasy/api/services/conversation/conversation.dart';
 import 'package:roomeasy/api/services/upload/upload.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_type.dart';
-import 'package:roomeasy/app/widget/common/custom_cache_image.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/form/file/file.dart';
 import 'package:roomeasy/form/message/message_create.dart';
@@ -25,7 +24,7 @@ class ConversationBottomSend extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ConversationBottomSendState createState() => _ConversationBottomSendState();
+  State createState() => _ConversationBottomSendState();
 }
 
 class _ConversationBottomSendState extends State<ConversationBottomSend> {

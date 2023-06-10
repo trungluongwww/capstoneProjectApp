@@ -10,13 +10,13 @@ class FavouriteBody extends StatefulWidget {
   const FavouriteBody({Key? key}) : super(key: key);
 
   @override
-  _FavouriteBodyState createState() => _FavouriteBodyState();
+  State createState() => _FavouriteBodyState();
 }
 
 class _FavouriteBodyState extends State<FavouriteBody> {
   // state
   List<RoomModel> _rooms = [];
-  bool _isRoomLoading = false;
+  bool isRoomLoading = false;
   String _pageToken = "";
 
   late ScrollController _scrollController;
@@ -40,7 +40,7 @@ class _FavouriteBodyState extends State<FavouriteBody> {
   // fetch
   Future<void> _refreshRoom() async {
     setState(() {
-      _isRoomLoading = true;
+      isRoomLoading = true;
     });
     _pageToken = "";
     final res = await AuthServices().getFavouriteRooms(_pageToken);
@@ -58,7 +58,7 @@ class _FavouriteBodyState extends State<FavouriteBody> {
 
     setState(() {
       _rooms = res.data!.rooms ?? [];
-      _isRoomLoading = false;
+      isRoomLoading = false;
     });
 
     if (res.code.toString().startsWith('5')) {
@@ -72,7 +72,7 @@ class _FavouriteBodyState extends State<FavouriteBody> {
   Future<void> _loadMoreRoom() async {
     if (_pageToken.isNotEmpty) {
       setState(() {
-        _isRoomLoading = true;
+        isRoomLoading = true;
       });
 
       final res = await AuthServices().getFavouriteRooms(_pageToken);
@@ -87,7 +87,7 @@ class _FavouriteBodyState extends State<FavouriteBody> {
 
       setState(() {
         _rooms.addAll(res.data!.rooms ?? []);
-        _isRoomLoading = false;
+        isRoomLoading = false;
       });
     }
   }

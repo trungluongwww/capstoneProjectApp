@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:roomeasy/app/constant/app_color.dart';
 
 class RoomCreateRadioInput extends StatelessWidget {
   final String title;
@@ -25,6 +26,7 @@ class RoomCreateRadioInput extends StatelessWidget {
           border:
               Border(bottom: BorderSide(width: 0.5, color: Colors.black45))),
       child: RadioListTile(
+        activeColor: AppColor.primary,
         onChanged: onChange,
         visualDensity: const VisualDensity(
             vertical: VisualDensity.minimumDensity,

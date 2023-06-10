@@ -40,16 +40,6 @@ class SocketManager {
       });
     }
 
-    _socket?.on('connect', (_) {
-      print('Connected');
-    });
-
-    _socket?.on('disconnect', (_) {
-      print('Disconnected');
-    });
-
-    _socket?.onConnectError((err) => print(err));
-
     _streamControllerNewMessage = StreamController<MessageModel>.broadcast();
 
     _socket?.on(eventNewMessage, (data) {

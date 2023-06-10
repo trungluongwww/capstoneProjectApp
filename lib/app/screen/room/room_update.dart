@@ -39,7 +39,7 @@ class RoomUpdateScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _RoomUpdateScreenState createState() => _RoomUpdateScreenState();
+  State createState() => _RoomUpdateScreenState();
 }
 
 class _RoomUpdateScreenState extends State<RoomUpdateScreen> {

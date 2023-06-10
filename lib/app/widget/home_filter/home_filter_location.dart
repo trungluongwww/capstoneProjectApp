@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
@@ -15,13 +13,12 @@ class HomeFilterLocation extends ConsumerStatefulWidget {
   const HomeFilterLocation({Key? key}) : super(key: key);
 
   @override
-  _HomeFilterLocationState createState() => _HomeFilterLocationState();
+  ConsumerState createState() => _HomeFilterLocationState();
 }
 
 class _HomeFilterLocationState extends ConsumerState<HomeFilterLocation> {
   @override
   Widget build(BuildContext context) {
-    // listener provider
     AsyncValue<ResponseModel<ProvinceResponseModel>> provinces =
         ref.watch(provinceProvider);
 

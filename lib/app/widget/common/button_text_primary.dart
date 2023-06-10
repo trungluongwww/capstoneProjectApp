@@ -26,7 +26,7 @@ class ButtonTextPrimary extends StatelessWidget {
       constraints: BoxConstraints(maxWidth: maxWidth),
       height: height,
       child: Material(
-        color: AppColor.primary,
+        color: AppColor.textBlue,
         child: InkWell(
           onTap: onClick,
           child: Center(
