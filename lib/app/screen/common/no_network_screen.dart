@@ -27,7 +27,7 @@ class NoNetworkScreen extends StatelessWidget {
           ),
         ),
         const Text(
-          'Không tìm thấy kết nối internet',
+          'Hệ thống đang gặp trục trặc',
           style: TextStyle(
               fontFamily: 'Inter',
               fontSize: 18,
@@ -35,7 +35,7 @@ class NoNetworkScreen extends StatelessWidget {
               fontWeight: FontWeight.w700),
         ),
         const Text(
-          'Vui lòng kiểm tra kết nối và khởi động lại ứng dụng',
+          'Vui lòng kiểm tra kết nối và khởi động lại ứng dụng sau',
           textAlign: TextAlign.center,
           style: TextStyle(
               fontFamily: 'Inter',

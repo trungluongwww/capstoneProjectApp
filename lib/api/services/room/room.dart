@@ -53,6 +53,7 @@ class RoomServices extends BaseService {
     String? keyword,
     String? pageToken,
     String? type,
+    int? maxPrice,
   }) async {
     Map<String, dynamic> params = {
       'provinceId': provinceId,
@@ -63,6 +64,7 @@ class RoomServices extends BaseService {
       'orderField': orderField,
       'orderValue': orderValue,
       'type': type,
+      'maxPrice': maxPrice.toString(),
     };
 
     if (orderValue == null || orderField == null) {
