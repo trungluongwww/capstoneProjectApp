@@ -30,9 +30,7 @@ class _AccountScreenState extends State<AccountScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(
-          color: AppColor.primary,
-        ),
+        leading: null,
         elevation: 0,
         backgroundColor: Colors.white,
         title: const Text(

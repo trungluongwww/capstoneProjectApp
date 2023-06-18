@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/router/router.dart';
+import 'package:roomeasy/app/bottom_navigation.dart';
 import 'package:roomeasy/app/screen/home/home.dart';
 
 class App extends ConsumerStatefulWidget {
@@ -24,7 +25,7 @@ class _AppState extends ConsumerState<App> {
           TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
         }),
       ),
-      initialRoute: Home.routeName,
+      home: const BottomNavigation(),
       onGenerateRoute: AppRouter.generateRoute,
     );
   }

@@ -18,9 +18,7 @@ class _ConversationState extends State<Conversation> {
         elevation: 1,
         backgroundColor: Colors.white,
         centerTitle: true,
-        leading: const BackButton(
-          color: AppColor.textBlue,
-        ),
+        leading: null,
         title: const Text(
           "Tin nhắn",
           style: TextStyle(

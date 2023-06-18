@@ -38,7 +38,7 @@ class _HomeBodyRecommendState extends ConsumerState<HomeBodyRecommend> {
                     color: AppColor.darkWhiteBackground,
                     padding: const EdgeInsets.all(8),
                     child: const Text(
-                      'Đề xuất gần bạn',
+                      'Đề xuất cho bạn',
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
