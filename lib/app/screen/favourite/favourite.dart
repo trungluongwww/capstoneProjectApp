@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/widget/favourite/favourite_body.dart';
 
 class Favourite extends StatefulWidget {
@@ -16,7 +15,7 @@ class _FavouriteState extends State<Favourite> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: const BackButton(color: AppColor.textBlue),
+        leading: null,
         title: const Text(
           'Danh sách yêu thích',
           style: TextStyle(

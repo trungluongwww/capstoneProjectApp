@@ -70,7 +70,7 @@ class ConversationListItem extends StatelessWidget {
       return FontWeight.w300;
     }
 
-    return FontWeight.w500;
+    return FontWeight.w600;
   }
 
   ImageProvider _getImageProvider() {
