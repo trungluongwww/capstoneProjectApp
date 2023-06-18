@@ -42,7 +42,9 @@ class _ConversationListState extends ConsumerState<ConversationList> {
     refreshConversation();
     super.initState();
 
-    _socketManager.connect().then((_) => onNewMessage());
+    if (ref.read(authProfileProvider) != null) {
+      _socketManager.connect().then((_) => onNewMessage());
+    }
   }
 
   void onNewMessage() {
@@ -55,7 +57,8 @@ class _ConversationListState extends ConsumerState<ConversationList> {
           .copyWith(lastMessage: data);
 
       conv = conv.copyWith(
-          unread: conv.unread ?? 0 + 1, lastSenderId: data.authorId);
+          unread: conv.unread != null ? conv.unread! + 1 : 1,
+          lastSenderId: data.authorId);
 
       if (conv.id != null) {
         setState(() {
@@ -133,6 +136,12 @@ class _ConversationListState extends ConsumerState<ConversationList> {
   @override
   Widget build(BuildContext context) {
     final userId = ref.watch(authProfileProvider)?.id;
+    ref.listen(authProfileProvider, (previous, next) {
+      if (next != null) {
+        refreshConversation();
+        _socketManager.connect().then((_) => onNewMessage());
+      }
+    });
     return RefreshIndicator(
       onRefresh: refreshConversation,
       child: Material(

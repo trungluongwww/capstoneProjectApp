@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
+import 'package:roomeasy/app/provider/common/bottom_navbar_index.dart';
 import 'package:roomeasy/app/screen/account/tab_account_detail.dart';
 import 'package:roomeasy/app/screen/account/tab_change_password.dart';
 import 'package:roomeasy/app/screen/account/tab_room.dart';
@@ -48,6 +49,7 @@ class _AccountScreenState extends State<AccountScreen>
                   ref
                       .read(authProfileProvider.notifier)
                       .removeCurrentUserState();
+                  ref.read(bottomNavbarIndexProvider.notifier).setIndex(0);
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       LoginScreen.routerName,
                       ModalRoute.withName(Home.routeName));
