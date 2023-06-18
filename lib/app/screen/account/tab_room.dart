@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
+import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/screen/room/room_detail.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/room/room_grid_item.dart';
 import 'package:roomeasy/model/room/room.dart';
 
-class TabRoom extends StatefulWidget {
+class TabRoom extends ConsumerStatefulWidget {
   const TabRoom({Key? key}) : super(key: key);
 
   @override
-  State createState() => _TabRoomState();
+  ConsumerState createState() => _TabRoomState();
 }
 
-class _TabRoomState extends State<TabRoom> {
+class _TabRoomState extends ConsumerState<TabRoom> {
   // state
   List<RoomModel> _rooms = [];
   bool isRoomLoading = false;
@@ -98,6 +100,11 @@ class _TabRoomState extends State<TabRoom> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(authProfileProvider, (previous, next) {
+      if (next != null) {
+        _refreshRoom();
+      }
+    });
     return Stack(children: [
       RefreshIndicator(
         onRefresh: _refreshRoom,
