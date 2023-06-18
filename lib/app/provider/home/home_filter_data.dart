@@ -12,6 +12,7 @@ class HomeFilterProviderModel {
   String? sortField;
   String? sortValue;
   String? keyword;
+  int maxPrice;
 
   HomeFilterProviderModel({
     this.selectedProvinceId,
@@ -24,6 +25,7 @@ class HomeFilterProviderModel {
     this.sortField,
     this.sortValue,
     this.keyword,
+    this.maxPrice = 100000000,
   });
 
   HomeFilterProviderModel copyWith({
@@ -37,6 +39,7 @@ class HomeFilterProviderModel {
     String? sortField,
     String? sortValue,
     String? keyword,
+    int? maxPrice,
   }) {
     return HomeFilterProviderModel(
       selectedProvinceId: selectedProvinceId ?? this.selectedProvinceId,
@@ -49,6 +52,7 @@ class HomeFilterProviderModel {
       sortField: sortField ?? this.sortField,
       sortValue: sortValue ?? this.sortValue,
       keyword: keyword ?? this.keyword,
+      maxPrice: maxPrice ?? this.maxPrice,
     );
   }
 }
@@ -100,6 +104,10 @@ class HomeFilterNotifier extends StateNotifier<HomeFilterProviderModel> {
     if (value != state.keyword) {
       state = state.copyWith(keyword: value);
     }
+  }
+
+  void setMaxPrice(int value) {
+    state = state.copyWith(maxPrice: value);
   }
 
   void reset() {

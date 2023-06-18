@@ -36,7 +36,8 @@ class HomeBodyState extends ConsumerState<HomeBody> {
         orderField: filter.sortField,
         orderValue: filter.sortValue,
         type: filter.roomType,
-        keyword: filter.keyword);
+        keyword: filter.keyword,
+        maxPrice: filter.maxPrice);
 
     if (response.code.toString().startsWith('2') && response.data != null) {
       ref.read(roomProvider.notifier).reset(response.data!.rooms!);

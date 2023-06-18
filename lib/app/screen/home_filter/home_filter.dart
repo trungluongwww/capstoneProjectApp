@@ -4,6 +4,7 @@ import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/widget/home_filter/home_filter_location.dart';
 import 'package:roomeasy/app/widget/home_filter/home_filter_category.dart';
+import 'package:roomeasy/app/widget/home_filter/home_filter_range_price.dart';
 import 'package:roomeasy/app/widget/home_filter/home_filter_sort.dart';
 
 class HomeFilterScreen extends ConsumerStatefulWidget {
@@ -63,6 +64,7 @@ class _HomeFilterScreenState extends ConsumerState<HomeFilterScreen> {
                       child: Column(children: const [
                         HomeFilterLocation(),
                         HomeFilterCategory(),
+                        HomeFilterRangePrice(),
                         HomeFilterSort(),
                       ]),
                     ),
