@@ -17,8 +17,8 @@ class RoomServices extends BaseService {
 
   Future<ResponseModel<RoomFilterModel>> getFilters() async {
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.filterEndpoint}");
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.filterEndpoint}", null);
 
       var response = await get(uri: url);
 
@@ -77,7 +77,7 @@ class RoomServices extends BaseService {
     }
 
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
+      final url = Apiconstants.getUri(
           "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}", params);
 
       var response = await get(uri: url);
@@ -106,8 +106,8 @@ class RoomServices extends BaseService {
     required String id,
   }) async {
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/$id");
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/$id", null);
 
       var response = await get(uri: url);
       if (!response.code.toString().startsWith('2')) {
@@ -135,8 +135,8 @@ class RoomServices extends BaseService {
     required RoomCreateFormModel formdata,
   }) async {
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}");
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}", null);
 
       var response = await post(uri: url, body: formdata.toMap());
       if (!response.code.toString().startsWith('2')) {
@@ -160,8 +160,8 @@ class RoomServices extends BaseService {
     required RoomUpdateFormModel formdata,
   }) async {
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/$id");
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/$id", null);
 
       var response = await put(uri: url, body: formdata.toMap());
       if (!response.code.toString().startsWith('2')) {
@@ -185,8 +185,9 @@ class RoomServices extends BaseService {
     required FileFormModel formdata,
   }) async {
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/$roomId/photo");
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/$roomId/photo",
+          null);
 
       var response = await post(uri: url, body: formdata.toMap());
       if (!response.code.toString().startsWith('2')) {
@@ -214,8 +215,9 @@ class RoomServices extends BaseService {
     required RoomRemovePhotoFormModel formdata,
   }) async {
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/$roomId/photo");
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/$roomId/photo",
+          null);
       var response = await delete(uri: url, body: formdata.toMap());
 
       if (!response.code.toString().startsWith('2')) {
@@ -240,8 +242,9 @@ class RoomServices extends BaseService {
     required RoomChangeStatusFormModel formdata,
   }) async {
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/$roomId/status");
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/$roomId/status",
+          null);
       var response = await patch(uri: url, body: formdata.toMap());
 
       if (!response.code.toString().startsWith('2')) {
@@ -263,10 +266,9 @@ class RoomServices extends BaseService {
 
   Future<ResponseModel<RoomResponseModel>> getRecommends() async {
     try {
-      final url = Uri.http(
-        Apiconstants.getBaseURL(),
-        "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/recommends",
-      );
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.roomEndpoint}/recommends",
+          null);
 
       var response = await get(uri: url);
       if (!response.code.toString().startsWith('2')) {

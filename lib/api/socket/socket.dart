@@ -34,7 +34,7 @@ class SocketManager {
     if (_socket != null) {
       _socket?.connect();
     } else {
-      _socket = io.io('http://${Apiconstants.getBaseURL()}', <String, dynamic>{
+      _socket = io.io(Apiconstants.getSocketURI(), <String, dynamic>{
         'transports': ['websocket'],
         'extraHeaders': await _getHeader(),
       });

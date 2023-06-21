@@ -19,7 +19,7 @@ class ConversationListItem extends StatelessWidget {
 
   String _getNameRoom() {
     if (userId == conv.owner!.id) {
-      return conv.participant!.name ?? "Không xác định";
+      return conv.participant?.name ?? "Không xác định";
     }
 
     return conv.owner!.name ?? "Không xác định";

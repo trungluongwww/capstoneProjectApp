@@ -28,8 +28,8 @@ class AuthServices extends BaseService {
   Future<ResponseModel<String>> login(
       {required LoginFormModel formData}) async {
     try {
-      final uri = Uri.http(Apiconstants.getBaseURL(),
-          '${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/login');
+      final uri = Apiconstants.getUri(
+          '${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/login', null);
       final res = await post(uri: uri, body: formData.toMap());
       if (!res.code.toString().startsWith('2')) {
         debugPrint(
@@ -55,8 +55,9 @@ class AuthServices extends BaseService {
   Future<ResponseModel<String>> register(
       {required RegisterFormModel formData}) async {
     try {
-      final uri = Uri.http(Apiconstants.getBaseURL(),
-          '${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/register');
+      final uri = Apiconstants.getUri(
+          '${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/register',
+          null);
 
       final res = await post(uri: uri, body: formData.toMap());
       if (!res.code.toString().startsWith('2')) {
@@ -82,8 +83,8 @@ class AuthServices extends BaseService {
 
   Future<ResponseModel<AuthProfileModel>> getMe() async {
     try {
-      final uri = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/me");
+      final uri = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/me", null);
 
       var response = await get(uri: uri);
       if (!response.code.toString().startsWith('2')) {
@@ -115,8 +116,7 @@ class AuthServices extends BaseService {
   Future<ResponseModel<AuthProfileModel>> getUserProfile(
       {required String userId}) async {
     try {
-      final uri = Uri.http(
-          Apiconstants.getBaseURL(),
+      final uri = Apiconstants.getUri(
           "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/profile",
           {"userId": userId});
 
@@ -145,8 +145,8 @@ class AuthServices extends BaseService {
 
   Future<ResponseModel> updateProfile(UserUpdateFormModel formdata) async {
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}");
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}", null);
 
       var response = await put(uri: url, body: formdata.toMap());
       if (!response.code.toString().startsWith('2')) {
@@ -168,8 +168,9 @@ class AuthServices extends BaseService {
 
   Future<ResponseModel> updateAvatar(UserChangeAvatarFormModel formdata) async {
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/avatar");
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/avatar",
+          null);
 
       var response = await patch(uri: url, body: formdata.toMap());
       if (!response.code.toString().startsWith('2')) {
@@ -192,8 +193,9 @@ class AuthServices extends BaseService {
   Future<ResponseModel> changePassword(
       UserChangePassWordFormModel formdata) async {
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/password");
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/password",
+          null);
 
       var response = await patch(uri: url, body: formdata.toMap());
       if (!response.code.toString().startsWith('2')) {
@@ -220,8 +222,7 @@ class AuthServices extends BaseService {
     };
 
     try {
-      final url = Uri.http(
-          Apiconstants.getBaseURL(),
+      final url = Apiconstants.getUri(
           "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/rooms",
           params);
 
@@ -249,8 +250,9 @@ class AuthServices extends BaseService {
 
   Future<ResponseModel> addToFavouriteRoom(String roomId) async {
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/favourite-room");
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/favourite-room",
+          null);
 
       var response = await post(uri: url, body: {'roomId': roomId});
       if (!response.code.toString().startsWith('2')) {
@@ -273,8 +275,9 @@ class AuthServices extends BaseService {
 
   Future<ResponseModel> removeFavouriteRoom(String roomId) async {
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/favourite-room");
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/favourite-room",
+          null);
 
       var response = await delete(uri: url, body: {'roomId': roomId});
       if (!response.code.toString().startsWith('2')) {
@@ -302,8 +305,7 @@ class AuthServices extends BaseService {
     };
 
     try {
-      final url = Uri.http(
-          Apiconstants.getBaseURL(),
+      final url = Apiconstants.getUri(
           "${Apiconstants.apiVersion}${Apiconstants.userEndpoint}/favourite-room",
           params);
 

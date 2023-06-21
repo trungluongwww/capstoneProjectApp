@@ -14,10 +14,10 @@ class FavouriteBody extends ConsumerStatefulWidget {
   const FavouriteBody({Key? key}) : super(key: key);
 
   @override
-  ConsumerState createState() => _FavouriteBodyState();
+  ConsumerState createState() => FavouriteBodyState();
 }
 
-class _FavouriteBodyState extends ConsumerState<FavouriteBody> {
+class FavouriteBodyState extends ConsumerState<FavouriteBody> {
   // state
   List<RoomModel> _rooms = [];
   bool isRoomLoading = false;
@@ -112,6 +112,12 @@ class _FavouriteBodyState extends ConsumerState<FavouriteBody> {
   Widget build(BuildContext context) {
     ref.listen(authProfileProvider, (previous, next) {
       if (next != null) {
+        _refreshRoom();
+      }
+    });
+
+    ref.listen(bottomNavbarIndexProvider, (previous, next) {
+      if (next.index == 1) {
         _refreshRoom();
       }
     });

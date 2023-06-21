@@ -116,11 +116,12 @@ class _ConversationListMessageState
     _scrollController = ScrollController();
     _scrollController.addListener(_scrollListener);
     loadMessage();
-    super.initState();
 
     _socketManager.connect().then((_) {
       onNewMessage();
     });
+
+    super.initState();
   }
 
   @override
