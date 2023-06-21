@@ -15,8 +15,7 @@ class ConversationService extends BaseService {
       'pageToken': pageToken,
     };
     try {
-      final uri = Uri.http(
-          Apiconstants.getBaseURL(),
+      final uri = Apiconstants.getUri(
           "${Apiconstants.apiVersion}${Apiconstants.conversationEndpoint}",
           params);
 
@@ -46,10 +45,9 @@ class ConversationService extends BaseService {
 
   Future<ResponseModel<ConversationModel>> getDetail(String id) async {
     try {
-      final uri = Uri.http(
-        Apiconstants.getBaseURL(),
-        "${Apiconstants.apiVersion}${Apiconstants.conversationEndpoint}/$id",
-      );
+      final uri = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.conversationEndpoint}/$id",
+          null);
 
       var response = await get(uri: uri);
 
@@ -81,8 +79,7 @@ class ConversationService extends BaseService {
       'targetId': id,
     };
     try {
-      final uri = Uri.http(
-          Apiconstants.getBaseURL(),
+      final uri = Apiconstants.getUri(
           "${Apiconstants.apiVersion}${Apiconstants.conversationEndpoint}/detail",
           params);
 
@@ -114,10 +111,9 @@ class ConversationService extends BaseService {
   Future<ResponseModel<dynamic>> sendMessage(
       String conversationId, MessageCreateFormModel formdata) async {
     try {
-      final uri = Uri.http(
-        Apiconstants.getBaseURL(),
-        "${Apiconstants.apiVersion}${Apiconstants.conversationEndpoint}/$conversationId/message",
-      );
+      final uri = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.conversationEndpoint}/$conversationId/message",
+          null);
 
       var response = await post(uri: uri, body: formdata.toMap());
 

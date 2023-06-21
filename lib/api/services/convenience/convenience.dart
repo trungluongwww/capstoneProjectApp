@@ -9,8 +9,9 @@ class ConvenienceService extends BaseService {
 
   Future<ResponseModel<ConvenienceResponseModel>> getAll() async {
     try {
-      final uri = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.convenienceEndPoint}");
+      final uri = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.convenienceEndPoint}",
+          null);
 
       var response = await get(uri: uri);
 
