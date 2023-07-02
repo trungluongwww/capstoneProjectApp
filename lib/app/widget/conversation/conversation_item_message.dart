@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_type.dart';
+import 'package:roomeasy/app/widget/common/custom_cache_image.dart';
 import 'package:roomeasy/model/message/message.dart';
 import 'package:roomeasy/ultils/strings.dart';
 
@@ -43,10 +44,15 @@ class ConversationItemMessage extends StatelessWidget {
       switch (message.type) {
         case AppType.photo:
           // TODO
-          // content = CacheImageContain(
-          //   url: message.file!.url!,
-          // );
-          content = Image.asset('assets/images/default_room.jpg');
+          if (message.file?.url != null) {
+            content = CustomCacheImage(
+              fit: BoxFit.contain,
+              url: message.file!.url!,
+            );
+          } else {
+            content = Image.asset('assets/images/default_room.jpg');
+          }
+
           break;
         case AppType.room:
           content = Column(

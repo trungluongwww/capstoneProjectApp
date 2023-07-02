@@ -25,7 +25,7 @@ class ModalError {
             weight: 16,
           );
     SnackBar child = SnackBar(
-        duration: const Duration(seconds: 3),
+        duration: const Duration(seconds: 2),
         backgroundColor: Colors.transparent,
         elevation: 0,
         padding: EdgeInsets.zero,

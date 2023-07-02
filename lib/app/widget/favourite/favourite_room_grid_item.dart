@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 
 import 'package:roomeasy/app/constant/app_value.dart';
+import 'package:roomeasy/app/widget/common/custom_cache_image.dart';
 import 'package:roomeasy/model/room/room.dart';
 import 'package:roomeasy/ultils/strings.dart';
 
@@ -29,6 +30,18 @@ class _FavouriteRoomGridItemState extends State<FavouriteRoomGridItem> {
     super.initState();
   }
 
+  Widget getAvatar() {
+    var avatar = widget.room.getAvatar();
+    if (avatar != null && avatar.isNotEmpty) {
+      return CustomCacheImage(url: avatar, fit: BoxFit.cover);
+    }
+
+    return Image.asset(
+      'assets/images/default_room.jpg',
+      fit: BoxFit.cover,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -39,13 +52,9 @@ class _FavouriteRoomGridItemState extends State<FavouriteRoomGridItem> {
         Flexible(
             flex: 3,
             child: SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: Image.asset(
-                'assets/images/default_room.jpg',
-                fit: BoxFit.cover,
-              ),
-            )),
+                width: double.infinity,
+                height: double.infinity,
+                child: getAvatar())),
         Flexible(
             flex: 1,
             child: ListTile(

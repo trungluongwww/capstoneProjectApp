@@ -24,7 +24,7 @@ class _ConversationListState extends ConsumerState<ConversationList> {
   final _socketManager = SocketManager();
 
   // stream
-  late StreamSubscription _sub;
+  late StreamSubscription? _sub;
 
   // state
   bool isGlobalLoading = false;
@@ -188,7 +188,7 @@ class _ConversationListState extends ConsumerState<ConversationList> {
     _scrollController.removeListener(_scrollListener);
     _scrollController.dispose();
     _socketManager.disconnect();
-    _sub.pause();
+    _sub?.pause();
     super.dispose();
   }
 }
