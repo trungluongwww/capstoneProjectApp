@@ -5,7 +5,6 @@ import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/provider/room/room.dart';
 import 'package:roomeasy/app/provider/room/room_recommend.dart';
-import 'package:roomeasy/app/screen/common/no_network_screen.dart';
 import 'package:roomeasy/app/widget/home/home_body_recommend.dart';
 import 'package:roomeasy/app/widget/room/room_container_item.dart';
 
@@ -119,10 +118,6 @@ class HomeBodyState extends ConsumerState<HomeBody> {
                   child: CustomScrollView(
                     controller: _scrollController,
                     physics: const AlwaysScrollableScrollPhysics(),
-                    // itemCount: rooms.length,
-                    // itemBuilder: (BuildContext context, int index) {
-                    // return RoomContainerItem(room: rooms[index]);
-                    // },
                     slivers: [
                       SliverList(
                         delegate: SliverChildBuilderDelegate(childCount: 1,

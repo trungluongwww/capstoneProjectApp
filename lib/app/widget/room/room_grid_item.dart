@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:roomeasy/api/services/room/room.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_value.dart';
+import 'package:roomeasy/app/widget/common/custom_cache_image.dart';
 import 'package:roomeasy/form/room/room_change_status.dart';
 
 import 'package:roomeasy/model/room/room.dart';
@@ -27,6 +28,18 @@ class _RoomGridItemState extends State<RoomGridItem> {
   void initState() {
     isActive = widget.room.status?.key == AppValue.active;
     super.initState();
+  }
+
+  Widget getAvatar() {
+    var avatar = widget.room.getAvatar();
+    if (avatar != null && avatar.isNotEmpty) {
+      return CustomCacheImage(url: avatar, fit: BoxFit.cover);
+    }
+
+    return Image.asset(
+      'assets/images/default_room.jpg',
+      fit: BoxFit.cover,
+    );
   }
 
   Widget _getStatusWidget() {
@@ -81,13 +94,9 @@ class _RoomGridItemState extends State<RoomGridItem> {
         Flexible(
             flex: 3,
             child: SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: Image.asset(
-                'assets/images/default_room.jpg',
-                fit: BoxFit.cover,
-              ),
-            )),
+                width: double.infinity,
+                height: double.infinity,
+                child: getAvatar())),
         Flexible(flex: 1, child: _getStatusWidget()),
         Flexible(
           flex: 3,

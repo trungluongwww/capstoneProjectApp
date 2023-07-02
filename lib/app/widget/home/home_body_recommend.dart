@@ -60,7 +60,8 @@ class _HomeBodyRecommendState extends ConsumerState<HomeBodyRecommend> {
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 4),
                             child: ListTile(
-                              contentPadding: EdgeInsets.zero,
+                              contentPadding:
+                                  const EdgeInsets.symmetric(horizontal: 4),
                               leading: SizedBox(
                                 width: 100,
                                 height: 100,
