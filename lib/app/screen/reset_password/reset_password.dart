@@ -175,8 +175,11 @@ class _ResetPasswordState extends State<ResetPassword> {
                                                     .read(authProfileProvider
                                                         .notifier)
                                                     .refresh();
+
+                                                if (context.mounted) {
+                                                  Navigator.of(context).pop();
+                                                }
                                               }
-                                              Navigator.of(context).pop();
                                             }
                                           }
                                         },
