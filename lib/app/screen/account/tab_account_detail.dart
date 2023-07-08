@@ -18,14 +18,14 @@ import 'package:roomeasy/form/location/location.dart';
 import 'package:roomeasy/form/user/user_change_avatar.dart';
 import 'package:roomeasy/form/user/user_update.dart';
 
-class TabAccountDetail extends StatefulWidget {
+class TabAccountDetail extends ConsumerStatefulWidget {
   const TabAccountDetail({Key? key}) : super(key: key);
 
   @override
-  State createState() => _TabAccountDetailState();
+  ConsumerState createState() => _TabAccountDetailState();
 }
 
-class _TabAccountDetailState extends State<TabAccountDetail> {
+class _TabAccountDetailState extends ConsumerState<TabAccountDetail> {
   late TextEditingController _nameController;
   late TextEditingController _addressController;
   late LocationFormModel _locationData;
@@ -65,6 +65,11 @@ class _TabAccountDetailState extends State<TabAccountDetail> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(authProfileProvider, (previous, next) {
+      if (next != null) {
+        prepareInfo();
+      }
+    });
     return Stack(
       children: [
         Container(

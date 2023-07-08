@@ -11,7 +11,6 @@ import 'package:roomeasy/app/provider/room/room_detail.dart';
 import 'package:roomeasy/app/screen/image/detail_image_path_screen.dart';
 import 'package:roomeasy/app/widget/common/button_icon_primary.dart';
 import 'package:roomeasy/app/widget/common/center_content_something_error.dart';
-import 'package:roomeasy/app/widget/common/custom_cache_image.dart';
 import 'package:roomeasy/app/widget/common/list_title_small_without_spacing.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/profile/profile_bottom_modal.dart';

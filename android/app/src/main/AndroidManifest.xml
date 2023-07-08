@@ -2,7 +2,7 @@
     package="com.capstone.roomeasy">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="Rent Easy"
+        android:label="Cozy Stay"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -109,6 +109,8 @@ class ConversationListItem extends StatelessWidget {
         child: ListTile(
           title: Text(
             _getNameRoom(),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: _getFontWeight(),
@@ -117,6 +119,7 @@ class ConversationListItem extends StatelessWidget {
           ),
           subtitle: Text(
             _getContentLastMessage(),
+            maxLines: 1,
             style: TextStyle(
                 overflow: TextOverflow.ellipsis,
                 fontFamily: 'Inter',

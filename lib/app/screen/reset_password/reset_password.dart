@@ -6,7 +6,6 @@ import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/common/position_center_loading.dart';
 import 'package:roomeasy/app/widget/reset_password/reset_app_bar.dart';
-import 'package:roomeasy/form/user/user_forgot_password.dart';
 import 'package:roomeasy/form/user/user_reset_password.dart';
 
 class ResetPassword extends StatefulWidget {

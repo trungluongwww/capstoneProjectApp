@@ -188,7 +188,7 @@ class _ConversationListState extends ConsumerState<ConversationList> {
     _scrollController.removeListener(_scrollListener);
     _scrollController.dispose();
     _socketManager.disconnect();
-    _sub?.pause();
+    _sub.pause();
     super.dispose();
   }
 }
