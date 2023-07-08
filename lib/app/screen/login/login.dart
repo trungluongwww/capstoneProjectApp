@@ -252,6 +252,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                         AppColor.primary),
                                   ),
                                   onPressed: () async {
+                                    FocusScopeNode currentNode =
+                                        FocusScope.of(context);
+                                    if (!currentNode.hasPrimaryFocus) {
+                                      currentNode.unfocus();
+                                    }
+
                                     if (formKey.currentState!.validate()) {
                                       setState(() {
                                         isLoading = true;
