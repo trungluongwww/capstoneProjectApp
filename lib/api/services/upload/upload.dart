@@ -14,8 +14,9 @@ class UploadService extends BaseService {
   Future<ResponseModel<ListPhotoResponseModel>> uploadPhotos(
       List<File> files) async {
     try {
-      var uri = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.uploadEndpoint}/multiple-photo");
+      var uri = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.uploadEndpoint}/multiple-photo",
+          null);
 
       var request = http.MultipartRequest(
         'POST',
@@ -48,8 +49,9 @@ class UploadService extends BaseService {
 
   Future<ResponseModel<FileInfoModel>> uploadAvatar(File file) async {
     try {
-      var uri = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.uploadEndpoint}/avatar");
+      var uri = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.uploadEndpoint}/avatar",
+          null);
 
       var request = http.MultipartRequest(
         'POST',
@@ -78,8 +80,9 @@ class UploadService extends BaseService {
 
   Future<ResponseModel<FileInfoModel>> uploadSinglePhoto(File file) async {
     try {
-      var uri = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.uploadEndpoint}/single-photo");
+      var uri = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.uploadEndpoint}/single-photo",
+          null);
 
       var request = http.MultipartRequest(
         'POST',

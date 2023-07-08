@@ -19,7 +19,7 @@ class ConversationListItem extends StatelessWidget {
 
   String _getNameRoom() {
     if (userId == conv.owner!.id) {
-      return conv.participant!.name ?? "Không xác định";
+      return conv.participant?.name ?? "Không xác định";
     }
 
     return conv.owner!.name ?? "Không xác định";
@@ -70,21 +70,21 @@ class ConversationListItem extends StatelessWidget {
       return FontWeight.w300;
     }
 
-    return FontWeight.w500;
+    return FontWeight.w600;
   }
 
   ImageProvider _getImageProvider() {
     NetworkImage? image;
     // TODO
-    // if (userId == conv.owner?.id &&
-    //     conv.participant!.avatar != null &&
-    //     conv.participant!.avatar!.isNotEmpty) {
-    //   image = NetworkImage(conv.participant!.avatar!);
-    // } else if (userId == conv.participant?.id &&
-    //     conv.owner!.avatar != null &&
-    //     conv.owner!.avatar!.isNotEmpty) {
-    //   image = NetworkImage(conv.owner!.avatar!);
-    // }
+    if (userId == conv.owner?.id &&
+        conv.participant!.avatar != null &&
+        conv.participant!.avatar!.isNotEmpty) {
+      image = NetworkImage(conv.participant!.avatar!);
+    } else if (userId == conv.participant?.id &&
+        conv.owner!.avatar != null &&
+        conv.owner!.avatar!.isNotEmpty) {
+      image = NetworkImage(conv.owner!.avatar!);
+    }
 
     return image != null
         ? image as ImageProvider

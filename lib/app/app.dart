@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/router/router.dart';
-import 'package:roomeasy/app/screen/home/home.dart';
+import 'package:roomeasy/app/bottom_navigation.dart';
 
 class App extends ConsumerStatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -16,6 +16,7 @@ class _AppState extends ConsumerState<App> {
   Widget build(BuildContext context) {
     ref.read(authProfileProvider.notifier).init();
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         fontFamily: 'Inter',
@@ -24,7 +25,7 @@ class _AppState extends ConsumerState<App> {
           TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
         }),
       ),
-      initialRoute: Home.routeName,
+      home: const BottomNavigation(),
       onGenerateRoute: AppRouter.generateRoute,
     );
   }

@@ -5,11 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/constant/app_image.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
-import 'package:roomeasy/app/screen/account/account.dart';
-import 'package:roomeasy/app/screen/conversation/conversation.dart';
-import 'package:roomeasy/app/screen/favourite/favourite.dart';
+
 import 'package:roomeasy/app/screen/login/login.dart';
-import 'package:roomeasy/app/widget/common/app_bar_action_item_with_bage.dart';
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   final int? unreadMessage;
@@ -20,32 +17,6 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> getAppBarActions() {
-      return [
-        AppBarActionItem(
-            icon: Icons.message,
-            onPress: () {
-              Navigator.of(context).pushNamed(Conversation.routeName);
-            },
-            showNotification: false,
-            showNumber: 0),
-        AppBarActionItem(
-            icon: Icons.favorite,
-            onPress: () {
-              Navigator.of(context).pushNamed(Favourite.routeName);
-            },
-            showNotification: false,
-            showNumber: 0),
-        AppBarActionItem(
-            icon: Icons.settings,
-            onPress: () {
-              Navigator.of(context).pushNamed(AccountScreen.routeName);
-            },
-            showNotification: unreadMessage != null,
-            showNumber: unreadMessage ?? 0),
-      ];
-    }
-
     final screenHeight = MediaQuery.of(context).size.height;
     final appBarHeight = (screenHeight * 8 / 100).roundToDouble();
     Widget loginButton = TextButton(
@@ -65,17 +36,36 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
       child: Consumer(builder: (context, ref, child) {
         final auth = ref.watch(authProfileProvider);
         return AppBar(
-          leading: Image.asset(
-            AppImage.logo,
-            fit: BoxFit.contain,
-            height: appBarHeight,
-            width: 200,
+          leading: Center(
+            child: Image.asset(
+              AppImage.logo,
+              fit: BoxFit.contain,
+              height: appBarHeight,
+              width: appBarHeight,
+            ),
           ),
           leadingWidth: 100,
           shadowColor: AppColor.white,
           elevation: 0,
           toolbarHeight: appBarHeight,
-          actions: auth != null ? getAppBarActions() : [loginButton],
+          actions: auth != null
+              ? [
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: Text(
+                        "xin chào ${auth.name ?? ""}",
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            color: AppColor.textBlue,
+                            fontFamily: 'Inter',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                  )
+                ]
+              : [loginButton],
           backgroundColor: AppColor.white,
         );
       }),

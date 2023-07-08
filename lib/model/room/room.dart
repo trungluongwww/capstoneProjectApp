@@ -74,15 +74,15 @@ class RoomModel {
 
   String? getAvatar() {
     // TODO
-    return null;
-    // if (avatar != null && avatar!.isNotEmpty) {
-    //   return avatar;
-    // }
-
-    // if (files.isNotEmpty) {
-    //   return files[0].info!.url;
-    // }
     // return null;
+    if (avatar != null && avatar!.isNotEmpty) {
+      return avatar;
+    }
+
+    if (files.isNotEmpty) {
+      return files[0].info!.url;
+    }
+    return null;
   }
 
   String? getFullNameLocation() {

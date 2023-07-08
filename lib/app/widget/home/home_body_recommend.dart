@@ -38,7 +38,7 @@ class _HomeBodyRecommendState extends ConsumerState<HomeBodyRecommend> {
                     color: AppColor.darkWhiteBackground,
                     padding: const EdgeInsets.all(8),
                     child: const Text(
-                      'Đề xuất gần bạn',
+                      'Đề xuất cho bạn',
                       style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
@@ -60,7 +60,8 @@ class _HomeBodyRecommendState extends ConsumerState<HomeBodyRecommend> {
                           child: Container(
                             margin: const EdgeInsets.symmetric(vertical: 4),
                             child: ListTile(
-                              contentPadding: EdgeInsets.zero,
+                              contentPadding:
+                                  const EdgeInsets.symmetric(horizontal: 4),
                               leading: SizedBox(
                                 width: 100,
                                 height: 100,

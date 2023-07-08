@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
+import 'package:roomeasy/app/constant/app_color.dart';
+import 'package:roomeasy/app/provider/common/auth.dart';
+import 'package:roomeasy/app/provider/common/bottom_navbar_index.dart';
 import 'package:roomeasy/app/screen/common/no_network_screen.dart';
 import 'package:roomeasy/app/screen/room/room_detail.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/favourite/favourite_room_grid_item.dart';
 import 'package:roomeasy/model/room/room.dart';
 
-class FavouriteBody extends StatefulWidget {
+class FavouriteBody extends ConsumerStatefulWidget {
   const FavouriteBody({Key? key}) : super(key: key);
 
   @override
-  State createState() => _FavouriteBodyState();
+  ConsumerState createState() => FavouriteBodyState();
 }
 
-class _FavouriteBodyState extends State<FavouriteBody> {
+class FavouriteBodyState extends ConsumerState<FavouriteBody> {
   // state
   List<RoomModel> _rooms = [];
   bool isRoomLoading = false;
@@ -27,6 +31,7 @@ class _FavouriteBodyState extends State<FavouriteBody> {
     _scrollController.addListener(_scrollListener);
 
     _refreshRoom();
+
     super.initState();
   }
 
@@ -105,6 +110,17 @@ class _FavouriteBodyState extends State<FavouriteBody> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(authProfileProvider, (previous, next) {
+      if (next != null) {
+        _refreshRoom();
+      }
+    });
+
+    ref.listen(bottomNavbarIndexProvider, (previous, next) {
+      if (next.index == 1) {
+        _refreshRoom();
+      }
+    });
     return Stack(children: [
       RefreshIndicator(
         onRefresh: _refreshRoom,
@@ -149,6 +165,18 @@ class _FavouriteBodyState extends State<FavouriteBody> {
           ),
         ),
       ),
+      if (_rooms.isEmpty)
+        const Positioned.fill(
+            child: Center(
+          child: Text(
+            'Không có phòng yêu thích',
+            style: TextStyle(
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w400,
+                fontSize: 16,
+                color: AppColor.textBlue),
+          ),
+        ))
     ]);
   }
 }

@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/api/services/conversation/conversation.dart';
-import 'package:roomeasy/api/socket/socket.dart';
-
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
 import 'package:roomeasy/app/screen/common/no_network_screen.dart';
@@ -70,7 +68,6 @@ class _ConversationDetailByUserState extends State<ConversationDetailByUser> {
 
   @override
   void dispose() {
-    SocketManager().disconnect();
     super.dispose();
   }
 

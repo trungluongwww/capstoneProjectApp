@@ -6,6 +6,7 @@ import 'package:roomeasy/api/services/conversation/conversation.dart';
 import 'package:roomeasy/api/socket/socket.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
+import 'package:roomeasy/app/provider/common/bottom_navbar_index.dart';
 import 'package:roomeasy/app/screen/common/no_network_screen.dart';
 import 'package:roomeasy/app/widget/common/center_content_something_loading.dart';
 import 'package:roomeasy/app/widget/conversation/conversation_list_item.dart';
@@ -42,7 +43,9 @@ class _ConversationListState extends ConsumerState<ConversationList> {
     refreshConversation();
     super.initState();
 
-    _socketManager.connect().then((_) => onNewMessage());
+    if (ref.read(authProfileProvider) != null) {
+      _socketManager.connect().then((_) => onNewMessage());
+    }
   }
 
   void onNewMessage() {
@@ -55,12 +58,26 @@ class _ConversationListState extends ConsumerState<ConversationList> {
           .copyWith(lastMessage: data);
 
       conv = conv.copyWith(
-          unread: conv.unread ?? 0 + 1, lastSenderId: data.authorId);
+          unread: conv.unread != null ? conv.unread! + 1 : 1,
+          lastSenderId: data.authorId);
 
       if (conv.id != null) {
         setState(() {
           convs.removeWhere((element) => element.id == conv.id);
           convs.insert(0, conv);
+        });
+      } else if (data.conversationId != null) {
+        ConversationService().getDetail(data.conversationId!).then((value) {
+          if (value.data != null) {
+            convs.add(ConversationModel(
+                id: value.data?.id,
+                lastMessage: data,
+                lastSenderId: data.authorId,
+                owner: value.data?.owner,
+                unread: 1,
+                createdAt: value.data?.createdAt,
+                updatedAt: value.data?.updatedAt));
+          }
         });
       }
     });
@@ -133,6 +150,19 @@ class _ConversationListState extends ConsumerState<ConversationList> {
   @override
   Widget build(BuildContext context) {
     final userId = ref.watch(authProfileProvider)?.id;
+    ref.listen(authProfileProvider, (previous, next) {
+      if (next != null) {
+        refreshConversation();
+        _socketManager.connect().then((_) => onNewMessage());
+      }
+    });
+
+    ref.listen(bottomNavbarIndexProvider, (previous, next) {
+      if (next.index == 2) {
+        refreshConversation();
+      }
+    });
+
     return RefreshIndicator(
       onRefresh: refreshConversation,
       child: Material(
@@ -158,7 +188,7 @@ class _ConversationListState extends ConsumerState<ConversationList> {
     _scrollController.removeListener(_scrollListener);
     _scrollController.dispose();
     _socketManager.disconnect();
-    _sub.pause();
+    _sub?.pause();
     super.dispose();
   }
 }

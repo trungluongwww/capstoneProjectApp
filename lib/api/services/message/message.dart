@@ -13,8 +13,7 @@ class MessageService extends BaseService {
       'pageToken': pageToken,
     };
     try {
-      final uri = Uri.http(
-          Apiconstants.getBaseURL(),
+      final uri = Apiconstants.getUri(
           "${Apiconstants.apiVersion}${Apiconstants.conversationEndpoint}/$id/messages",
           params);
 

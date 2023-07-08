@@ -4,7 +4,7 @@ import 'package:roomeasy/api/services/room/room.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/home/home_filter_data.dart';
 import 'package:roomeasy/app/provider/room/room.dart';
-import 'package:roomeasy/app/screen/common/no_network_screen.dart';
+import 'package:roomeasy/app/provider/room/room_recommend.dart';
 import 'package:roomeasy/app/widget/home/home_body_recommend.dart';
 import 'package:roomeasy/app/widget/room/room_container_item.dart';
 
@@ -46,11 +46,6 @@ class HomeBodyState extends ConsumerState<HomeBody> {
     setState(() {
       isLoading = false;
     });
-
-    if (response.code.toString().startsWith('5') && mounted) {
-      Navigator.of(context).pushNamedAndRemoveUntil(
-          NoNetworkScreen.routerName, (Route route) => false);
-    }
   }
 
   Future<void> loadMore() async {
@@ -107,7 +102,12 @@ class HomeBodyState extends ConsumerState<HomeBody> {
           color: Colors.white,
           backgroundColor: const Color.fromARGB(110, 158, 158, 158),
           strokeWidth: 2.0,
-          onRefresh: reloadRoom,
+          onRefresh: () async {
+            reloadRoom();
+            try {
+              ref.invalidate(roomRecommendProvider);
+            } catch (e) {}
+          },
           child: Container(
             color: AppColor.darkWhiteBackground,
             child: Column(
@@ -118,10 +118,6 @@ class HomeBodyState extends ConsumerState<HomeBody> {
                   child: CustomScrollView(
                     controller: _scrollController,
                     physics: const AlwaysScrollableScrollPhysics(),
-                    // itemCount: rooms.length,
-                    // itemBuilder: (BuildContext context, int index) {
-                    // return RoomContainerItem(room: rooms[index]);
-                    // },
                     slivers: [
                       SliverList(
                         delegate: SliverChildBuilderDelegate(childCount: 1,

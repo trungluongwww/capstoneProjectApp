@@ -6,11 +6,13 @@ import 'package:roomeasy/app/screen/conversation/conversation.dart';
 import 'package:roomeasy/app/screen/conversation/conversation_detail.dart';
 import 'package:roomeasy/app/screen/conversation/conversation_detail_by_user.dart';
 import 'package:roomeasy/app/screen/favourite/favourite.dart';
+import 'package:roomeasy/app/screen/forgot/forgot_password.dart';
 import 'package:roomeasy/app/screen/home/home.dart';
 import 'package:roomeasy/app/screen/home_filter/home_filter.dart';
 import 'package:roomeasy/app/screen/location/location.dart';
 import 'package:roomeasy/app/screen/login/login.dart';
 import 'package:roomeasy/app/screen/register/register.dart';
+import 'package:roomeasy/app/screen/reset_password/reset_password.dart';
 import 'package:roomeasy/app/screen/room/room_create.dart';
 import 'package:roomeasy/app/screen/room/room_detail.dart';
 import 'package:roomeasy/app/screen/room/room_update.dart';
@@ -100,6 +102,14 @@ class AppRouter {
         break;
       case RegisterScreen.routerName:
         builder = (context) => const RegisterScreen();
+        break;
+      case ForgotPassword.routerName:
+        builder = (context) => const ForgotPassword();
+        break;
+      case ResetPassword.routerName:
+        final email =
+            (settings.arguments as Map<String, dynamic>)['email'] as String;
+        builder = (context) => ResetPassword(email: email);
         break;
       case RoomCreate.routeName:
         builder =

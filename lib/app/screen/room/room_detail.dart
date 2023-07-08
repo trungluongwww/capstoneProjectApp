@@ -11,6 +11,7 @@ import 'package:roomeasy/app/provider/room/room_detail.dart';
 import 'package:roomeasy/app/screen/image/detail_image_path_screen.dart';
 import 'package:roomeasy/app/widget/common/button_icon_primary.dart';
 import 'package:roomeasy/app/widget/common/center_content_something_error.dart';
+import 'package:roomeasy/app/widget/common/custom_cache_image.dart';
 import 'package:roomeasy/app/widget/common/list_title_small_without_spacing.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/profile/profile_bottom_modal.dart';
@@ -77,11 +78,12 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                         clipBehavior: Clip.hardEdge,
                         decoration: BoxDecoration(
                           // TODO
-                          image: const DecorationImage(
-                              image: // res.data!.getAvatar() != null
-                                  // ? NetworkImage(res.data!.getAvatar()!):
-                                  AssetImage('assets/images/default_room.jpg'),
-                              //as ImageProvider,
+                          image: DecorationImage(
+                              image: res.data!.getAvatar() != null
+                                  ? NetworkImage(res.data!.getAvatar()!)
+                                  : const AssetImage(
+                                          'assets/images/default_room.jpg')
+                                      as ImageProvider,
                               fit: BoxFit.cover),
                           borderRadius: BorderRadius.circular(16),
                         ),
@@ -192,12 +194,12 @@ class RoomDetailScreenState extends ConsumerState<RoomDetailScreen> {
                         leading: CircleAvatar(
                           backgroundImage:
                               // TODO
-                              // res.data!.owner!.avatar != null &&
-                              //         res.data!.owner!.avatar != ""
-                              //     ? NetworkImage(res.data!.owner!.avatar!)
-                              //     :
-                              const AssetImage(
-                                  'assets/images/default_user.png'),
+                              res.data!.owner!.avatar != null &&
+                                      res.data!.owner!.avatar != ""
+                                  ? NetworkImage(res.data!.owner!.avatar!)
+                                  : const AssetImage(
+                                          'assets/images/default_user.png')
+                                      as ImageProvider,
                         ),
                         title: Text(
                           res.data!.owner!.name!,

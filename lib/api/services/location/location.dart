@@ -11,8 +11,9 @@ class LocationService extends BaseService {
 
   Future<ResponseModel<ProvinceResponseModel>> getProvinces() async {
     try {
-      final url = Uri.http(Apiconstants.getBaseURL(),
-          "${Apiconstants.apiVersion}${Apiconstants.locationEndpoint}/provinces");
+      final url = Apiconstants.getUri(
+          "${Apiconstants.apiVersion}${Apiconstants.locationEndpoint}/provinces",
+          null);
 
       var response = await get(uri: url);
 
@@ -43,8 +44,7 @@ class LocationService extends BaseService {
   Future<ResponseModel<DistrictResponseModel>> getDistricts(
       {required String id}) async {
     try {
-      final url = Uri.http(
-          Apiconstants.getBaseURL(),
+      final url = Apiconstants.getUri(
           "${Apiconstants.apiVersion}${Apiconstants.locationEndpoint}/districts",
           {'provinceId': id});
 
@@ -77,8 +77,7 @@ class LocationService extends BaseService {
   Future<ResponseModel<WardResponseModel>> getWards(
       {required String id}) async {
     try {
-      final url = Uri.http(
-          Apiconstants.getBaseURL(),
+      final url = Apiconstants.getUri(
           "${Apiconstants.apiVersion}${Apiconstants.locationEndpoint}/wards",
           {'districtId': id});
 
