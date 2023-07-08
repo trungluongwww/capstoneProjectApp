@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 
 class Apiconstants {
   // domain
-  static String devBaseUrl = "10.0.2.2:5000";
+  // static String devBaseUrl = "10.0.2.2:5000";
   // static String devBaseUrl = "192.168.1.11:5000";
-  // static String devBaseUrl = "capstone-trungluong.com";
+  static String devBaseUrl = "capstone-trungluong.com";
   static String productBaseUrl = "capstone-trungluong.com";
 
   // apiversion
@@ -26,13 +26,13 @@ class Apiconstants {
     if (kReleaseMode) {
       return 'https://$productBaseUrl';
     }
-    return 'http://$devBaseUrl';
+    return 'https://$devBaseUrl';
   }
 
   static Uri getUri(String endpoint, Map<String, dynamic>? params) {
     if (kReleaseMode) {
       return Uri.https(productBaseUrl, endpoint, params);
     }
-    return Uri.http(devBaseUrl, endpoint, params);
+    return Uri.https(devBaseUrl, endpoint, params);
   }
 }

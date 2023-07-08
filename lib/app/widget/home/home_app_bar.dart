@@ -51,7 +51,8 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
           actions: auth != null
               ? [
                   Center(
-                    child: Padding(
+                    child: Container(
+                      width: 200,
                       padding: const EdgeInsets.only(right: 8),
                       child: Text(
                         "xin chào ${auth.name ?? ""}",
@@ -61,6 +62,8 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
                             fontFamily: 'Inter',
                             fontSize: 14,
                             fontWeight: FontWeight.w400),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
                     ),
                   )
