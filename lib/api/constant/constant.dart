@@ -4,6 +4,7 @@ class Apiconstants {
   // domain
   static String devBaseUrl = "10.0.2.2:5000";
   // static String devBaseUrl = "192.168.1.11:5000";
+  // static String devBaseUrl = "capstone-trungluong.com";
   static String productBaseUrl = "capstone-trungluong.com";
 
   // apiversion

@@ -24,7 +24,7 @@ class _ConversationListState extends ConsumerState<ConversationList> {
   final _socketManager = SocketManager();
 
   // stream
-  late StreamSubscription? _sub;
+  late StreamSubscription _sub;
 
   // state
   bool isGlobalLoading = false;

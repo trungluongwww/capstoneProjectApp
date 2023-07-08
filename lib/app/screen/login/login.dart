@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roomeasy/api/services/auth/auth.dart';
 import 'package:roomeasy/app/constant/app_color.dart';
 import 'package:roomeasy/app/provider/common/auth.dart';
+import 'package:roomeasy/app/screen/forgot/forgot_password.dart';
 import 'package:roomeasy/app/screen/register/register.dart';
 import 'package:roomeasy/app/widget/common/modal_error.dart';
 import 'package:roomeasy/app/widget/common/position_center_loading.dart';
@@ -316,6 +317,25 @@ class _LoginScreenState extends State<LoginScreen> {
                           padding: EdgeInsets.only(top: 12),
                           child: Text(
                             'Đăng ký tài khoản',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: AppColor.primary,
+                                fontFamily: 'Inter',
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushReplacementNamed(ForgotPassword.routerName);
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.only(top: 12),
+                          child: Text(
+                            'Quên mật khẩu ?',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: AppColor.primary,

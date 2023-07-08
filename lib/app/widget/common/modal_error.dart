@@ -11,6 +11,14 @@ class ModalError {
   ModalError._internal();
 
   void showToast(BuildContext context, String code, String? message) {
+    var duration = const Duration(seconds: 3);
+    if (code.startsWith("5")) {
+      message = "Yêu cầu không thành công";
+      duration = const Duration(seconds: 1);
+    } else if (code.startsWith('4')) {
+      duration = const Duration(seconds: 1);
+    }
+
     Widget icon = code.startsWith('2')
         ? const Icon(
             Icons.done,
@@ -25,7 +33,7 @@ class ModalError {
             weight: 16,
           );
     SnackBar child = SnackBar(
-        duration: const Duration(seconds: 2),
+        duration: duration,
         backgroundColor: Colors.transparent,
         elevation: 0,
         padding: EdgeInsets.zero,
