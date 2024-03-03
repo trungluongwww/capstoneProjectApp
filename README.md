@@ -1,15 +1,18 @@
+# Setting Up Flutter Project on Android
 
-A new Flutter project.
+## Overview
+This README file provides instructions on how to set up and run a Flutter project on the Android platform from your GitHub repository. Follow these steps to ensure a smooth setup process and start building your Flutter app on Android.
 
-## Getting Started
+## Prerequisites
+Before getting started, ensure that you have the following prerequisites installed on your system:
+- Flutter SDK
+- Android Studio (with Flutter plugin)
+- Git
 
-This project is a starting point for a Flutter application.
+## Steps to Set Up Flutter Project on Android
+Follow these steps to set up and run your Flutter project on the Android platform:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. **Clone the Repository**: [git clone https://github.com/trungluongwww/room-finder.git](https://github.com/trungluongwww/room-finder.git)https://github.com/trungluongwww/room-finder.git
+2. **Navigate to Project Directory**: cd room-finder
+3. **Install Dependencies**: flutter pub get
+4. **Run the Project on Android Device/Emulator**: flutter run
