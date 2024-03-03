@@ -1,7 +1,7 @@
 # Setting Up Flutter Project on Android
 
 ## Overview
-This README file provides instructions on how to set up and run a Flutter project on the Android platform from your GitHub repository. Follow these steps to ensure a smooth setup process and start building your Flutter app on Android.
+This README file provides instructions on how to set up and run a Flutter project on the Android platform from my GitHub repository. Follow these steps to ensure a smooth setup process and start building your Flutter app on Android.
 
 ## Prerequisites
 Before getting started, ensure that you have the following prerequisites installed on your system:
